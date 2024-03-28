@@ -1,7 +1,7 @@
 services:
   app:
     image: node:latest
-    command: bash -c "tail -f /dev/null"
+    command: npm run start
     ports:
       - "3000:3000"
 
