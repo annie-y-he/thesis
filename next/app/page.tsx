@@ -34,7 +34,7 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
           <p><b>Definition: </b>Topoverse is a verse that renders monads structurally.</p>
           <p><b>Explanation: </b>From the topoverse, we see only structures or relations. Their perceptible analogies would be diagrams, graphs, etc.</p>
           <div>
-            <Link href="/topoverse" onClick={handleLink}>
+            <Link href="/topoverse">
               <button>SAFE PORTAL TECHNOLOGY</button>
             </Link>
             <button>∴</button>
