@@ -6,7 +6,7 @@ PROJECT_NAME="thesis"
 if [ "$1" = "rm" ]; then
   echo "Stopping and removing containers..."
   docker compose -p $PROJECT_NAME down -v
-elif [ $1 = "app" ]; then
+elif [ "$1" = "app" ]; then
   docker exec -it ${PROJECT_NAME}-app-1 bash
 else
   echo "Starting services..."
