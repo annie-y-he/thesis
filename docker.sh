@@ -8,6 +8,11 @@ if [ "$1" = "rm" ]; then
   docker compose -p $PROJECT_NAME down -v
 elif [ "$1" = "app" ]; then
   docker exec -it ${PROJECT_NAME}-app-1 bash
+elif [ "$1" = "restart" ]; then
+  docker compose -p $PROJECT_NAME down -v
+  git pull
+  (cd ./next && npm install && npm run build)
+  docker compose -p $PROJECT_NAME up -d
 else
   echo "Starting services..."
   docker compose -p $PROJECT_NAME up -d
