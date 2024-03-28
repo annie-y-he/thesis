@@ -17,8 +17,8 @@ elif [ "$1" = "restart" ]; then
   docker exec ${PROJECT_NAME}-app-1 npm install
   echo "Building the application..."
   docker exec ${PROJECT_NAME}-app-1 npm run build
-  echo "Starting the application..."
-  docker exec -d ${PROJECT_NAME}-app-1 npm run start
+  echo "Restarting docker..."
+  docker compose -p $PROJECT_NAME up -d --build
 else
   echo "Starting services..."
   docker compose -p $PROJECT_NAME up -d
