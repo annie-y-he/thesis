@@ -61,9 +61,21 @@
 
 .header {
   @include fullw;
-  height: 50px;
+  padding: 25px;
   background-color: #F6F8FA;
-  border-bottom: 1px grey solid;
+  margin-bottom: 50px;
+  box-shadow: 0px 0px 3px grey;
+  img {
+    scale: 2;
+  }
+  span {
+    margin-left: 10px;
+  }
+}
+
+.footer {
+  font-size: small;
+  color: darkgray;
   margin-bottom: 50px;
 }
 
@@ -73,24 +85,31 @@
   width: 90%;
   max-width: 1200px;
   @media (max-width: 900px) {
-    @include flexcr;
+    @include flexc;
   }
+  margin-bottom: 50px;
 }
 
 .left {
+  width: 10%;
   flex-grow: 1;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 }
 
 .files {
   @include border;
-
-  > * :not(:first-child) {
-    color: red;
+  > *:not(:first-child):hover {
+    color: #218bff;
+    background-color: #F6F8FA;
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
 
 .readme {
-  margin-top: 30px;
+  margin: 30px 0;
   @include border;
 }
 
@@ -106,4 +125,20 @@
   background-color: #F6F8FA;
   border-radius: 10px 10px 0 0;
   height: 50px;
+}
+
+.md {
+  padding: 30px;
+  width: 100%;
+  height: fit-content;
+}
+
+.icon {
+  display: flex;
+  :first-child {
+    height: 1.1em;
+    width: 1.1em;
+    margin-right: 10px;
+  }
+  align-items: center;
 }
