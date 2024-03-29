@@ -1,0 +1,109 @@
+@mixin full {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin fullw {
+  width: 100%;
+}
+
+@mixin fullh {
+  height: 100%;
+}
+
+@mixin fit {
+  width: fit-content;
+  height: fit-content;
+}
+
+@mixin flexr {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flexrr {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+@mixin flexc {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flexcr {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+@mixin center {
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin border {
+  border: 1px rgb(194, 194, 194) solid;
+  border-radius: 10px;
+
+  > * {
+    padding: 15px;
+  }
+
+  > *:not(:last-child) {
+    border-bottom: 1px gainsboro solid;
+  }
+}
+
+.main {
+  @include flexc;
+  align-items: center;
+}
+
+.header {
+  @include fullw;
+  height: 50px;
+  background-color: #F6F8FA;
+  border-bottom: 1px grey solid;
+  margin-bottom: 50px;
+}
+
+.body {
+  @include flexr;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  @media (max-width: 900px) {
+    @include flexcr;
+  }
+}
+
+.left {
+  flex-grow: 1;
+}
+
+.files {
+  @include border;
+
+  > * :not(:first-child) {
+    color: red;
+  }
+}
+
+.readme {
+  margin-top: 30px;
+  @include border;
+}
+
+.right {
+  width: 300px;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+  padding: 20px;
+}
+
+.first {
+  background-color: #F6F8FA;
+  border-radius: 10px 10px 0 0;
+  height: 50px;
+}
