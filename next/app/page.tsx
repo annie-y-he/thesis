@@ -19,13 +19,6 @@ interface OverlayProps {
 }
 
 const Overlay: React.FC<OverlayProps> = ({ children }) => {
-  // TODO: save camera position before link
-  // const handleLink = (event: React.MouseEvent) => {
-  //   event.preventDefault();
-  //   const { camera } = useThree();
-  //   console.log(camera.position);
-  // };
-
   switch (children) {
     case "TOPOVERSE":
       return (
