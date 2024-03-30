@@ -11,14 +11,16 @@ elif [ "$1" = "app" ]; then
 elif [ "$1" = "restart" ]; then
   echo "Pulling latest changes from Git..."
   git pull
-  echo "Rebuilding and restarting services..."
+  echo "Rebuilding images..."
   sudo docker compose -p $PROJECT_NAME up -d --build
   echo "Installing dependencies..."
   sudo docker exec ${PROJECT_NAME}-app-1 npm install
   echo "Building the application..."
   sudo docker exec ${PROJECT_NAME}-app-1 npm run build
   echo "Restarting container..."
-  sudo docker compose -p $PROJECT_NAME up -d --build
+  sudo docker compose -p $PROJECT_NAME restart
+elif [ "$1" = "push" ]; then
+  rsync -rv ./next/public/videos/ admin@ec2-18-215-72-38.compute-1.amazonaws.com:/home/admin/thesis/next/public/videos
 else
   echo "Starting services..."
   sudo docker compose -p $PROJECT_NAME up -d
