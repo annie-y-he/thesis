@@ -29,7 +29,7 @@ export default function Meta() {
           </div>
           <div className={s.vid}>
             <video controls preload="auto">
-              <source src="/assets/ad.mp4" type="video/mp4" />
+              <source src="/videos/ad.mp4" type="video/mp4" />
               <track src="/assets/circuit.vtt" kind="subtitles" srcLang="en" default />
             </video>
             <div>
@@ -42,7 +42,7 @@ export default function Meta() {
           </div>
           <div className={s.vid}>
             <video controls preload="auto">
-              <source src="/assets/dop.mp4" type="video/mp4" />
+              <source src="/videos/dop.mp4" type="video/mp4" />
               <track src="/assets/circuit.vtt" kind="subtitles" srcLang="en" default />
             </video>
             <div>
@@ -56,7 +56,7 @@ export default function Meta() {
           </div>
           <div className={s.vid}>
             <video controls preload="auto">
-              <source src="/assets/portable.mp4" type="video/mp4" />
+              <source src="/videos/portable.mp4" type="video/mp4" />
               <track src="/assets/circuit.vtt" kind="subtitles" srcLang="en" default />
             </video>
             <div>
@@ -70,7 +70,7 @@ export default function Meta() {
           </div>
           <div className={s.load}>
             <video autoPlay loop muted>
-              <source src="/assets/loading.mp4" type="video/mp4" />
+              <source src="/videos/loading.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
