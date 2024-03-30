@@ -1,0 +1,155 @@
+WEBVTT
+
+00:00:08.580 --> 00:00:12.000
+So you guys are saying that the 
+circuit just caught on fire by itself?
+
+00:00:12.000 --> 00:00:15.420
+Okay, seems like the memory chip is still intact.
+
+00:00:15.420 --> 00:00:16.860
+Let's try this:
+
+00:00:16.860 --> 00:00:19.500
+each of you describe the things 
+you've written to the chip.
+
+00:00:19.500 --> 00:00:21.780
+I'll compare them to the Chip's memory.
+
+00:00:21.780 --> 00:00:25.020
+If it seems reasonable, I'll 
+give you partial credit.
+
+00:00:29.100 --> 00:00:35.640
+On Saturday I bought a bottle of orange 
+juice from CVS before coming to school.
+
+00:00:37.020 --> 00:00:40.920
+I placed it on my desk, took out my computer,
+
+00:00:41.940 --> 00:00:45.540
+and started reviewing the Logisim 
+simulation that Noam sent me.
+
+00:00:48.960 --> 00:00:53.520
+We went to the eighth floor to 
+print our datasheets and stuff,
+
+00:00:54.480 --> 00:00:57.600
+but they were out of paper in the colored printer,
+
+00:00:57.600 --> 00:01:00.600
+so we couldn't print it there.
+
+00:01:04.500 --> 00:01:09.420
+So here's the thing: I designed 
+a box so the breadboard could fit  
+
+00:01:09.420 --> 00:01:11.760
+into the box and our presentation looks very nice.
+
+00:01:17.520 --> 00:01:23.220
+On Sunday I was figuring out 
+this neuroimaging headset thing
+
+00:01:23.220 --> 00:01:27.360
+that is required for us to have 
+interfaced with our circuit,
+
+00:01:28.140 --> 00:01:31.140
+getting familiar with its inputs and outputs,
+
+00:01:31.140 --> 00:01:34.980
+so that we can gain access 
+to the memory we wanted.
+
+00:01:34.980 --> 00:01:43.020
+So we went upstairs trying to 
+print whatever document we have,
+
+00:01:43.020 --> 00:01:47.040
+but apparently all of the 
+printers are out of paper
+
+00:01:47.040 --> 00:01:52.800
+so we had to go to this plotter room 
+where there's a single large printer.
+
+00:02:08.280 --> 00:02:10.740
+I used the stripper to make a lot of baby wires
+
+00:02:10.740 --> 00:02:13.320
+because all of the chips need to 
+be connected to power and ground,
+
+00:02:13.320 --> 00:02:16.020
+so it makes it more efficient for wiring later on.
+
+00:02:18.960 --> 00:02:25.740
+I got LEDs, put it on a perfboard and then I 
+soldered it together to make an LED Matrix.
+
+00:02:28.320 --> 00:02:30.720
+Sunday was it was a pretty chill day for me
+
+00:02:30.720 --> 00:02:33.240
+I just, you know, unrolled my box
+
+00:02:33.240 --> 00:02:36.600
+and then I sent it to the AACE 
+Lab so they can laser cut.
+
+00:02:42.780 --> 00:02:47.520
+We needed a really good wire 
+stripper to speed up the process.
+
+00:02:48.240 --> 00:02:51.840
+But when I went and check for it 
+in the drawer, it wasn't there.  
+
+00:02:53.460 --> 00:02:56.940
+I was in so much stress, I literally 
+shot off from the building,
+
+00:02:57.620 --> 00:03:00.240
+but remembered to close the drawer of course,
+
+00:03:00.240 --> 00:03:03.900
+and flew to this hardware store down two avenues.
+
+00:03:26.820 --> 00:03:30.540
+I needed a cardboard box 
+for the circuit components
+
+00:03:30.540 --> 00:03:33.960
+so I went down to the basement 
+of the Foundation Building
+
+00:03:33.960 --> 00:03:36.660
+because I remembered that they 
+had boxes there in the pipe room.
+
+00:03:43.414 --> 00:03:47.400
+I had to get chips for our circuit,
+
+00:03:47.400 --> 00:03:50.460
+and then I had to download the 
+datasheets from TI (Texas Instruments).
+
+00:03:50.460 --> 00:03:52.800
+Fun fact, they make all the chips in the world.
+
+00:03:53.580 --> 00:03:54.660
+It's crazy, I know.
+
+00:03:55.800 --> 00:04:00.300
+And then after I downloaded the datasheets we were all ready to go.
+
+00:04:02.400 --> 00:04:05.340
+Okay I've got everything written down,
+
+00:04:05.340 --> 00:04:08.040
+I will provide you with the 
+feedbacks later this week.
+

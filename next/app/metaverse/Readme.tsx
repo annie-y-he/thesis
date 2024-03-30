@@ -41,7 +41,10 @@ export default function Readme() {
       <hr />
       <h3>Demo</h3>
       <br />
-      <iframe width="100%" src="https://www.youtube.com/embed/9L3OatQC4fo?si=5keAzy_pDZtjnw2m" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+      <video controls preload="auto">
+        <source src="/assets/circuit.mp4" type="video/mp4" />
+        <track src="/assets/circuit.vtt" kind="subtitles" srcLang="en" default />
+      </video>
       <hr />
       <h3>Acknowledgements</h3>
       <br />

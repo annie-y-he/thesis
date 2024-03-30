@@ -35,9 +35,9 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
           <p><b>Explanation: </b>From the topoverse, we see only structures or relations. Their perceptible analogies would be diagrams, graphs, etc.</p>
           <div>
             <Link href="/topoverse">
-              <button>SAFE PORTAL TECHNOLOGY</button>
+              <button title="go to project">SAFE PORTAL TECHNOLOGY</button>
             </Link>
-            <button>∴</button>
+            <button title="spread in space">∴</button>
           </div>
         </div>
       )
@@ -49,9 +49,9 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
           <p><b>Explanation: </b>With a metaversal perspective, we see existences as ideas that do not necessarily map to human understanding.</p>
           <div>
             <Link href="/metaverse">
-              <button>MEMORY</button>
+              <button title="go to project">MEMORY TRAVERSING MACHINE</button>
             </Link>
-            <button>∴</button>
+            <button title="spread in space">∴</button>
           </div>
         </div>
       )
@@ -63,9 +63,9 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
           <p><b>Explanation: </b>The universe deals with particles and waves and their properties. They might macroscopically manifest as organisms, cosmological bodies, etc.</p>
           <div>
             <Link href="/universe">
-              <button>AUTOMATA</button>
+              <button title="go to project">MIMETIC CELLULAR AUTOMATA</button>
             </Link>
-            <button>∴</button>
+            <button title="spread in space">∴</button>
           </div>
         </div>
       )
@@ -77,9 +77,9 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
           <p><b>Explanation: </b>The relationship between pataverse and metaverse is analogous to that between metaverse and universe. Yet, beyond the metaversal, it wraps back to the components of the psyche.</p>
           <div>
             <Link href="/pataverse">
-              <button>AUDIO</button>
+              <button title="go to project">INTERACTIVE AUDIO DEVICE</button>
             </Link>
-            <button>∴</button>
+            <button title="spread in space">∴</button>
           </div>
         </div>
       )

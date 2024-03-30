@@ -159,6 +159,11 @@ iframe {
   border: none;
 }
 
+video {
+  width: 100%;
+  height: auto;
+}
+
 svg {
   display: inline;
 }
