@@ -20,7 +20,7 @@ elif [ "$1" = "restart" ]; then
   echo "Restarting container..."
   sudo docker compose -p $PROJECT_NAME restart
 elif [ "$1" = "push" ]; then
-  rsync -rv ./next/public/videos/ admin@ec2-18-215-72-38.compute-1.amazonaws.com:/home/admin/thesis/next/public/videos
+  rsync -rv ./next/public/ admin@ec2-18-215-72-38.compute-1.amazonaws.com:/home/admin/thesis/next/public
 else
   echo "Starting services..."
   sudo docker compose -p $PROJECT_NAME up -d

@@ -21,3 +21,6 @@ const handleLink = (event: React.MouseEvent) => {
 - hover color for verses
 - points overlay
 - panel discussion outline
+- pata: global mouse position instead of three pointer, also consider when dragging windows.
+- pata: drag control, stop propagation.
+- topo: mobile video auto fullscreen
