@@ -24,12 +24,16 @@ const handleLink = (event: React.MouseEvent) => {
 - [x] meta: mobile versions
 - [x] topo: mobile versions
 - pata: mobile versions
-- uni: mobile versions
+- [x] uni: mobile versions
 - [x] main: favicon and metadata
 - main: hover color for verses
 - main: points overlay
 - pre: panel discussion outline
 - pata: global mouse position instead of three pointer, also consider when dragging windows.
 - pata: drag control, stop propagation.
-- topo: mobile video auto fullscreen
+- [x] topo: mobile video auto fullscreen
 - pata: limit on orbit control in mobile
+- pata: mobile drag object not working
+- [x] main: server favicon not changed
+- main: safari button color is blue
+- all: mobile safari tabbar
