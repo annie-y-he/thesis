@@ -42,3 +42,4 @@ const handleLink = (event: React.MouseEvent) => {
 - main: monad verse world definition
 - main: statement
 - pata: scan desk and objects
+- all: color theme
