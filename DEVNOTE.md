@@ -37,3 +37,7 @@ const handleLink = (event: React.MouseEvent) => {
 - [x] main: server favicon not changed
 - main: safari button color is blue
 - all: mobile safari tabbar
+- all: video cover
+- all: video subtitle
+- main: monad verse world definition
+- main: statement
