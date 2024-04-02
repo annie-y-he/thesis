@@ -28,7 +28,7 @@ export default function Meta() {
             <div>History</div>
           </div>
           <div className={s.vid}>
-            <video controls preload="auto">
+            <video controls preload="auto" playsInline>
               <source src="/videos/ad.mp4" type="video/mp4" />
               <track src="/assets/circuit.vtt" kind="subtitles" srcLang="en" default />
             </video>
@@ -41,7 +41,7 @@ export default function Meta() {
             </div>
           </div>
           <div className={s.vid}>
-            <video controls preload="auto">
+            <video controls preload="auto" playsInline>
               <source src="/videos/dop.mp4" type="video/mp4" />
               <track src="/assets/circuit.vtt" kind="subtitles" srcLang="en" default />
             </video>
@@ -55,7 +55,7 @@ export default function Meta() {
             </div>
           </div>
           <div className={s.vid}>
-            <video controls preload="auto">
+            <video controls preload="auto" playsInline>
               <source src="/videos/portable.mp4" type="video/mp4" />
               <track src="/assets/circuit.vtt" kind="subtitles" srcLang="en" default />
             </video>
@@ -69,7 +69,7 @@ export default function Meta() {
             </div>
           </div>
           <div className={s.load}>
-            <video autoPlay loop muted>
+            <video autoPlay loop muted playsInline>
               <source src="/videos/loading.mp4" type="video/mp4" />
             </video>
           </div>
@@ -84,7 +84,9 @@ export default function Meta() {
         </Link>
       </div>
       <div className={s.header}>
-        <Image src={YouCubeIcon} width={0} height={20} alt="icon" />
+        <div>
+          <Image src={YouCubeIcon} width={0} height={20} alt="icon" />
+        </div>
         <div className={s.search}>
           <input type="text" value="safe portal technology" readOnly />        
           <div>

@@ -6,6 +6,7 @@ import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Tetrahedron, Octahedron, Text, Sphere } from '@react-three/drei';
+import s from './page.module.scss';
 
 interface TextObjProps {
   children?: string;
@@ -26,7 +27,7 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
           <p><b>Origin: </b>Inspired by topology, a branch of mathematics that studies the properties of space that are preserved under continuous deformations.</p>
           <p><b>Definition: </b>Topoverse is a verse that renders monads structurally.</p>
           <p><b>Explanation: </b>From the topoverse, we see only structures or relations. Their perceptible analogies would be diagrams, graphs, etc.</p>
-          <div>
+          <div className={s.buttons}>
             <Link href="/topoverse">
               <button title="go to project">SAFE PORTAL TECHNOLOGY</button>
             </Link>
@@ -40,7 +41,7 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
           <p><b>Origin: </b>The conventional use of "metaverse", to describe virtual reality spaces, inaccurately implies, through the prefix "meta-", a transcendental nature of such spaces.</p>
           <p><b>Definition: </b>Metaverse is a verse that renders monads conceptually.</p>
           <p><b>Explanation: </b>With a metaversal perspective, we see existences as ideas that do not necessarily map to human understanding.</p>
-          <div>
+          <div className={s.buttons}>
             <Link href="/metaverse">
               <button title="go to project">MEMORY TRAVERSING MACHINE</button>
             </Link>
@@ -54,7 +55,7 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
           <p><b>Origin: </b>The prefix "uni-" is purely historical. It does not convey the notion that the universe is the sole perspective on existence.</p>
           <p><b>Definition: </b>Universe is a verse that renders monads physically.</p>
           <p><b>Explanation: </b>The universe deals with particles and waves and their properties. They might macroscopically manifest as organisms, cosmological bodies, etc.</p>
-          <div>
+          <div className={s.buttons}>
             <Link href="/universe">
               <button title="go to project">MIMETIC CELLULAR AUTOMATA</button>
             </Link>
@@ -68,7 +69,7 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
           <p><b>Origin: </b>Inspired by Alfred Jarry's 'Pataphysics, a parody of science often described as the "science of imaginary solutions".</p>
           <p><b>Definition: </b>Pataverse is a verse that renders monads imaginarily.</p>
           <p><b>Explanation: </b>The relationship between pataverse and metaverse is analogous to that between metaverse and universe. Yet, beyond the metaversal, it wraps back to the components of the psyche.</p>
-          <div>
+          <div className={s.buttons}>
             <Link href="/pataverse">
               <button title="go to project">INTERACTIVE AUDIO DEVICE</button>
             </Link>
@@ -177,10 +178,10 @@ const TextObj: React.FC<TextObjProps> = ({ children, position = [0, 0, 0], size 
     if (!setOverlay) return;
     if (clicked) {
       setOverlay(
-        <div id="definition">
-          <div id="overlay">
+        <div className={s.definition}>
+          <div className={s.overlay}>
             <Overlay>{children}</Overlay>
-            <small>click scene to close</small>
+            <div><small>click scene to close</small></div>
           </div>
         </div>
       );
@@ -224,7 +225,7 @@ export default function App() {
   // const { camera } = useThree();
 
   return (
-    <main>
+    <main className={s.main}>
       <Canvas 
         style={{ background: "black" }} 
         camera={{ fov: 18, position: [0, 0, 10] }}
@@ -260,6 +261,7 @@ export default function App() {
         <OrbitControls />
       </Canvas>
       {overlayVisible && overlayContent}
+      <div><small>orbit around scene</small></div>
     </main>
   );
 }

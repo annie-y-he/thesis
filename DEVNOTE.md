@@ -7,20 +7,29 @@ const handleLink = (event: React.MouseEvent) => {
   console.log(camera.position);
 };
 ```
-- fix diagram sphere shading
-- fix popup format
-- add more prompt
+- main: fix diagram sphere shading
+- [x] main: fix popup format
+- [x] main: add more prompt
 - meta: add hidden back link
 - meta: content
 - topo: content
+- pata: content
+- pata: application windows
+- pata: window resize
+- uni: content
 - topo: smaller user prof
 - topo: add channel icon
 - make icon general function
-- mobile versions
-- favicon and metadata
-- hover color for verses
-- points overlay
-- panel discussion outline
+- [x] main: mobile versions
+- [x] meta: mobile versions
+- [x] topo: mobile versions
+- pata: mobile versions
+- uni: mobile versions
+- [x] main: favicon and metadata
+- main: hover color for verses
+- main: points overlay
+- pre: panel discussion outline
 - pata: global mouse position instead of three pointer, also consider when dragging windows.
 - pata: drag control, stop propagation.
 - topo: mobile video auto fullscreen
+- pata: limit on orbit control in mobile
