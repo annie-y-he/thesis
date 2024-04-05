@@ -14,12 +14,12 @@ const handleLink = (event: React.MouseEvent) => {
 - meta: content
 - topo: content
 - pata: content
-- pata: application windows
-- pata: window resize
+- [x] pata: application windows
+- [x] pata: window resize
 - uni: content
 - topo: smaller user prof
 - topo: add channel icon
-- make icon general function
+- all: make icon general function
 - [x] main: mobile versions
 - [x] meta: mobile versions
 - [x] topo: mobile versions
@@ -33,7 +33,7 @@ const handleLink = (event: React.MouseEvent) => {
 - pata: drag control, stop propagation.
 - [x] topo: mobile video auto fullscreen
 - pata: limit on orbit control in mobile
-- pata: mobile drag object not working
+- [x] pata: mobile drag object not working (they are working)
 - [x] main: server favicon not changed
 - main: safari button color is blue
 - all: mobile safari tabbar
