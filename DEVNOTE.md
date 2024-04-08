@@ -38,6 +38,7 @@ main:
 - statement
 - disclaimer
 - safari button color is blue
+- save camera position before link (seems like safari does this already)
 
 meta:
 - add back link
@@ -56,6 +57,8 @@ pata:
 - more persona
 - default window size
 - signin page and username
+- email grid stack for mobile
+- mobile typing auto zoom
 
 topo:
 - content
