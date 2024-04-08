@@ -23,7 +23,7 @@ const handleLink = (event: React.MouseEvent) => {
 - [x] main: mobile versions
 - [x] meta: mobile versions
 - [x] topo: mobile versions
-- pata: mobile versions
+- [x] pata: mobile versions
 - [x] uni: mobile versions
 - [x] main: favicon and metadata
 - main: hover color for verses
@@ -35,7 +35,6 @@ const handleLink = (event: React.MouseEvent) => {
 - pata: limit on orbit control in mobile
 - [x] pata: mobile drag object not working (they are working)
 - [x] main: server favicon not changed
-- main: safari button color is blue
 - all: mobile safari tabbar
 - all: video cover
 - all: video subtitle
@@ -43,3 +42,10 @@ const handleLink = (event: React.MouseEvent) => {
 - main: statement
 - pata: scan desk and objects
 - all: color theme
+- main: safari button color is blue
+- all: fonts
+- pata: retain thread memory
+- pata: bold unread message
+- pata: safe use secret key
+- pata: add previous assistant email
+- [x] pata: specific gpt model runs multiple times

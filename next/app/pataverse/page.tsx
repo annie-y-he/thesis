@@ -14,10 +14,16 @@ import VSCodeIcon from './assets/vscode.svg'
 
 import Window from './Window'
 
+interface Email {
+  content: string;
+  sender: string;
+  re: string | null;
+  read: boolean;
+  thread: string | null;
+}
+
 const CameraControls: React.FC = () => {
   const { camera, pointer } = useThree();
-
-  // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const initPos = new THREE.Spherical(5, 0.7, 0)
 
@@ -27,7 +33,6 @@ const CameraControls: React.FC = () => {
   }, [camera]);
 
   useFrame(() => {
-
     const limit = 0.1;
     const speed = 0.1;
 
@@ -42,6 +47,132 @@ const CameraControls: React.FC = () => {
 
   return null;
 };
+
+const Chrome = () => {
+  return <div>chrome fc</div>
+}
+
+const sendEmail = async ( current: Email, content: string, setEmails: React.Dispatch<React.SetStateAction<Email[]>> ) => {
+
+  if (!current.thread) {
+    const response = await fetch('/api/gpt', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        sender: current.sender, 
+        content: content,
+        threadInfo: current.content
+      }),
+    });
+    const body = await response.json();
+
+    setEmails(currentEmails => {
+      const newEmail = {
+        content: body.msg,
+        sender: current.sender,
+        re: content,
+        read: false,
+        thread: body.tid,
+      };
+
+      currentEmails[currentEmails.indexOf(current)].thread = body.tid;
+
+      return [newEmail, ...currentEmails];
+    });
+  } else {
+    const response = await fetch('/api/gpt', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        sender: current.sender, 
+        content: content,
+        threadInfo: current.thread
+      }),
+    });
+
+    const body = await response.json();
+
+    setEmails(currentEmails => [{
+      content: body.msg,
+      sender: current.sender,
+      re: content,
+      read: false,
+      thread: body.tid,
+    }, ...currentEmails]);
+  }
+
+}
+
+const Outlook = () => {
+  const [emails, setEmails] = useState<Email[]>([
+    {
+      content: "How's it going? I went to this second-hand audio electronics store the other day. There was this device that apparently makes weird noises. I played with it for a few days without success. It is now on its way to you. Maybe you can help figure out what's wrong with it.",
+      sender: "Richard Chung",
+      re: null,
+      read: false,
+      thread: null,
+    }, {
+      content: "how's it going with the problems i sent you?",
+      sender: "Jeffrey Wong",
+      re: null,
+      read: false,
+      thread: null,
+    },
+  ]);
+  const [current, setCurrent] = useState<Email>({
+    content: "click to view emails",
+    sender: "Sender",
+    re: null,
+    read: false,
+    thread: null,
+  });
+
+  const [emailContent, setEmailContent] = useState('');
+  
+  const handleContentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setEmailContent(event.target.value);
+  };
+
+  return (
+    <div className={s.outlook}>
+      <div>
+        {emails.map((item, index) => (
+          <div key={index} onClick={() => {
+            setCurrent(item);
+            setEmails(currentEmails => {
+              currentEmails[currentEmails.indexOf(item)].read = true;
+              return [...currentEmails];
+            });
+          }}>
+            <div>{item.read ? item.sender : <b>{item.sender}</b>}</div>
+            <div>{item.content}</div>
+          </div>
+        ))}
+      </div>
+      <div>
+        <div>{current.content}</div>
+        {current.re && <div><br />replying to:<br />{current.re}</div>}
+      </div>
+      <div>
+        <input type="text" value={'To: ' + current.sender} readOnly />
+        <textarea value={emailContent} onChange={handleContentChange} placeholder="Email body" />
+        <button disabled={current.sender == 'Sender'} onClick={() => { sendEmail(current, emailContent, setEmails); setEmailContent(''); }}>Send</button>
+      </div>
+    </div>
+  )
+}
+
+const VSCode = () => {
+  return <div>vscode fc</div>
+}
+
+const Teams = () => {
+  return <div>teams fc</div>
+}
 
 export default function Pata() {
   const [wins, setWins] = useState<string[]>([]);
@@ -98,25 +229,25 @@ export default function Pata() {
           <div className={`handle ${s.handle}`}>
             <Image src={ChromeIcon} width={0} height={20} alt="icon" />
           </div>
-          <div>chrome</div>
+          <Chrome />
         </Window>
         <Window style={{ display: wins.includes("vscode") ? "flex" : "none", zIndex: wins.indexOf("vscode")}} className={s.win} onPointerDown={() => toTop("vscode")}>
           <div className={`handle ${s.handle}`}>
             <Image src={VSCodeIcon} width={0} height={20} alt="icon" />
           </div>
-          <div>vscode</div>
+          <VSCode />
         </Window>
         <Window style={{ display: wins.includes("outlook") ? "flex" : "none", zIndex: wins.indexOf("outlook")}} className={s.win} onPointerDown={() => toTop("outlook")}>
           <div className={`handle ${s.handle}`}>
             <Image src={OutlookIcon} width={0} height={20} alt="icon" />
           </div>
-          <div>outlook</div>
+          <Outlook />
         </Window>
         <Window style={{ display: wins.includes("teams") ? "flex" : "none", zIndex: wins.indexOf("teams")}} className={s.win} onPointerDown={() => toTop("teams")}>
           <div className={`handle ${s.handle}`}>
             <Image src={TeamsIcon} width={0} height={20} alt="icon" />
           </div>
-          <div>teams</div>
+          <Teams />
         </Window>
         <div className={s.taskbar}>
           <div><Image src={ChromeIcon} width={0} height={0} alt="icon" onClick={() => toggle("chrome")} /></div>

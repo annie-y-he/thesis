@@ -261,7 +261,11 @@ export default function App() {
         <OrbitControls />
       </Canvas>
       {overlayVisible && overlayContent}
-      <div><small>orbit around scene</small></div>
+      <div>
+        <small>orbit around scene</small>
+        <br />
+        <small>click words for details</small>
+      </div>
     </main>
   );
 }
