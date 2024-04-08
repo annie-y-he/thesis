@@ -54,6 +54,7 @@ pata:
 - scan desk and objects
 - captcha
 - more persona
+- default window size
 
 topo:
 - content
