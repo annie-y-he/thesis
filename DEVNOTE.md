@@ -55,6 +55,7 @@ pata:
 - captcha
 - more persona
 - default window size
+- signin page and username
 
 topo:
 - content
