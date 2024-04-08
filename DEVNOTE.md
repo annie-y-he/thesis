@@ -7,45 +7,66 @@ const handleLink = (event: React.MouseEvent) => {
   console.log(camera.position);
 };
 ```
-- main: fix diagram sphere shading
 - [x] main: fix popup format
 - [x] main: add more prompt
-- meta: add hidden back link
-- meta: content
-- topo: content
-- pata: content
 - [x] pata: application windows
 - [x] pata: window resize
-- uni: content
-- topo: smaller user prof
-- topo: add channel icon
-- all: make icon general function
 - [x] main: mobile versions
 - [x] meta: mobile versions
 - [x] topo: mobile versions
 - [x] pata: mobile versions
 - [x] uni: mobile versions
 - [x] main: favicon and metadata
-- main: hover color for verses
-- main: points overlay
-- pre: panel discussion outline
-- pata: global mouse position instead of three pointer, also consider when dragging windows.
-- pata: drag control, stop propagation.
+- [x] pata: global mouse position instead of three pointer, also consider when dragging windows.
+- [x] pata: drag control, stop propagation.
 - [x] topo: mobile video auto fullscreen
-- pata: limit on orbit control in mobile
+- [x] pata: limit on orbit control in mobile
 - [x] pata: mobile drag object not working (they are working)
 - [x] main: server favicon not changed
-- all: mobile safari tabbar
-- all: video cover
-- all: video subtitle
-- main: monad verse world definition
-- main: statement
-- pata: scan desk and objects
-- all: color theme
-- main: safari button color is blue
-- all: fonts
-- pata: retain thread memory
-- pata: bold unread message
-- pata: safe use secret key
-- pata: add previous assistant email
+- [x] all: color theme
+- [x] pata: retain thread memory
+- [x] pata: bold unread message
+- [x] pata: safe use secret key
+- [x] pata: add previous assistant email
 - [x] pata: specific gpt model runs multiple times
+
+main:
+- fix diagram sphere shading
+- hover color for verses
+- points overlay
+- monad verse world definition
+- statement
+- disclaimer
+- safari button color is blue
+
+meta:
+- add back link
+- content
+- rerender
+
+uni:
+- add back link
+- content
+
+pata:
+- add back link
+- content
+- scan desk and objects
+- captcha
+- more persona
+
+topo:
+- content
+- smaller user prof
+- add channel icon
+
+all:
+- back link
+- make icon general function
+- mobile safari tabbar
+- video cover
+- video subtitle
+- fonts
+
+pre:
+- panel discussion outline
