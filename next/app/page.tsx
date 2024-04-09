@@ -5,7 +5,7 @@ import * as React from 'react'
 import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, Tetrahedron, Octahedron, Text, Sphere } from '@react-three/drei';
+import { OrbitControls, Tetrahedron, Octahedron, Icosahedron, Text, Sphere } from '@react-three/drei';
 import s from './page.module.scss';
 
 interface TextObjProps {
@@ -170,6 +170,13 @@ const TextObj: React.FC<TextObjProps> = ({ children, position = [0, 0, 0], size 
   const [hovered, hover] = useState(false)
   const [clicked, click] = useState(false)
 
+  const colors: {[key: string]: string} = {
+    TOPOVERSE: "green",
+    PATAVERSE: "yellow",
+    METAVERSE: "red",
+    UNIVERSE: "purple"
+  };
+
   useEffect(() => {
     document.body.style.cursor = hovered ? 'pointer' : 'auto'
   },[hovered])
@@ -197,7 +204,7 @@ const TextObj: React.FC<TextObjProps> = ({ children, position = [0, 0, 0], size 
       ref={textRef}
       position={position}
       fontSize={size}
-      color="white"
+      color={ children && hovered ? colors[children] || "salmon" : "white" }
       anchorX="center"
       anchorY="middle"
       onPointerOver={() => hover(true)}
@@ -231,17 +238,26 @@ export default function App() {
         camera={{ fov: 18, position: [0, 0, 10] }}
         onClick={(event) => {setOverlay(undefined)}}
       >
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
+        <ambientLight intensity={1} />
+        {/* <pointLight intensity={0.5} position={[0.7, 0.7, 0.7]} />
+        <pointLight intensity={0.5} position={[-0.7, -0.7, 0.7]} />
+        <pointLight intensity={0.5} position={[0.7, -0.7, -0.7]} />
+        <pointLight intensity={0.5} position={[-0.7, 0.7, -0.7]} /> */}
+
+        <Sphere args={[0.6, 64, 32]}>
+          <meshStandardMaterial color="#999" transparent={true} opacity={0.9}/>
+        </Sphere>
         <Tetrahedron args={[1.04]} name="tetra">
           <meshBasicMaterial attach="material" color="white" wireframe={true} />
         </Tetrahedron>
         <Octahedron args={[0.85]} name="octa">
           <meshBasicMaterial attach="material" color="white" wireframe={true} />
         </Octahedron>
-        <Sphere args={[0.6, 64, 32]}>
-          <meshStandardMaterial color="white" transparent={true} opacity={0.9} depthTest={false}/>
-        </Sphere>
+        {Array.from({ length: 500 }, (_, i) => (
+          <Icosahedron key={i} args={[0.01]} position={(new THREE.Vector3()).setFromSphericalCoords(0.6, Math.acos(2 * Math.random() - 1), Math.random() * 2 * Math.PI)}>
+            <meshBasicMaterial attach="material" color="white" />
+          </Icosahedron>
+        ))}
         <TextObj position={[0.7, 0.7, 0.7]} size={0.08} setOverlay={setOverlay}>TOPOVERSE</TextObj>
         <TextObj position={[-0.7, -0.7, 0.7]} size={0.08} setOverlay={setOverlay}>METAVERSE</TextObj>
         <TextObj position={[0.7, -0.7, -0.7]} size={0.08} setOverlay={setOverlay}>UNIVERSE</TextObj>

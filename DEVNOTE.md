@@ -9,14 +9,15 @@ const handleLink = (event: React.MouseEvent) => {
 ```
 
 main:
-- [x] main: fix popup format
-- [x] main: add more prompt
-- [x] main: mobile versions
-- [x] main: favicon and metadata
-- [x] main: server favicon not changed
-- fix diagram sphere shading
-- hover color for verses
-- points overlay
+- [x] fix popup format
+- [x] add more prompt
+- [x] mobile versions
+- [x] favicon and metadata
+- [x] server favicon not changed
+- [x] fix diagram sphere shading
+- [x] hover color for verses
+- [x] points overlay
+- points generation
 - monad verse world definition
 - statement
 - disclaimer
@@ -24,7 +25,7 @@ main:
 - save camera position before link (seems like safari does this already)
 
 meta:
-- [x] meta: mobile versions
+- [x] mobile versions
 - add back link
 - content
 - rerender
@@ -45,13 +46,13 @@ uni:
 - authors name design
 
 pata:
-- [x] pata: application windows
-- [x] pata: window resize
-- [x] pata: mobile versions
-- [x] pata: global mouse position instead of three pointer, also consider when dragging windows.
-- [x] pata: drag control, stop propagation.
-- [x] pata: limit on orbit control in mobile
-- [x] pata: mobile drag object not working (they are working)
+- [x] application windows
+- [x] window resize
+- [x] mobile versions
+- [x] global mouse position instead of three pointer, also consider when dragging windows.
+- [x] drag control, stop propagation.
+- [x] limit on orbit control in mobile
+- [x] mobile drag object not working (they are working)
 - [x] retain thread memory
 - [x] bold unread message
 - [x] safe use secret key
@@ -68,14 +69,14 @@ pata:
 - mobile typing auto zoom
 
 topo:
-- [x] topo: mobile versions
-- [x] topo: mobile video auto fullscreen
+- [x] mobile versions
+- [x] mobile video auto fullscreen
 - content
 - smaller user prof
 - add channel icon
 
 all:
-- [x] all: color theme
+- [x] color theme
 - back link
 - make icon general function
 - mobile safari tabbar

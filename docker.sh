@@ -22,6 +22,11 @@ elif [ "$1" = "restart" ]; then
 elif [ "$1" = "push" ]; then
   rsync -rv ./next/public/ admin@ec2-18-215-72-38.compute-1.amazonaws.com:/home/admin/thesis/next/public
   rsync -rv ./next/.env.local admin@ec2-18-215-72-38.compute-1.amazonaws.com:/home/admin/thesis/next/.env.local
+  if [ "$2" = "-m" ]; then
+    git add .
+    git commit -m "$3"
+    git push
+  fi
   ssh admin@ec2-18-215-72-38.compute-1.amazonaws.com "cd thesis && ./docker.sh restart"
 else
   echo "Starting services..."

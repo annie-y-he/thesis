@@ -59,7 +59,7 @@ async function handler(req: any) {
 
     return new Response(JSON.stringify({ msg: response, tid: thread.id }), { status: 200 });
   } else {
-    return new Response(JSON.stringify({ msg: "thread run error", stat: run.status }), { status: 400 });
+    return new Response(JSON.stringify({ msg: "I am currently unavailable", stat: run.status }), { status: 400 });
   }
 }
 
