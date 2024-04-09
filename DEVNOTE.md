@@ -7,30 +7,13 @@ const handleLink = (event: React.MouseEvent) => {
   console.log(camera.position);
 };
 ```
-- [x] main: fix popup format
-- [x] main: add more prompt
-- [x] pata: application windows
-- [x] pata: window resize
-- [x] main: mobile versions
-- [x] meta: mobile versions
-- [x] topo: mobile versions
-- [x] pata: mobile versions
-- [x] uni: mobile versions
-- [x] main: favicon and metadata
-- [x] pata: global mouse position instead of three pointer, also consider when dragging windows.
-- [x] pata: drag control, stop propagation.
-- [x] topo: mobile video auto fullscreen
-- [x] pata: limit on orbit control in mobile
-- [x] pata: mobile drag object not working (they are working)
-- [x] main: server favicon not changed
-- [x] all: color theme
-- [x] pata: retain thread memory
-- [x] pata: bold unread message
-- [x] pata: safe use secret key
-- [x] pata: add previous assistant email
-- [x] pata: specific gpt model runs multiple times
 
 main:
+- [x] main: fix popup format
+- [x] main: add more prompt
+- [x] main: mobile versions
+- [x] main: favicon and metadata
+- [x] main: server favicon not changed
 - fix diagram sphere shading
 - hover color for verses
 - points overlay
@@ -41,15 +24,39 @@ main:
 - save camera position before link (seems like safari does this already)
 
 meta:
+- [x] meta: mobile versions
 - add back link
 - content
 - rerender
 
 uni:
+- [x] uni: mobile versions
+- [x] titles
+- [x] collection name and description
+- [x] plos name design
+- [x] article abstract
+- [x] cover images
 - add back link
-- content
+- article outlines
+- article contents
+- article refine abstract
+- refine cover image
+- plos logo design
+- authors name design
 
 pata:
+- [x] pata: application windows
+- [x] pata: window resize
+- [x] pata: mobile versions
+- [x] pata: global mouse position instead of three pointer, also consider when dragging windows.
+- [x] pata: drag control, stop propagation.
+- [x] pata: limit on orbit control in mobile
+- [x] pata: mobile drag object not working (they are working)
+- [x] retain thread memory
+- [x] bold unread message
+- [x] safe use secret key
+- [x] add previous assistant email
+- [x] specific gpt model runs multiple times
 - add back link
 - content
 - scan desk and objects
@@ -61,11 +68,14 @@ pata:
 - mobile typing auto zoom
 
 topo:
+- [x] topo: mobile versions
+- [x] topo: mobile video auto fullscreen
 - content
 - smaller user prof
 - add channel icon
 
 all:
+- [x] all: color theme
 - back link
 - make icon general function
 - mobile safari tabbar

@@ -65,10 +65,10 @@
   margin-bottom: 50px;
   box-shadow: 0px 0px 3px grey;
   color: #00156b;
-  background-image: url('/assets/collection.jpeg');
+  background-image: url('/images/collection.webp');
   background-size: cover;
   > :first-child {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 25px 12% 50px 12%;
   }
   hr {
@@ -100,6 +100,13 @@
 .footer {
   @include foot;
   background-color: #050c2b;
+
+  > :first-child {
+    > * {
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+  }
 }
 
 .subfooter {
@@ -123,12 +130,33 @@
   @media (max-width: 900px) {
     flex-direction: column-reverse;
   }
+  // other data
   > :first-child {
     width: 600px;
     @media (max-width: 900px) {
       width: 100%;
     }
+    // title
+    h2 {
+      a {
+        background-image: linear-gradient(#d7df23, #d7df23);
+        background-repeat: no-repeat;
+        background-size: 100% 0; /* 100% width and 0 height */
+        background-position: 0 100%; /* Position at the bottom */
+        transition: background-size 0.25s ease, color 0.25s ease;
+        background-repeat: no-repeat;
+        &:hover {
+          background-size: 100% 100%; /* 100% width and 100% height on hover */
+          background-position: 0 100%;
+          cursor: pointer;
+        }
+      }
+    }
+    > p:not(:last-child) {
+      color: #2f5991;
+    }
   }
+  // cover image
   > :last-child {
     margin-left: 50px;
     height: 150px;
@@ -142,30 +170,13 @@
       width: 100%;
       min-width: unset;
     }
-  }
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  h2 {
-    a {
-      background-image: linear-gradient(#d7df23, #d7df23);
-      background-repeat: no-repeat;
-      background-size: 100% 0; /* 100% width and 0 height */
-      background-position: 0 100%; /* Position at the bottom */
-      transition: background-size 0.25s ease, color 0.25s ease;
-      background-repeat: no-repeat;
-      &:hover {
-        background-size: 100% 100%; /* 100% width and 100% height on hover */
-        background-position: 0 100%;
-        cursor: pointer;
-      }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
-  }
-  p {
-    color: #2f5991;
   }
 }
 

@@ -57,7 +57,7 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
           <p><b>Explanation: </b>The universe deals with particles and waves and their properties. They might macroscopically manifest as organisms, cosmological bodies, etc.</p>
           <div className={s.buttons}>
             <Link href="/universe">
-              <button title="go to project">MIMETIC CELLULAR AUTOMATA</button>
+              <button title="go to project">MIMETIC UNICELLULAR ORGANISMS</button>
             </Link>
             <button title="spread in space">∴</button>
           </div>

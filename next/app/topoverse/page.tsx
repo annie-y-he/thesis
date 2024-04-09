@@ -8,13 +8,12 @@ import YouIcon from './assets/you.png'
 import SubIcon from './assets/sub.png'
 import AnnieProf from './assets/annieProf.jpg'
 import HomeIcon from './assets/home.svg'
-import HedronIcon from './assets/hedron.png'
+import HedronIcon from '@/images/hedron.png'
 import SearchIcon from './assets/search.svg'
-
 
 import Image from 'next/image'
 
-export default function Meta() {
+export default function Topo() {
   return (
     <main className={s.main}>
       <div className={s.body}>

@@ -7,7 +7,7 @@ import ReadMeIcon from './assets/readme.svg'
 import FileIcon from './assets/file.svg'
 import FolderIcon from './assets/folder.svg'
 import AnnieProf from './assets/annieProf.jpg'
-import HomeIcon from './assets/hedron.png'
+import HedronIcon from '@/images/hedron.png'
 
 export default function Meta() {
   return (
@@ -48,13 +48,13 @@ export default function Meta() {
             <br />
             <Icon src={AnnieProf}>Annie He</Icon>
             <br />
-            <Icon src={HomeIcon}>Poly Hedron</Icon>
+            <Icon src={HedronIcon}>Poly Hedron</Icon>
             <br />
-            <Icon src={HomeIcon}>Noam Schuck</Icon>
+            <Icon src={AnnieProf}>Noam Schuck</Icon>
             <br />
-            <Icon src={HomeIcon}>Alexander Faust</Icon>
+            <Icon src={AnnieProf}>Alexander Faust</Icon>
             <br />
-            <Icon src={HomeIcon}>Zephaniah Odidika</Icon>
+            <Icon src={AnnieProf}>Zephaniah Odidika</Icon>
             <hr />
           </div>
           <div>
