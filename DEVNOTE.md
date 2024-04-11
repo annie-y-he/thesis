@@ -23,6 +23,8 @@ main:
 - disclaimer
 - safari button color is blue
 - save camera position before link (seems like safari does this already)
+- random points reset after click
+- default view top/bottom rotating
 
 meta:
 - [x] mobile versions
@@ -87,6 +89,7 @@ all:
 - video cover
 - video subtitle
 - fonts
+- add "loading page"
 
 pre:
 - panel discussion outline
