@@ -238,4 +238,25 @@
       }
     }
   }
+
+  @media (pointer: coarse) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr; 
+
+    // inbox
+    > :nth-child(1) {
+      grid-column: 1;
+      grid-row: 1 / 2;
+    }
+    // reader
+    > :nth-child(2) {
+      grid-column: 1;
+      grid-row: 2 / 3;
+    }
+    // compose
+    > :nth-child(3) {
+      grid-column: 1;
+      grid-row: 3 / 4;
+    }
+  }
 }

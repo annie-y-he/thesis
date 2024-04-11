@@ -26,9 +26,11 @@ main:
 
 meta:
 - [x] mobile versions
-- add back link
-- content
+- [x] content
+- [x] add back link
 - rerender
+- text errors in video
+- debug section
 
 uni:
 - [x] uni: mobile versions
@@ -37,7 +39,7 @@ uni:
 - [x] plos name design
 - [x] article abstract
 - [x] cover images
-- add back link
+- [x] add back link
 - article outlines
 - article contents
 - article refine abstract
@@ -58,22 +60,24 @@ pata:
 - [x] safe use secret key
 - [x] add previous assistant email
 - [x] specific gpt model runs multiple times
-- add back link
+- [x] add back link
+- [x] default window size
+- [x] email grid stack for mobile
 - content
 - scan desk and objects
 - captcha
 - more persona
-- default window size
 - signin page and username
-- email grid stack for mobile
 - mobile typing auto zoom
 
 topo:
 - [x] mobile versions
 - [x] mobile video auto fullscreen
+- [x] focus no outline
 - content
 - smaller user prof
 - add channel icon
+- keywords
 
 all:
 - [x] color theme

@@ -10,7 +10,7 @@ interface WindowProps extends React.HTMLAttributes<HTMLElement> {
   resizable?: boolean;
 }
 
-const Window: React.FC<WindowProps> = ({ children, minWidth = 400, minHeight = 300, resizable = true, style, ...rest }) => {
+const Window: React.FC<WindowProps> = ({ children, minWidth = 600, minHeight = 400, resizable = true, style, ...rest }) => {
   const [size, setSize] = useState({ width: minWidth, height: minHeight });
   const [pos, setPos] = useState({ left: 200, top: 200 });
 

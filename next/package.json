@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-three/drei": "^9.102.6",
     "@react-three/postprocessing": "^2.16.2",
+    "minidenticons": "^4.2.1",
     "next": "14.1.4",
     "openai": "^4.33.0",
     "react": "^18",

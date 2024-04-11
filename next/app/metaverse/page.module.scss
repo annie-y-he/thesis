@@ -107,6 +107,7 @@
     text-decoration: underline;
     cursor: pointer;
   }
+  user-select: none;
 }
 
 .readme {
@@ -122,6 +123,26 @@
   padding: 20px;
 }
 
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  > * {
+    font-size: 12px;
+    white-space: nowrap;
+    background-color: #ddf4ff;
+    color: #0969da;
+    margin: 3px 3px 3px 0;
+    padding: 5px 10px;
+    border-radius: 1em;
+
+    &:hover {
+      background-color: #0969da;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
 .first {
   background-color: #F6F8FA;
   border-radius: 10px 10px 0 0;
@@ -132,14 +153,48 @@
   padding: 30px;
   width: 100%;
   height: fit-content;
+  line-height: 24px;
+
+  hr {
+    margin-top: 10px;
+    border: 1px solid #eee;
+  }
+
+  ul {
+    margin-left: 32px;
+    li {
+      margin: 5px 0;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    color: #0969da;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  code {
+    background-color: #eee;
+    padding: 2px 5px;
+    border-radius: 0.3em;
+  }
 }
 
 .icon {
   display: flex;
-  :first-child {
+  > :first-child {
     height: 1.1em;
     width: 1.1em;
     margin-right: 10px;
   }
   align-items: center;
+}
+
+.indent {
+  padding-left: 40px;
 }

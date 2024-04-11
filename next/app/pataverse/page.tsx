@@ -9,8 +9,8 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image'
 import ChromeIcon from './assets/chrome.svg'
 import OutlookIcon from './assets/outlook.svg'
-import TeamsIcon from './assets/teams.svg'
 import VSCodeIcon from './assets/vscode.svg'
+import HedronIcon from '@/images/hedron.png'
 
 import Window from './Window'
 
@@ -170,10 +170,6 @@ const VSCode = () => {
   return <div>vscode fc</div>
 }
 
-const Teams = () => {
-  return <div>teams fc</div>
-}
-
 export default function Pata() {
   const [wins, setWins] = useState<string[]>([]);
   const [isCoarsePointer, setIsCoarsePointer] = useState(false);
@@ -243,17 +239,15 @@ export default function Pata() {
           </div>
           <Outlook />
         </Window>
-        <Window style={{ display: wins.includes("teams") ? "flex" : "none", zIndex: wins.indexOf("teams")}} className={s.win} onPointerDown={() => toTop("teams")}>
-          <div className={`handle ${s.handle}`}>
-            <Image src={TeamsIcon} width={0} height={20} alt="icon" />
-          </div>
-          <Teams />
-        </Window>
         <div className={s.taskbar}>
           <div><Image src={ChromeIcon} width={0} height={0} alt="icon" onClick={() => toggle("chrome")} /></div>
           <div><Image src={VSCodeIcon} width={0} height={0} alt="icon" onClick={() => toggle("vscode")} /></div>
           <div><Image src={OutlookIcon} width={0} height={0} alt="icon" onClick={() => toggle("outlook")} /></div>
-          <div><Image src={TeamsIcon} width={0} height={0} alt="icon" onClick={() => toggle("teams")} /></div>
+          <div>
+            <Link href='/'>
+              <Image src={HedronIcon} width={0} height={0} alt="icon" />
+            </Link>
+          </div>
         </div>
       </div>
     </main>
