@@ -21,7 +21,8 @@ elif [ "$1" = "restart" ]; then
   sudo docker compose -p $PROJECT_NAME restart
 elif [ "$1" = "push" ]; then
   rsync -rv ./next/public/ admin@ec2-18-215-72-38.compute-1.amazonaws.com:/home/admin/thesis/next/public
-  rsync -rv ./next/.env.local admin@ec2-18-215-72-38.compute-1.amazonaws.com:/home/admin/thesis/next/.env.local
+  rsync -rv ./next/.env admin@ec2-18-215-72-38.compute-1.amazonaws.com:/home/admin/thesis/next/.env
+  rsync -rv ./.env admin@ec2-18-215-72-38.compute-1.amazonaws.com:/home/admin/thesis/.env
   if [ "$2" = "-m" ]; then
     git add .
     git commit -m "$3"

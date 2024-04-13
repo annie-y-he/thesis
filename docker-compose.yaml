@@ -1,4 +1,15 @@
 services:
+  db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DATABASE_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - ./mongo:/app
+      - ./mongo_data:/data/db
+    working_dir: /app
   app:
     image: node:latest
     command: npm run start
@@ -8,3 +19,5 @@ services:
     volumes:
       - ./next:/app
     working_dir: /app
+    depends_on:
+      - db

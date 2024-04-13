@@ -10,13 +10,12 @@ next/out/
 # production
 next/build
 
-
 # local env files
-.env*.local
+*.env*.local
 *.env
 
 # vercel
-.vercel
+*.vercel
 
 # typescript
 *.tsbuildinfo

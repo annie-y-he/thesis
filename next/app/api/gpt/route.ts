@@ -1,4 +1,7 @@
 import OpenAI from "openai";
+import { MongoClient } from 'mongodb';
+
+const client = new MongoClient(`mongodb://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@db:27017/qna?authSource=admin`);
 
 const openai = new OpenAI({
   organization: 'org-qSd9dRllepQtd1tuPB4bJyYi',
@@ -23,7 +26,8 @@ const assistantIds = [
 
 async function handler(req: any) {
   const body = await req.json();
-
+  let res;
+  let toInsert: any[] = [];
   const { sender, content, threadInfo } = body;
 
   const assistants = await retrieveAssistants(assistantIds)
@@ -40,12 +44,30 @@ async function handler(req: any) {
       thread.id,
       { role: "assistant", content: threadInfo }
     );
+
+    toInsert.push({
+      threadId: thread.id,
+      role: "assistant",
+      assistantId: assistant.id,
+      assistantName: assistant.name,
+      timeStamp: new Date,
+      content: threadInfo
+    });
   }
 
   let msg = await openai.beta.threads.messages.create(
     thread.id,
     { role: "user", content: content }
   );
+
+  toInsert.push({
+    threadId: thread.id,
+    role: "user",
+    assistantId: null,
+    assistantName: null,
+    timeStamp: new Date,
+    content: content
+  });
 
   let run = await openai.beta.threads.runs.createAndPoll(
     thread.id,
@@ -54,13 +76,36 @@ async function handler(req: any) {
 
   if (run.status === 'completed') {
     const messages = await openai.beta.threads.messages.list( thread.id );
-
     const response = (messages.data[0].content[0] as any).text.value;
-
-    return new Response(JSON.stringify({ msg: response, tid: thread.id }), { status: 200 });
+    toInsert.push({
+      threadId: thread.id,
+      role: "assistant",
+      assistantId: assistant.id,
+      assistantName: assistant.name,
+      timeStamp: new Date,
+      content: response
+    }); 
+    res = new Response(JSON.stringify({ msg: response, tid: thread.id }), { status: 200 });
   } else {
-    return new Response(JSON.stringify({ msg: "I am currently unavailable", stat: run.status }), { status: 400 });
+    res = new Response(JSON.stringify({ msg: "I am currently unavailable", stat: run.status }), { status: 400 });
   }
+
+  try {
+    await client.connect();
+    console.log("Connected successfully to server");
+
+    const db = client.db('qna');
+    const collection = db.collection('msg');
+    
+    await collection.insertMany(toInsert);
+  } catch (e) {
+    console.error(e);
+  } finally {
+    await client.close();
+    console.log("MongoDB client closed.");
+  }
+
+  return res;
 }
 
 export { handler as GET, handler as POST }
