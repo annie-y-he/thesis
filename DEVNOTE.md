@@ -17,14 +17,10 @@ main:
 - [x] fix diagram sphere shading
 - [x] hover color for verses
 - [x] points overlay
+- [x] default view top/bottom rotating
 - points generation
-- monad verse world definition
-- statement
-- disclaimer
 - safari button color is blue
-- save camera position before link (seems like safari does this already)
 - random points reset after click
-- default view top/bottom rotating
 - add "language" to intersubject
 
 meta:
@@ -73,13 +69,15 @@ pata:
 - [x] fix window min width vs init width
 - [x] add vs code printed function 
 - [x] fix slow problem 
-- content
-- captcha
+- chrome and captcha
+- story line
 - more persona
 - signin page and username
 - mobile typing auto zoom
 - enter key for send email
 - pata keywords
+- device mesh
+- r2d2 sound hash
 
 topo:
 - [x] mobile versions
@@ -92,23 +90,26 @@ topo:
 - scene by scene description
 
 about:
-- intro
 - [x] statements
 - [x] definitions
 - [x] back button
 - [x] challenge
 - [x] gpt
+- [x] gpt database
 - instructions
 - style
+- intro
+- disclaimer
+
 
 all:
 - [x] color theme
-- back link
-- make icon general function
-- mobile safari tabbar
+- [x] back link
+- [x] make icon general function
+- [x] mobile safari tabbar
+- [x] fonts
 - video cover
 - video subtitle
-- fonts
 - add "loading page"
 - user select
 
