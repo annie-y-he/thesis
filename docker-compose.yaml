@@ -8,7 +8,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: inkcherry
     volumes:
       - ./mongo:/app
-      # - ./mongo_data:/data/db
+      - ./mongo_data:/data/db
     working_dir: /app
   app:
     image: node:latest
