@@ -25,6 +25,7 @@ main:
 - save camera position before link (seems like safari does this already)
 - random points reset after click
 - default view top/bottom rotating
+- add "language" to intersubject
 
 meta:
 - [x] mobile versions
@@ -33,6 +34,8 @@ meta:
 - rerender
 - text errors in video
 - debug section
+- disable keyword user select
+- gpt unable to figure out logic
 
 uni:
 - [x] uni: mobile versions
@@ -48,6 +51,7 @@ uni:
 - refine cover image
 - plos logo design
 - authors name design
+- keywords
 
 pata:
 - [x] application windows
@@ -65,12 +69,17 @@ pata:
 - [x] add back link
 - [x] default window size
 - [x] email grid stack for mobile
+- [x] scan desk and objects
+- [x] fix window min width vs init width
+- [x] add vs code printed function 
+- [x] fix slow problem 
 - content
-- scan desk and objects
 - captcha
 - more persona
 - signin page and username
 - mobile typing auto zoom
+- enter key for send email
+- pata keywords
 
 topo:
 - [x] mobile versions
@@ -80,6 +89,16 @@ topo:
 - smaller user prof
 - add channel icon
 - keywords
+- scene by scene description
+
+about:
+- statements
+- definitions
+- instructions
+- challenges
+- style
+- back button
+- gpt
 
 all:
 - [x] color theme
@@ -90,6 +109,7 @@ all:
 - video subtitle
 - fonts
 - add "loading page"
+- user select
 
 pre:
 - panel discussion outline

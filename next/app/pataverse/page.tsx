@@ -4,13 +4,18 @@ import Link from 'next/link'
 import s from './page.module.scss'
 import * as THREE from 'three';
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { DragControls, Sphere, Splat, OrbitControls } from '@react-three/drei';
-import { useEffect, useState } from 'react';
+import { DragControls, Sphere, Splat, OrbitControls, Gltf, Plane, Box, Text } from '@react-three/drei';
+import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
+import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image'
 import ChromeIcon from './assets/chrome.svg'
 import OutlookIcon from './assets/outlook.svg'
 import VSCodeIcon from './assets/vscode.svg'
 import HedronIcon from '@/images/hedron.png'
+import PrintIcon from './assets/print.png'
+import { Glitch } from '@react-three/postprocessing'
+import { GlitchMode } from 'postprocessing'
+import textFieldEdit, { insertTextIntoField } from 'text-field-edit';
 
 import Window from './Window'
 
@@ -25,7 +30,7 @@ interface Email {
 const CameraControls: React.FC = () => {
   const { camera, pointer } = useThree();
 
-  const initPos = new THREE.Spherical(5, 0.7, 0)
+  const initPos = new THREE.Spherical(6, 0.7, 0)
 
   useEffect(() => {
     camera.position.setFromSpherical(initPos);
@@ -52,7 +57,13 @@ const Chrome = () => {
   return <div>chrome fc</div>
 }
 
-const sendEmail = async ( current: Email, content: string, setEmails: React.Dispatch<React.SetStateAction<Email[]>> ) => {
+const playAudio = (audio: React.MutableRefObject<null>) => {
+  if (audio.current) {
+    (audio.current as any).play();
+  }
+};
+
+const sendEmail = async ( current: Email, content: string, setEmails: React.Dispatch<React.SetStateAction<Email[]>>, audio: React.MutableRefObject<null> ) => {
 
   if (!current.thread) {
     const response = await fetch('/api/gpt', {
@@ -105,6 +116,7 @@ const sendEmail = async ( current: Email, content: string, setEmails: React.Disp
     }, ...currentEmails]);
   }
 
+  playAudio(audio);
 }
 
 const Outlook = () => {
@@ -137,6 +149,13 @@ const Outlook = () => {
     setEmailContent(event.target.value);
   };
 
+  const swoosh = useRef(null);
+  const notify = useRef(null);
+
+  const sendButton = () => { 
+    sendEmail(current, emailContent, setEmails, notify); setEmailContent(''); playAudio(swoosh); 
+  }
+
   return (
     <div className={s.outlook}>
       <div>
@@ -159,15 +178,56 @@ const Outlook = () => {
       </div>
       <div>
         <input type="text" value={'To: ' + current.sender} readOnly />
-        <textarea value={emailContent} onChange={handleContentChange} placeholder="Email body" />
-        <button disabled={current.sender == 'Sender'} onClick={() => { sendEmail(current, emailContent, setEmails); setEmailContent(''); }}>Send</button>
+        <textarea 
+          value={emailContent} 
+          onChange={handleContentChange} 
+          placeholder="Email body" 
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault(); 
+              if (e.shiftKey) {
+                insertTextIntoField(e.target as HTMLTextAreaElement, "\n")
+              } else {
+                sendButton(); 
+              }
+            }
+          }}
+        />
+        <button disabled={current.sender == 'Sender'} onClick={sendButton}>Send</button>
       </div>
+      <audio ref={swoosh} preload="auto">
+        <source src="/audio/swoosh.wav" type="audio/wav" />
+      </audio>
+      <audio ref={notify} preload="auto">
+        <source src="/audio/notify.wav" type="audio/wav" />
+      </audio>
     </div>
   )
 }
 
-const VSCode = () => {
-  return <div>vscode fc</div>
+const VSCode = ({setPaper}: {setPaper: React.Dispatch<React.SetStateAction<string>>}) => {
+
+  const textRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Tab' && textRef.current) {
+      event.preventDefault();
+      textFieldEdit.insert(textRef.current, '  ');
+    }
+  };
+
+  return (
+    <div className={s.vscode} >
+      <button onClick={() => setPaper(textRef.current?.value || "")}>
+        <Image src={PrintIcon} width={0} height={0} alt="icon" />
+      </button>
+      <textarea 
+        spellCheck="false" 
+        ref={textRef}
+        onKeyDown={handleKeyDown}
+      ></textarea>
+    </div>
+  )
 }
 
 export default function Pata() {
@@ -200,45 +260,141 @@ export default function Pata() {
       }
     });
   };
-  
+
+  const sceneScale = 8;
+
+  const [active, setActive] = useState(true);
+  let timeoutId: any;
+  const handlePointerOver = () => {
+    clearTimeout(timeoutId);
+    setActive(true);
+  };
+
+  const handlePointerOut = () => {
+    timeoutId = setTimeout(() => {
+      setActive(false);
+    }, 1000);
+  };
+
+  const [paper, setPaper] = useState("");
+
   return (
     <main className={s.main}>
-      <Canvas>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
-        <DragControls axisLock='y'>
-          <Sphere position={[1, 0, 0]}>
-            <meshStandardMaterial color="hotpink" />
-          </Sphere>
-        </DragControls>
-        <DragControls axisLock='y'>
-          <Sphere position={[-1, 0, 0]}>
-            <meshStandardMaterial color="black" />
-          </Sphere>
-        </DragControls>
-        <Splat src="/models/key.splat" scale={20}/>
+      <Canvas 
+        frameloop={active ? 'always' : 'demand'}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+        style={{ background: "#211" }}
+        camera={{ fov: 60 }}
+      >
+        <ambientLight intensity={2} color="#ffebc2" />
+        
+        <spotLight position={[0,3,0]} intensity={50} penumbra={1} angle={1.4} castShadow color="#fcb" />
 
+        <Gltf src="/models/mat.glb" scale={sceneScale} />
+        <Gltf src="/models/table.glb" scale={sceneScale} />
+        <Gltf src="/models/printer.glb" scale={sceneScale} />
+        <Splat src="/models/scene.splat" scale={sceneScale} />
+
+        {/* <DragControls 
+          axisLock='y'
+          dragLimits={[[-2.65,1.75], undefined, [-0.2,2.1]]}
+          autoTransform={grab}
+        >
+          <Splat 
+            src="/models/device.splat" 
+            alphaTest={0.1} 
+            scale={sceneScale} 
+            position={[0,0.05,0]} 
+          />
+          <Plane 
+            args={[0.65, 1.05]} 
+            rotation={[-Math.PI/2,0,0]} 
+            position={[0,0.005,0.05]} 
+            onPointerEnter={handleGrabOver} 
+            onPointerOut={handleGrabOut}
+          >
+            <meshStandardMaterial color="black" />
+          </Plane>
+        </DragControls> */}
+        <DragControls 
+          axisLock='y'
+        >
+          <Text 
+            color="black" 
+            anchorX="left" 
+            anchorY="top"
+            rotation={[-Math.PI/2,0,0]}
+            position={[-1.1,0.03,0]}
+            fontSize={0.05}
+            maxWidth={2.2}
+            clipRect={[0,-3,2.2,0]}
+          >{paper}
+          </Text>
+          <Plane 
+            args={[2.5, 3.3]} 
+            rotation={[-Math.PI/2,0,0]} 
+            position={[0,0.02,1.5]} 
+            onPointerEnter={() => document.body.style.cursor = "grab"} 
+            onPointerOut={() => document.body.style.cursor = "auto"}
+          >
+            <meshStandardMaterial color="white" />
+          </Plane>
+          <Plane 
+            args={[2.5, 3.3]} 
+            rotation={[-Math.PI/2,0,0]} 
+            position={[0,-0.01,1.5]} 
+          >
+            <meshStandardMaterial color="black" />
+          </Plane>
+        </DragControls>
+        <OrbitControls enablePan={false} enableRotate={false} minDistance={1} maxDistance={6} />
         <CameraControls />
+        <EffectComposer>
+          <Noise opacity={0.2} />
+          <Vignette eskil={false} offset={0.1} darkness={1.2} />
+          <Glitch
+            delay={new THREE.Vector2(5, 20)}
+            duration={new THREE.Vector2(0.001, 0.001)}
+            strength={new THREE.Vector2(0.1, 0.5)}
+            mode={GlitchMode.SPORADIC}
+            active
+            ratio={0.85}
+          />
+        </EffectComposer>
       </Canvas>
       <div className={s.os}>
-        <Window style={{ display: wins.includes("chrome") ? "flex" : "none", zIndex: wins.indexOf("chrome")}} className={s.win} onPointerDown={() => toTop("chrome")}>
-          <div className={`handle ${s.handle}`}>
-            <Image src={ChromeIcon} width={0} height={20} alt="icon" />
-          </div>
+        <Window 
+          style={{ display: wins.includes("chrome") ? "flex" : "none", zIndex: wins.indexOf("chrome")}} 
+          className={s.win} 
+          onPointerDown={() => toTop("chrome")}
+          icon={ChromeIcon}
+          winname="chrome"
+          close={toggle}
+        >
           <Chrome />
         </Window>
-        <Window style={{ display: wins.includes("vscode") ? "flex" : "none", zIndex: wins.indexOf("vscode")}} className={s.win} onPointerDown={() => toTop("vscode")}>
-          <div className={`handle ${s.handle}`}>
-            <Image src={VSCodeIcon} width={0} height={20} alt="icon" />
-          </div>
-          <VSCode />
+        <Window 
+          style={{ display: wins.includes("vscode") ? "flex" : "none", zIndex: wins.indexOf("vscode")}} 
+          className={s.win} 
+          onPointerDown={() => toTop("vscode")}
+          icon={VSCodeIcon}
+          winname="vscode"
+          close={toggle}
+          >
+          <VSCode setPaper={setPaper} />
         </Window>
-        <Window style={{ display: wins.includes("outlook") ? "flex" : "none", zIndex: wins.indexOf("outlook")}} className={s.win} onPointerDown={() => toTop("outlook")}>
-          <div className={`handle ${s.handle}`}>
-            <Image src={OutlookIcon} width={0} height={20} alt="icon" />
-          </div>
+        <Window 
+          style={{ display: wins.includes("outlook") ? "flex" : "none", zIndex: wins.indexOf("outlook")}} 
+          className={s.win} 
+          onPointerDown={() => toTop("outlook")}
+          icon={OutlookIcon}
+          winname="outlook"
+          close={toggle}
+        >
           <Outlook />
         </Window>
+
         <div className={s.taskbar}>
           <div><Image src={ChromeIcon} width={0} height={0} alt="icon" onClick={() => toggle("chrome")} /></div>
           <div><Image src={VSCodeIcon} width={0} height={0} alt="icon" onClick={() => toggle("vscode")} /></div>

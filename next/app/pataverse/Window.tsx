@@ -1,18 +1,30 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image'
+import s from './page.module.scss'
+import MaximizeIcon from './assets/maximize.png'
+import MinimizeIcon from './assets/minimize.png'
+import ExitFullIcon from './assets/exitfull.png'
+import CloseIcon from './assets/close.png'
+
+
 
 // Define the interface for your component's props
 interface WindowProps extends React.HTMLAttributes<HTMLElement> {
+  icon?: any;
   children?: React.ReactNode;
   minWidth?: number;
   minHeight?: number;
   resizable?: boolean;
+  winname: string;
+  close: (windowName: string) => void
 }
 
-const Window: React.FC<WindowProps> = ({ children, minWidth = 600, minHeight = 400, resizable = true, style, ...rest }) => {
-  const [size, setSize] = useState({ width: minWidth, height: minHeight });
+const Window: React.FC<WindowProps> = ({ icon, children, minWidth = 300, minHeight = 200, resizable = true, winname, close, style, ...rest }) => {
+  const [size, setSize] = useState({ width: 600, height: 400 });
   const [pos, setPos] = useState({ left: 200, top: 200 });
+  const [isFullScreen, setFullScreen] = useState(false);
 
   const [isCoarsePointer, setIsCoarsePointer] = useState(false);
 
@@ -26,6 +38,10 @@ const Window: React.FC<WindowProps> = ({ children, minWidth = 600, minHeight = 4
 
   const onDragStart = (event: React.MouseEvent) => {
     event.preventDefault();
+
+    if (isFullScreen) {
+      return;
+    }
 
     startPos = pos;
     startMouse = { left: event.clientX, top: event.clientY };
@@ -86,31 +102,35 @@ const Window: React.FC<WindowProps> = ({ children, minWidth = 600, minHeight = 4
     document.addEventListener('mouseup', onMouseUp);
   };
 
-  const enhancedChildren = React.Children.map(children, (child) => {
-    // Ensure we're dealing with a valid element before attempting to clone it
-    if (React.isValidElement(child)) {
-      if (child.props.className?.includes('handle')) {
-        return React.cloneElement(child as React.ReactElement, {
-          onMouseDown: (e: React.MouseEvent) => onDragStart(e),
-        });
-      }
-    }
-    return child;
-  });
-
   return !isCoarsePointer ? (
     <div
       {...rest}
       style={{
         ...style,
-        width: size.width,
-        height: size.height,
+        width: isFullScreen ? window.innerWidth : size.width,
+        height: isFullScreen ? window.innerHeight : size.height,
         position: 'absolute',
-        left: pos.left,
-        top: pos.top,
+        left: isFullScreen ? 0 : pos.left,
+        top: isFullScreen ? 0 : pos.top,
       }}
     >
-      {enhancedChildren}
+      <div className={s.handle} onMouseDown={(e) => onDragStart(e)}>
+        <div>
+          <Image src={icon} width={0} height={20} alt="icon" />
+        </div>
+        <div>
+          <div onClick={() => close(winname)}>
+            <Image src={MinimizeIcon} width={0} height={10} alt="icon" />
+          </div>
+          <div onClick={(e) => {e.stopPropagation(); setFullScreen(!isFullScreen)}}>
+            <Image src={isFullScreen ? ExitFullIcon : MaximizeIcon} width={0} height={10} alt="icon" />
+          </div>
+          <div onClick={() => close(winname)}>
+            <Image src={CloseIcon} width={0} height={10} alt="icon" />
+          </div>
+        </div>
+      </div>
+      {children}
       {resizable && ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'].map((direction) => (
         <div
           key={direction}
@@ -127,7 +147,20 @@ const Window: React.FC<WindowProps> = ({ children, minWidth = 600, minHeight = 4
         />
       ))}
     </div>
-  ) : (<div {...rest} style={style}>{children}</div>);
+  ) : (
+  <div {...rest} style={style}>
+    <div className={s.handle} onMouseDown={(e) => onDragStart(e)}>
+      <div>
+        <Image src={icon} width={0} height={20} alt="icon" />
+      </div>
+      <div>
+        <div onClick={() => close(winname)}>
+          <Image src={CloseIcon} width={0} height={10} alt="icon" />
+        </div>
+      </div>
+    </div>
+    {children}
+  </div>);
 };
 
 export default Window;

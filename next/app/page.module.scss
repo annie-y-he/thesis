@@ -25,7 +25,17 @@
 .main {
   overflow: hidden;
   user-select: none;
+  position: relative;
   @include full;
+  > :first-child {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    z-index: 1;
+    padding-top: 30px;
+  }
   > :last-child {
     position: absolute;
     bottom: 0;

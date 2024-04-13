@@ -233,6 +233,7 @@ export default function App() {
 
   return (
     <main className={s.main}>
+      <h1><Link href="/about">HEDRON</Link></h1>
       <Canvas 
         style={{ background: "black" }} 
         camera={{ fov: 18, position: [0, 0, 10] }}
@@ -262,19 +263,19 @@ export default function App() {
         <TextObj position={[-0.7, -0.7, 0.7]} size={0.08} setOverlay={setOverlay}>METAVERSE</TextObj>
         <TextObj position={[0.7, -0.7, -0.7]} size={0.08} setOverlay={setOverlay}>UNIVERSE</TextObj>
         <TextObj position={[-0.7, 0.7, -0.7]} size={0.08} setOverlay={setOverlay}>PATAVERSE</TextObj>
-        <TextObj position={[0, 0.9, 0]} size={0.04} setOverlay={setOverlay}>interSubject</TextObj>
-        <TextObj position={[0, -0.9, 0]} size={0.04} setOverlay={setOverlay}>intraObject</TextObj>
-        <TextObj position={[0.9, 0, 0]} size={0.04} setOverlay={setOverlay}>interObject</TextObj>
-        <TextObj position={[-0.9, 0, 0]} size={0.04} setOverlay={setOverlay}>intraSubject</TextObj>
-        <TextObj position={[0, 0, 0.9]} size={0.04} setOverlay={setOverlay}>Object</TextObj>
-        <TextObj position={[0, 0, -0.9]} size={0.04} setOverlay={setOverlay}>Subject</TextObj>
-        <TextObj position={[0, 0.65, 0]} size={0.04} setOverlay={setOverlay}>fictiworld</TextObj>
-        <TextObj position={[0, -0.65, 0]} size={0.04} setOverlay={setOverlay}>dataworld</TextObj>
-        <TextObj position={[0.65, 0, 0]} size={0.04} setOverlay={setOverlay}>archiworld</TextObj>
-        <TextObj position={[-0.65, 0, 0]} size={0.04} setOverlay={setOverlay}>dreamworld</TextObj>
-        <TextObj position={[0, 0, 0.65]} size={0.04} setOverlay={setOverlay}>logiworld</TextObj>
-        <TextObj position={[0, 0, -0.65]} size={0.04} setOverlay={setOverlay}>lifeworld</TextObj>
-        <OrbitControls />
+        <TextObj position={[0, 1, 0]} size={0.04} setOverlay={setOverlay}>interSubject</TextObj>
+        <TextObj position={[0, -1, 0]} size={0.04} setOverlay={setOverlay}>intraObject</TextObj>
+        <TextObj position={[1, 0, 0]} size={0.04} setOverlay={setOverlay}>interObject</TextObj>
+        <TextObj position={[-1, 0, 0]} size={0.04} setOverlay={setOverlay}>intraSubject</TextObj>
+        <TextObj position={[0, 0, 1]} size={0.04} setOverlay={setOverlay}>Object</TextObj>
+        <TextObj position={[0, 0, -1]} size={0.04} setOverlay={setOverlay}>Subject</TextObj>
+        <TextObj position={[0, 0.72, 0]} size={0.04} setOverlay={setOverlay}>fictiworld</TextObj>
+        <TextObj position={[0, -0.72, 0]} size={0.04} setOverlay={setOverlay}>dataworld</TextObj>
+        <TextObj position={[0.72, 0, 0]} size={0.04} setOverlay={setOverlay}>archiworld</TextObj>
+        <TextObj position={[-0.72, 0, 0]} size={0.04} setOverlay={setOverlay}>dreamworld</TextObj>
+        <TextObj position={[0, 0, 0.72]} size={0.04} setOverlay={setOverlay}>logiworld</TextObj>
+        <TextObj position={[0, 0, -0.72]} size={0.04} setOverlay={setOverlay}>lifeworld</TextObj>
+        <OrbitControls autoRotate autoRotateSpeed={0.25} enablePan={false} />
       </Canvas>
       {overlayVisible && overlayContent}
       <div>
