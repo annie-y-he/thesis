@@ -92,13 +92,14 @@ topo:
 - scene by scene description
 
 about:
-- statements
-- definitions
+- intro
+- [x] statements
+- [x] definitions
+- [x] back button
+- [x] challenge
+- [x] gpt
 - instructions
-- challenges
 - style
-- back button
-- gpt
 
 all:
 - [x] color theme

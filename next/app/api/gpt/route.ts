@@ -22,6 +22,7 @@ async function retrieveAssistants(ids: string[]) {
 const assistantIds = [
   'asst_naw7IP375gfq3WiJCgH6CmB2', // richard
   'asst_nGnkicSRHpuRV6e4GCvv7W0t', // jeffrey
+  'asst_QSXPs7EAB1SQTb6QOyGxFyNz', // hedron
 ];
 
 async function handler(req: any) {
@@ -40,21 +41,24 @@ async function handler(req: any) {
     thread = await openai.beta.threads.retrieve( threadInfo );
   } catch {
     thread = await openai.beta.threads.create();
-    let msg = await openai.beta.threads.messages.create(
-      thread.id,
-      { role: "assistant", content: threadInfo }
-    );
 
-    toInsert.push({
-      threadId: thread.id,
-      msgId: msg.id,
-      reqId: null,
-      role: "assistant",
-      assistantId: assistant.id,
-      assistantName: assistant.name,
-      timeStamp: new Date,
-      content: threadInfo
-    });
+    if (threadInfo) {
+      let msg = await openai.beta.threads.messages.create(
+        thread.id,
+        { role: "assistant", content: threadInfo }
+      );
+  
+      toInsert.push({
+        threadId: thread.id,
+        msgId: msg.id,
+        reqId: null,
+        role: "assistant",
+        assistantId: assistant.id,
+        assistantName: assistant.name,
+        timeStamp: new Date,
+        content: threadInfo
+      });
+    }
   }
 
   let msg = await openai.beta.threads.messages.create(
