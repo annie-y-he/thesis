@@ -9,7 +9,7 @@ if [ "$1" = "rm" ]; then
 elif [ "$1" = "app" ]; then
   sudo docker exec -it ${PROJECT_NAME}-app-1 bash
 elif [ $1 = "db" ]; then
-  docker exec -it ${PROJECT_NAME}-db-1 mongosh --username annie --password inkcherry --authenticationDatabase admin
+  sudo docker exec -it ${PROJECT_NAME}-db-1 mongosh --username annie --password inkcherry --authenticationDatabase admin
 elif [ "$1" = "restart" ]; then
   echo "Pulling latest changes from Git..."
   git pull
