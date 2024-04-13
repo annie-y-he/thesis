@@ -47,6 +47,8 @@ async function handler(req: any) {
 
     toInsert.push({
       threadId: thread.id,
+      msgId: msg.id,
+      reqId: null,
       role: "assistant",
       assistantId: assistant.id,
       assistantName: assistant.name,
@@ -62,6 +64,8 @@ async function handler(req: any) {
 
   toInsert.push({
     threadId: thread.id,
+    msgId: msg.id,
+    reqId: null,
     role: "user",
     assistantId: null,
     assistantName: null,
@@ -79,6 +83,8 @@ async function handler(req: any) {
     const response = (messages.data[0].content[0] as any).text.value;
     toInsert.push({
       threadId: thread.id,
+      msgId: messages.data[0].id,
+      reqId: msg.id,
       role: "assistant",
       assistantId: assistant.id,
       assistantName: assistant.name,
