@@ -23,3 +23,6 @@ next/next-env.d.ts
 
 # public
 next/public
+
+# db volume
+mongo_data
