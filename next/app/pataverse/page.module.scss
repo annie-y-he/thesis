@@ -55,6 +55,20 @@
   }
 }
 
+@mixin select {
+  user-select: text;
+  * {
+    user-select: text;
+  }
+}
+
+@mixin noselect {
+  user-select: none;
+  * {
+    user-select: none;
+  }
+}
+
 .main {
   overflow: hidden;
 
@@ -64,6 +78,57 @@
 
   * {
     overflow: hidden;
+  }
+}
+
+.login {
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  backdrop-filter: blur(30px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  > img {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 50px;
+  }
+  > input {
+    width: 300px;
+    max-width: 80%;
+    margin-bottom: 10px;
+  }
+  input {
+    background-color: #00000079;
+    border: 1px solid rgb(255, 255, 255);
+    height: 40px;
+    padding: 0 10px;
+    color: white;
+    &::placeholder {
+      color: #aaa;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  > :last-child {
+    position: relative;
+    width: 300px;
+    max-width: 80%;
+
+    img {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+    }
+    display: flex;
+    align-items: center;
+    input {
+      width: 100%;
+    }
   }
 }
 
@@ -210,6 +275,7 @@
     &:focus {
       outline: none;
     }
+    @include select;
   }
 }
 
@@ -262,6 +328,8 @@
     > :first-child {
       white-space: pre-wrap;
     }
+
+    @include select;
   }
   // compose
   > :nth-child(3) {
@@ -289,6 +357,7 @@
       border-top: 1px solid #ddd;
       resize: none;
       flex-grow: 1;
+      @include select;
     }
     // send
     > button {

@@ -14,9 +14,12 @@ import VSCodeIcon from './assets/vscode.svg'
 import HedronIcon from '@/images/hedron.png'
 import PrintIcon from './assets/print.png'
 import DoorIcon from './assets/doors.png'
+import ArrowIcon from './assets/arrow.png'
+import UserIcon from './assets/user.png'
 import { Glitch } from '@react-three/postprocessing'
 import { GlitchMode } from 'postprocessing'
 import textFieldEdit, { insertTextIntoField } from 'text-field-edit';
+import useWindowHeight from '../hooks/useWindowHeight';
 
 import Window from './Window'
 
@@ -64,8 +67,7 @@ const playAudio = (audio: React.MutableRefObject<null>) => {
   }
 };
 
-const sendEmail = async ( current: Email, content: string, setEmails: React.Dispatch<React.SetStateAction<Email[]>>, audio: React.MutableRefObject<null> ) => {
-
+const sendEmail = async ( current: Email, content: string, setEmails: React.Dispatch<React.SetStateAction<Email[]>>, audio: React.MutableRefObject<null>, username: string) => {
   if (!current.thread) {
     const response = await fetch('/api/gpt', {
       method: 'POST',
@@ -75,7 +77,8 @@ const sendEmail = async ( current: Email, content: string, setEmails: React.Disp
       body: JSON.stringify({
         sender: current.sender, 
         content: content,
-        threadInfo: current.content
+        threadInfo: current.content,
+        instruction: username
       }),
     });
     const body = await response.json();
@@ -102,7 +105,8 @@ const sendEmail = async ( current: Email, content: string, setEmails: React.Disp
       body: JSON.stringify({
         sender: current.sender, 
         content: content,
-        threadInfo: current.thread
+        threadInfo: current.thread,
+        instruction: username
       }),
     });
 
@@ -120,7 +124,7 @@ const sendEmail = async ( current: Email, content: string, setEmails: React.Disp
   playAudio(audio);
 }
 
-const Outlook = () => {
+const Outlook = ({username}: {username: string}) => {
   const [emails, setEmails] = useState<Email[]>([
     {
       content: "How's it going? I went to this second-hand audio electronics store the other day. There was this device that apparently makes weird noises. I played with it for a few days without success. It is now on its way to you. Maybe you can help figure out what's wrong with it.",
@@ -150,11 +154,11 @@ const Outlook = () => {
     setEmailContent(event.target.value);
   };
 
-  const swoosh = useRef(null);
-  const notify = useRef(null);
+  const swooshRef = useRef(null);
+  const notifyRef = useRef(null);
 
   const sendButton = () => { 
-    sendEmail(current, emailContent, setEmails, notify); setEmailContent(''); playAudio(swoosh); 
+    sendEmail(current, emailContent, setEmails, notifyRef, username); setEmailContent(''); playAudio(swooshRef); 
   }
 
   return (
@@ -196,10 +200,10 @@ const Outlook = () => {
         />
         <button disabled={current.sender == 'Sender'} onClick={sendButton}>Send</button>
       </div>
-      <audio ref={swoosh} preload="auto">
+      <audio ref={swooshRef} preload="auto">
         <source src="/audio/swoosh.wav" type="audio/wav" />
       </audio>
-      <audio ref={notify} preload="auto">
+      <audio ref={notifyRef} preload="auto">
         <source src="/audio/notify.wav" type="audio/wav" />
       </audio>
     </div>
@@ -217,9 +221,14 @@ const VSCode = ({setPaper}: {setPaper: React.Dispatch<React.SetStateAction<strin
     }
   };
 
+  const printRef = useRef(null);
+
   return (
     <div className={s.vscode} >
-      <button onClick={() => setPaper(textRef.current?.value || "")}>
+      <button onClick={() => {
+        setPaper(textRef.current?.value || "");
+        playAudio(printRef);
+      }}>
         <Image src={PrintIcon} width={0} height={0} alt="icon" />
       </button>
       <textarea 
@@ -227,13 +236,18 @@ const VSCode = ({setPaper}: {setPaper: React.Dispatch<React.SetStateAction<strin
         ref={textRef}
         onKeyDown={handleKeyDown}
       ></textarea>
+      <audio ref={printRef} preload="auto">
+        <source src="/audio/print.wav" type="audio/wav" />
+      </audio>
     </div>
   )
 }
 
 export default function Pata() {
+  useWindowHeight();
   const [wins, setWins] = useState<string[]>([]);
   const [isCoarsePointer, setIsCoarsePointer] = useState(false);
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     setIsCoarsePointer(window.matchMedia('(pointer: coarse)').matches);
@@ -278,14 +292,47 @@ export default function Pata() {
   };
 
   const [paper, setPaper] = useState("");
+  const userField = useRef<HTMLInputElement>(null);
+  const loginButton = () => {
+    if (!userField.current?.value) return;
+    setUserName(userField.current.value);
+  };
 
   return (
     <main className={s.main}>
+      {!userName && <div className={s.login}>
+        <Image src={UserIcon} width={150} height={0} alt="icon" />
+        <input 
+          type="text" 
+          placeholder='username' 
+          ref={userField}  
+          onPointerEnter={handlePointerOut} 
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault(); 
+              loginButton(); 
+            }
+          }}
+        />
+        <div onPointerEnter={handlePointerOut}>
+          <input 
+            type="password" 
+            placeholder='password'           
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault(); 
+                loginButton(); 
+              }
+            }}
+          />
+          <Image src={ArrowIcon} width={0} height={20} alt="icon" onClick={loginButton}/>
+        </div>
+      </div>}
       <Canvas 
         frameloop={active ? 'always' : 'demand'}
         onPointerOver={handlePointerOver}
         onPointerOut={handlePointerOut}
-        style={{ background: "#211" }}
+        style={{ background: "black" }}
         camera={{ fov: 60 }}
       >
         <ambientLight intensity={2} color="#ffebc2" />
@@ -364,7 +411,7 @@ export default function Pata() {
           />
         </EffectComposer>
       </Canvas>
-      <div className={s.os}>
+      {userName && <div className={s.os}>
         <Window 
           style={{ display: wins.includes("chrome") ? "flex" : "none", zIndex: wins.indexOf("chrome")}} 
           className={s.win} 
@@ -393,11 +440,11 @@ export default function Pata() {
           winname="outlook"
           close={toggle}
         >
-          <Outlook />
+          <Outlook username={userName}/>
         </Window>
 
         <div className={s.taskbar}>
-          {!isCoarsePointer && <div title="MacroSock Doors"><Image src={DoorIcon} width={0} height={0} alt="icon" /></div>}
+          {!isCoarsePointer && <div title="MacroSoft Doors"><Image src={DoorIcon} width={0} height={0} alt="icon" /></div>}
           <div><Image src={ChromeIcon} width={0} height={0} alt="icon" onClick={() => toggle("chrome")} /></div>
           <div><Image src={VSCodeIcon} width={0} height={0} alt="icon" onClick={() => toggle("vscode")} /></div>
           <div><Image src={OutlookIcon} width={0} height={0} alt="icon" onClick={() => toggle("outlook")} /></div>
@@ -407,7 +454,7 @@ export default function Pata() {
             </Link>
           </div>
         </div>
-      </div>
+      </div>}
     </main>
   );
 }

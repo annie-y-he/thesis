@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Tetrahedron, Octahedron, Icosahedron, Text, Sphere } from '@react-three/drei';
 import s from './page.module.scss';
+import useWindowHeight from './hooks/useWindowHeight';
 
 interface TextObjProps {
   children?: string;
@@ -95,7 +96,7 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
       return (
         <div>
           <p><b>Explanation: </b>Relates to shared, collective experiences and understandings between individuals.</p>
-          <p><b>Example: </b>Cultural rituals or social norms that shape group behavior and perceptions, like the collective mourning in a community after a significant loss.</p>
+          <p><b>Example: </b>Cultural rituals or social norms that shape group behavior and perceptions, like the communication between individuals.</p>
         </div>
       )
     case "Object":
@@ -218,8 +219,10 @@ const TextObj: React.FC<TextObjProps> = ({ children, position = [0, 0, 0], size 
 };
 
 export default function App() {
+  useWindowHeight();
   const [overlayVisible, setVisible] = useState(false);
   const [overlayContent, setOverlay] = useState<React.JSX.Element>()
+
 
   useEffect(() => {
     if (overlayContent) {
@@ -228,11 +231,10 @@ export default function App() {
       setVisible(false);
     }
   },[overlayContent])
-
-  // const { camera } = useThree();
+  const ref = useRef<HTMLElement>(null);
 
   return (
-    <main className={s.main}>
+    <main ref={ref} className={s.main}>
       <h1><Link href="/about">HEDRON</Link></h1>
       <Canvas 
         style={{ background: "#181818" }} 
@@ -240,10 +242,6 @@ export default function App() {
         onClick={(event) => {setOverlay(undefined)}}
       >
         <ambientLight intensity={1} />
-        {/* <pointLight intensity={0.5} position={[0.7, 0.7, 0.7]} />
-        <pointLight intensity={0.5} position={[-0.7, -0.7, 0.7]} />
-        <pointLight intensity={0.5} position={[0.7, -0.7, -0.7]} />
-        <pointLight intensity={0.5} position={[-0.7, 0.7, -0.7]} /> */}
 
         <Sphere args={[0.6, 64, 32]}>
           <meshStandardMaterial color="#999" transparent={true} opacity={0.9}/>

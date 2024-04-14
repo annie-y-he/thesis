@@ -31,7 +31,7 @@ elif [ "$1" = "push" ]; then
     git push
   else
     git add .
-    git commit "update"
+    git commit -m "update"
     git push
   fi
   ssh admin@ec2-18-215-72-38.compute-1.amazonaws.com "cd thesis && ./docker.sh restart"

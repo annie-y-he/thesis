@@ -1,18 +1,21 @@
+'use client';
+
 import Link from 'next/link'
 import s from './page.module.scss'
 import Image from 'next/image'
 import PLOSIcon from './assets/plos.svg'
 import PLOSWIcon from './assets/plos-white.svg'
 import HedronIcon from './assets/hedron.png'
+import useWindowHeight from '../hooks/useWindowHeight';
 
-import { metadata as m1 } from './a1/page'
-import { metadata as m2 } from './a2/page'
-import { metadata as m3 } from './a3/page'
-import { metadata as m4 } from './a4/page'
-import { metadata as m5 } from './a5/page'
+import { metadata as m1 } from './a1/metadata'
+import { metadata as m2 } from './a2/metadata'
+import { metadata as m3 } from './a3/metadata'
+import { metadata as m4 } from './a4/metadata'
+import { metadata as m5 } from './a5/metadata'
 
 export default function Uni() {
-
+  useWindowHeight();
   const Article: React.FC<any> = ({ metadata }) => {
     return (
       <div className={s.article}>

@@ -11,8 +11,10 @@ import FileIcon from './assets/file.svg'
 import FolderIcon from './assets/folder.svg'
 import AnnieProf from './assets/annieProf.jpg'
 import HedronIcon from '@/images/hedron.png'
+import useWindowHeight from '../hooks/useWindowHeight';
 
 export default function Meta() {
+  useWindowHeight();
   const [dir1, setDir1] = useState(false);
   const [dir2, setDir2] = useState(false);
   const [dir3, setDir3] = useState(false);
@@ -85,7 +87,7 @@ export default function Meta() {
           <div>
             <h3>About</h3>
             <br />
-            <div>Final project for ECE150: Digital Logic Design</div>
+            <div className={s.select}>Final project for ECE150: Digital Logic Design</div>
             <br />
             <div className={s.tags}>
               <div>digital-logic</div>

@@ -29,7 +29,7 @@ async function handler(req: any) {
   const body = await req.json();
   let res;
   let toInsert: any[] = [];
-  const { sender, content, threadInfo } = body;
+  const { sender, content, threadInfo, instruction } = body;
 
   const assistants = await retrieveAssistants(assistantIds)
   const assistant = assistants.find(p => p.name === sender);
@@ -79,10 +79,15 @@ async function handler(req: any) {
 
   let run = await openai.beta.threads.runs.createAndPoll(
     thread.id,
-    { assistant_id: assistant.id }
+    { 
+      assistant_id: assistant.id,
+      additional_instructions: instruction
+    }
   );
 
   if (run.status === 'completed') {
+
+    console.log(run);
     const messages = await openai.beta.threads.messages.list( thread.id );
     const response = (messages.data[0].content[0] as any).text.value;
     toInsert.push({
@@ -100,19 +105,21 @@ async function handler(req: any) {
     res = new Response(JSON.stringify({ msg: "I am currently unavailable", stat: run.status }), { status: 400 });
   }
 
-  try {
-    await client.connect();
-    console.log("Connected successfully to server");
+  if (process.env.USE_DATABASE != "false"){  
+    try {
+      await client.connect();
+      console.log("Connected successfully to server");
 
-    const db = client.db('qna');
-    const collection = db.collection('msg');
-    
-    await collection.insertMany(toInsert);
-  } catch (e) {
-    console.error(e);
-  } finally {
-    await client.close();
-    console.log("MongoDB client closed.");
+      const db = client.db('qna');
+      const collection = db.collection('msg');
+      
+      await collection.insertMany(toInsert);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      await client.close();
+      console.log("MongoDB client closed.");
+    }
   }
 
   return res;

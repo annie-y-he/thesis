@@ -54,10 +54,28 @@
   }
 }
 
+@mixin select {
+  user-select: text;
+  * {
+    user-select: text;
+  }
+}
+
+@mixin noselect {
+  user-select: none;
+  * {
+    user-select: none;
+  }
+}
+
 .main {
   @include flexc;
   align-items: center;
   overflow-y: scroll;
+  @include select;
+  img {
+    @include noselect;
+  }
 }
 
 .header {

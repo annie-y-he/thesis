@@ -54,6 +54,20 @@
   }
 }
 
+@mixin select {
+  user-select: text;
+  * {
+    user-select: text;
+  }
+}
+
+@mixin noselect {
+  user-select: none;
+  * {
+    user-select: none;
+  }
+}
+
 .main {
   @include flexc;
   align-items: center;
@@ -107,12 +121,14 @@
     text-decoration: underline;
     cursor: pointer;
   }
-  user-select: none;
 }
 
 .readme {
+  user-select: auto;
   margin: 30px 0;
   @include border;
+
+  @include select;
 }
 
 .right {
@@ -147,6 +163,7 @@
   background-color: #F6F8FA;
   border-radius: 10px 10px 0 0;
   height: 50px;
+  @include noselect;
 }
 
 .md {
@@ -197,4 +214,12 @@
 
 .indent {
   padding-left: 40px;
+}
+
+.select {
+  @include select;
+}
+
+.noselect {
+  @include noselect;
 }

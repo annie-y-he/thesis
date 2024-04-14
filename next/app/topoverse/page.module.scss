@@ -55,11 +55,24 @@
   }
 }
 
+@mixin select {
+  user-select: text;
+  * {
+    user-select: text;
+  }
+}
+
+@mixin noselect {
+  user-select: none;
+  * {
+    user-select: none;
+  }
+}
+
 .main {
   > * {
     position: absolute;
   }
-
 }
 
 .header {
@@ -117,7 +130,21 @@
   }
 
   > :last-child {
+    color: #065fd4;
     border-radius: 40px;
+    border: gainsboro solid 1px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    margin: 0;
+    img {
+      margin-right: 5px;
+    }
+    &:hover {
+      background-color: #def1ff;
+      box-shadow: none;
+    }
   }
 }
 
@@ -199,11 +226,27 @@
 .icon {
   @include flexc;
   :first-child {
-    height: 2.5em;
-    width: 2.5em;
+    height: 2em;
+    width: 2em;
     margin-bottom: 5px;
   }
   align-items: center;
+}
+
+.fr {
+  flex-direction: row;
+
+  > :first-child {
+    margin-bottom: 0;
+    margin-right: 10px;
+    border-radius: 1em;
+  }
+}
+
+.sponsor {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }
 
 .right {
@@ -234,6 +277,13 @@
 
   > div {
     padding-left: 20px;
+    @include select;
+  }
+
+  a {
+    color: #065fd4;
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   @media (max-width: 900px) {

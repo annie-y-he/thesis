@@ -2,10 +2,13 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  user-select: none;
 }
 
 html,
 body {
+  position: fixed;
+  top: 0;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -27,10 +30,32 @@ canvas {
 }
 
 button {
+  color: black;
+  background-color: #eee;
   border-radius: 50px;
   padding: 0.5em 1em;
   border: none;
   margin: 1em 0.5em;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #ffffff;
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: inset 0 0 20px 20px #2323237a;
+}
+
+@media (pointer: coarse) {
+  textarea {
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 16px;
+  }
 }
 
 button:hover {
@@ -79,4 +104,11 @@ svg {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #888;
+}
+
+.log {
+  position: fixed;
+  left: 50px;
+  bottom: 50px;
+  color: lime;
 }

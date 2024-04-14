@@ -6,9 +6,9 @@ interface FileProps extends React.HTMLAttributes<HTMLDivElement> {
   src: any;
 }
 
-const Icon: React.FC<FileProps> = ({ children, src }) => {
+const Icon: React.FC<FileProps> = ({ children, src, className, ...rest }) => {
   return (
-    <div className={s.icon}>
+    <div {...rest} className={className + " " + s.icon}>
       <Image src={src} width={0} height={0} alt="icon" />
       <span>{children}</span>
     </div>

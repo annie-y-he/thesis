@@ -19,18 +19,19 @@ main:
 - [x] points overlay
 - [x] default view top/bottom rotating
 - points generation
-- safari button color is blue
+- [x] safari button color is blue
 - random points reset after click
 - add "language" to intersubject
+- text color
 
 meta:
 - [x] mobile versions
 - [x] content
 - [x] add back link
+- [x] disable keyword user select
 - rerender
 - text errors in video
 - debug section
-- disable keyword user select
 - gpt unable to figure out logic
 
 uni:
@@ -41,11 +42,11 @@ uni:
 - [x] article abstract
 - [x] cover images
 - [x] add back link
+- [x] plos logo design
 - article outlines
 - article contents
 - article refine abstract
 - refine cover image
-- plos logo design
 - authors name design
 - keywords
 
@@ -70,28 +71,31 @@ pata:
 - [x] add vs code printed function 
 - [x] fix slow problem 
 - [x] add MacroSock Doors
+- [x] disable select
+- [x] mobile typing auto zoom
+- [x] enter key for send email
+- [x] printer sound
+- [x] signin page and username
 - chrome and captcha
 - story line
 - more persona
-- signin page and username
-- mobile typing auto zoom
-- enter key for send email
+- password restrictions
 - pata keywords
 - device mesh
 - r2d2 sound hash
-- disable select
-- printer sound
+- demo text on paper
 
 topo:
 - [x] mobile versions
 - [x] mobile video auto fullscreen
 - [x] focus no outline
-- content
-- smaller user prof
-- add channel icon
-- keywords
+- [x] disable selection
+- [x] content
+- [x] smaller user prof
+- [x] add channel icon
+- [x] keywords
 - scene by scene description
-- disable selection
+- shop page
 
 about:
 - [x] statements
@@ -100,14 +104,14 @@ about:
 - [x] challenge
 - [x] gpt
 - [x] gpt database
-- instructions
-- style
-- intro
-- disclaimer
-- acknowledgement
-- mobile ask width
-- gpt use plain text
-- prewrap
+- [x] instructions
+- [x] style
+- [x] intro
+- [x] disclaimer
+- [x] acknowledgement
+- [x] mobile ask width
+- [x] gpt use plain text
+- [x] prewrap
 
 
 all:
@@ -116,12 +120,13 @@ all:
 - [x] make icon general function
 - [x] mobile safari tabbar
 - [x] fonts
+- [x] user select
+- [x] disable zoom
+- [x] safari toolbar height
 - video cover
 - video subtitle
 - add "loading page"
-- user select
-- disable zoom
-- safari toolbar height
+
 
 pre:
 - panel discussion outline
