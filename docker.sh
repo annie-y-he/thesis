@@ -25,9 +25,13 @@ elif [ "$1" = "push" ]; then
   rsync -rv ./next/public/ admin@ec2-18-215-72-38.compute-1.amazonaws.com:/home/admin/thesis/next/public
   rsync -rv ./next/.env admin@ec2-18-215-72-38.compute-1.amazonaws.com:/home/admin/thesis/next/.env
   rsync -rv ./.env admin@ec2-18-215-72-38.compute-1.amazonaws.com:/home/admin/thesis/.env
-  if [ "$2" = "-m" ]; then
+  if [ "$2" ]; then
     git add .
-    git commit -m "$3"
+    git commit -m "$2"
+    git push
+  else
+    git add .
+    git commit "update"
     git push
   fi
   ssh admin@ec2-18-215-72-38.compute-1.amazonaws.com "cd thesis && ./docker.sh restart"

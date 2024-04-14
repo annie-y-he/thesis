@@ -235,7 +235,7 @@ export default function App() {
     <main className={s.main}>
       <h1><Link href="/about">HEDRON</Link></h1>
       <Canvas 
-        style={{ background: "black" }} 
+        style={{ background: "#181818" }} 
         camera={{ fov: 18, position: [0, 0, 10] }}
         onClick={(event) => {setOverlay(undefined)}}
       >
@@ -282,6 +282,8 @@ export default function App() {
         <small>orbit around scene</small>
         <br />
         <small>click words for details</small>
+        <br />
+        <small>click title for info</small>
       </div>
     </main>
   );

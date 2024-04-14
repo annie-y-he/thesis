@@ -13,6 +13,7 @@ import OutlookIcon from './assets/outlook.svg'
 import VSCodeIcon from './assets/vscode.svg'
 import HedronIcon from '@/images/hedron.png'
 import PrintIcon from './assets/print.png'
+import DoorIcon from './assets/doors.png'
 import { Glitch } from '@react-three/postprocessing'
 import { GlitchMode } from 'postprocessing'
 import textFieldEdit, { insertTextIntoField } from 'text-field-edit';
@@ -396,6 +397,7 @@ export default function Pata() {
         </Window>
 
         <div className={s.taskbar}>
+          {!isCoarsePointer && <div title="MacroSock Doors"><Image src={DoorIcon} width={0} height={0} alt="icon" /></div>}
           <div><Image src={ChromeIcon} width={0} height={0} alt="icon" onClick={() => toggle("chrome")} /></div>
           <div><Image src={VSCodeIcon} width={0} height={0} alt="icon" onClick={() => toggle("vscode")} /></div>
           <div><Image src={OutlookIcon} width={0} height={0} alt="icon" onClick={() => toggle("outlook")} /></div>

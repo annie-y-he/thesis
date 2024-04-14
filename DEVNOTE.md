@@ -69,6 +69,7 @@ pata:
 - [x] fix window min width vs init width
 - [x] add vs code printed function 
 - [x] fix slow problem 
+- [x] add MacroSock Doors
 - chrome and captcha
 - story line
 - more persona
@@ -78,6 +79,8 @@ pata:
 - pata keywords
 - device mesh
 - r2d2 sound hash
+- disable select
+- printer sound
 
 topo:
 - [x] mobile versions
@@ -88,6 +91,7 @@ topo:
 - add channel icon
 - keywords
 - scene by scene description
+- disable selection
 
 about:
 - [x] statements
@@ -100,6 +104,10 @@ about:
 - style
 - intro
 - disclaimer
+- acknowledgement
+- mobile ask width
+- gpt use plain text
+- prewrap
 
 
 all:
@@ -112,6 +120,8 @@ all:
 - video subtitle
 - add "loading page"
 - user select
+- disable zoom
+- safari toolbar height
 
 pre:
 - panel discussion outline
