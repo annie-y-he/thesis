@@ -2,7 +2,7 @@
   overflow-y: scroll;
   height: 100%;
   padding: 50px;
-  ul {
+  ul, ol {
     padding-left: 20px;
   }
 }
@@ -16,7 +16,7 @@
       cursor: pointer;
     }
 
-    ul ol li p {
+    ul, ol, li, p {
       margin-bottom: 1em;
     }
   }
