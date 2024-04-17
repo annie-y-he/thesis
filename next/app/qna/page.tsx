@@ -35,7 +35,7 @@ export default function QNA () {
       <div className={s.list}>
         {msgList.map((item) => (
           item.includes(":** ") ? 
-          item.length < 20000 ? <Markdown>{item}</Markdown>: null :
+          item.length < 20000 ? <div><Markdown>{item}</Markdown></div>: null :
           <div onClick={() => getMsg(item, setMsgList)}>{item}</div>
         ))}
       </div>
