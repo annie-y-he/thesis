@@ -1,6 +1,7 @@
 import s from './page.module.scss'
 import Debug from './assets/debug.png'
 import Image from 'next/image'
+const BP = process.env.NEXT_PUBLIC_BASE_PATH
 
 export default function Readme() {
   return (
@@ -51,8 +52,8 @@ export default function Readme() {
       <h3 id="demo">Demonstration</h3>
       <hr />
       <video controls preload="auto">
-        <source src="/videos/circuit.mp4" type="video/mp4" />
-        <track src="/fonts/circuit.vtt" kind="subtitles" srcLang="en" default />
+        <source src={BP + "/videos/circuit.mp4"} type="video/mp4" />
+        <track src={BP + "/fonts/circuit.vtt"} kind="subtitles" srcLang="en" default />
       </video>
       <br />
       <br />
