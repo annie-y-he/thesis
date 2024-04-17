@@ -19,7 +19,9 @@ const getMsg = async (threadId: string, setMsgList: React.Dispatch<React.SetStat
 
   console.log(body);
   if (!threadId) {
-    setMsgList(body.msg.map((item: any) => (item as { _id: string })._id));
+    setMsgList(body.msg.map((item: any) => item._id));
+  } else {
+    setMsgList(body.msg.map((item: any) => item.role + ": " + item.content));
   }
 }
 
@@ -30,7 +32,11 @@ export default function QNA () {
     <div className={s.main}>
       <button onClick={() => getMsg("", setMsgList)}>GET THREADS</button>
       <div className={s.list}>
-        {msgList.map((item) => (<div onClick={() => getMsg(item, setMsgList)}>{item}</div>))}
+        {msgList.map((item) => (
+          item.includes(": ") ? 
+          <div>{item}</div> :
+          <div onClick={() => getMsg(item, setMsgList)}>{item}</div>
+        ))}
       </div>
     </div>
   )
