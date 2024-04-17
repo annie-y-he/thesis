@@ -123,6 +123,8 @@ export default function Topo() {
 
       <h3>DISCLAIMER</h3>
       <p>Please note that the content of this project, including all associated data, narratives, and depictions, is entirely fictional and created for educational and illustrative purposes only. Any resemblance to real persons, living or dead, or actual events is purely coincidental. This project is designed to stimulate discussion and does not represent any real-world data or predictions. We encourage viewers to approach the material with an understanding of its speculative nature, and no part of this project should be construed as factual or used as a basis for real-world application or decision-making.</p>
+      <p>Any information you enter during your interaction with this site, except for conversations with digital assistants, is <b>not stored</b> or recorded in any way.</p>
+      <p>Conversations with digital assistants are stored <b>anonymously</b> for the purpose of improving service quality. These conversations are detached from your personal data to ensure privacy and confidentiality.</p>
 
       <h3>STATEMENTS</h3>
 
