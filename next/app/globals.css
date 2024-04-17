@@ -38,6 +38,10 @@ button {
   margin: 1em 0.5em;
 }
 
+*:focus {
+  outline: none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 

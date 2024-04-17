@@ -5,11 +5,16 @@ import * as React from 'react'
 import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, Tetrahedron, Octahedron, Icosahedron, Text, Sphere } from '@react-three/drei';
+import { OrbitControls, Tetrahedron, Octahedron, Icosahedron, Text, Sphere, Html } from '@react-three/drei';
+import { topoKeywords, metaKeywords, pataKeywords, uniKeywords, keywordsColor } from './Keywords';
 import s from './page.module.scss';
 import useWindowHeight from './hooks/useWindowHeight';
 
 interface TextObjProps {
+  setTopoKey: React.Dispatch<React.SetStateAction<boolean>>;
+  setMetaKey: React.Dispatch<React.SetStateAction<boolean>>;
+  setPataKey: React.Dispatch<React.SetStateAction<boolean>>;
+  setUniKey: React.Dispatch<React.SetStateAction<boolean>>;
   children?: string;
   position?: [number, number, number];
   size?: number;
@@ -17,10 +22,14 @@ interface TextObjProps {
 }
 
 interface OverlayProps {
+  setTopoKey: React.Dispatch<React.SetStateAction<boolean>>;
+  setMetaKey: React.Dispatch<React.SetStateAction<boolean>>;
+  setPataKey: React.Dispatch<React.SetStateAction<boolean>>;
+  setUniKey: React.Dispatch<React.SetStateAction<boolean>>;
   children?: string;
 }
 
-const Overlay: React.FC<OverlayProps> = ({ children }) => {
+const Overlay: React.FC<OverlayProps> = ({ setTopoKey, setMetaKey, setPataKey, setUniKey, children }) => {
   switch (children) {
     case "TOPOVERSE":
       return (
@@ -32,7 +41,7 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
             <Link href="/topoverse">
               <button title="go to project">SAFE PORTAL TECHNOLOGY</button>
             </Link>
-            <button title="spread in space">∴</button>
+            <button title="spread in space" onClick={() => setTopoKey(state => !state)}>∴</button>
           </div>
         </div>
       )
@@ -46,7 +55,7 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
             <Link href="/metaverse">
               <button title="go to project">MEMORY TRAVERSING MACHINE</button>
             </Link>
-            <button title="spread in space">∴</button>
+            <button title="spread in space" onClick={() => setMetaKey(state => !state)}>∴</button>
           </div>
         </div>
       )
@@ -60,7 +69,7 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
             <Link href="/universe">
               <button title="go to project">MIMETIC UNICELLULAR ORGANISMS</button>
             </Link>
-            <button title="spread in space">∴</button>
+            <button title="spread in space" onClick={() => setUniKey(state => !state)}>∴</button>
           </div>
         </div>
       )
@@ -74,7 +83,7 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
             <Link href="/pataverse">
               <button title="go to project">INTERACTIVE AUDIO DEVICE</button>
             </Link>
-            <button title="spread in space">∴</button>
+            <button title="spread in space" onClick={() => setPataKey(state => !state)}>∴</button>
           </div>
         </div>
       )
@@ -165,18 +174,11 @@ const Overlay: React.FC<OverlayProps> = ({ children }) => {
   }
 }
 
-const TextObj: React.FC<TextObjProps> = ({ children, position = [0, 0, 0], size = 0.1, setOverlay }) => {
+const TextObj: React.FC<TextObjProps> = ({ setTopoKey, setMetaKey, setPataKey, setUniKey, children, position = [0, 0, 0], size = 0.1, setOverlay }) => {
   const textRef = useRef<THREE.Object3D>(null);
 
   const [hovered, hover] = useState(false)
   const [clicked, click] = useState(false)
-
-  const colors: {[key: string]: string} = {
-    TOPOVERSE: "green",
-    PATAVERSE: "yellow",
-    METAVERSE: "red",
-    UNIVERSE: "purple"
-  };
 
   useEffect(() => {
     document.body.style.cursor = hovered ? 'pointer' : 'auto'
@@ -188,7 +190,7 @@ const TextObj: React.FC<TextObjProps> = ({ children, position = [0, 0, 0], size 
       setOverlay(
         <div className={s.definition}>
           <div className={s.overlay}>
-            <Overlay>{children}</Overlay>
+            <Overlay setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>{children}</Overlay>
             <div><small>click scene to close</small></div>
           </div>
         </div>
@@ -205,7 +207,7 @@ const TextObj: React.FC<TextObjProps> = ({ children, position = [0, 0, 0], size 
       ref={textRef}
       position={position}
       fontSize={size}
-      color={ children && hovered ? colors[children] || "salmon" : "white" }
+      color={ children && hovered ? keywordsColor[children] || "salmon" : "white" }
       anchorX="center"
       anchorY="middle"
       onPointerOver={() => hover(true)}
@@ -218,11 +220,43 @@ const TextObj: React.FC<TextObjProps> = ({ children, position = [0, 0, 0], size 
   );
 };
 
+const Keyword = ({word, pos, color}: {word: string, pos: THREE.Vector3, color: string}) => {
+  const [hovered, setHovered] = useState(false);
+
+  return (<Icosahedron 
+    args={[0.05]} 
+    position={pos.normalize().multiplyScalar(0.6)}
+    onPointerOver={(e) => {
+      e.stopPropagation();
+      setHovered(true);
+      document.body.style.cursor = 'help';
+    }}
+    onPointerOut={(e) => {
+      e.stopPropagation();
+      setHovered(false);
+      document.body.style.cursor = 'auto';
+    }}
+  >
+    <meshBasicMaterial attach="material" color={color} />
+    {hovered && (
+      <Html distanceFactor={2} style={{pointerEvents: 'none'}}>
+        <div className="tooltip" style={{ backgroundColor: 'white', padding: '2px 5px', borderRadius: '5px', whiteSpace: 'nowrap' }}>
+          {word}
+        </div>
+      </Html>
+    )}
+  </Icosahedron>)
+}
+
 export default function App() {
   useWindowHeight();
   const [overlayVisible, setVisible] = useState(false);
   const [overlayContent, setOverlay] = useState<React.JSX.Element>()
 
+  const [topoKey, setTopoKey] = useState(false);
+  const [metaKey, setMetaKey] = useState(false);
+  const [pataKey, setPataKey] = useState(false);
+  const [uniKey, setUniKey] = useState(false);
 
   useEffect(() => {
     if (overlayContent) {
@@ -244,7 +278,7 @@ export default function App() {
         <ambientLight intensity={1} />
 
         <Sphere args={[0.6, 64, 32]}>
-          <meshStandardMaterial color="#999" transparent={true} opacity={0.9}/>
+          <meshStandardMaterial color="#999" transparent={true} opacity={0.9} />
         </Sphere>
         <Tetrahedron args={[1.04]} name="tetra">
           <meshBasicMaterial attach="material" color="white" wireframe={true} />
@@ -252,28 +286,41 @@ export default function App() {
         <Octahedron args={[0.85]} name="octa">
           <meshBasicMaterial attach="material" color="white" wireframe={true} />
         </Octahedron>
-        {Array.from({ length: 500 }, (_, i) => (
+        {/* {Array.from({ length: 500 }, (_, i) => (
           <Icosahedron key={i} args={[0.01]} position={(new THREE.Vector3()).setFromSphericalCoords(0.6, Math.acos(2 * Math.random() - 1), Math.random() * 2 * Math.PI)}>
             <meshBasicMaterial attach="material" color="white" />
           </Icosahedron>
+        ))} */}
+        {topoKey && topoKeywords.map((item, index) => (
+          <Keyword key={index} word={item.word} pos={item.pos} color={keywordsColor["TOPOVERSE"]} />
         ))}
-        <TextObj position={[0.7, 0.7, 0.7]} size={0.08} setOverlay={setOverlay}>TOPOVERSE</TextObj>
-        <TextObj position={[-0.7, -0.7, 0.7]} size={0.08} setOverlay={setOverlay}>METAVERSE</TextObj>
-        <TextObj position={[0.7, -0.7, -0.7]} size={0.08} setOverlay={setOverlay}>UNIVERSE</TextObj>
-        <TextObj position={[-0.7, 0.7, -0.7]} size={0.08} setOverlay={setOverlay}>PATAVERSE</TextObj>
-        <TextObj position={[0, 1, 0]} size={0.04} setOverlay={setOverlay}>interSubject</TextObj>
-        <TextObj position={[0, -1, 0]} size={0.04} setOverlay={setOverlay}>intraObject</TextObj>
-        <TextObj position={[1, 0, 0]} size={0.04} setOverlay={setOverlay}>interObject</TextObj>
-        <TextObj position={[-1, 0, 0]} size={0.04} setOverlay={setOverlay}>intraSubject</TextObj>
-        <TextObj position={[0, 0, 1]} size={0.04} setOverlay={setOverlay}>Object</TextObj>
-        <TextObj position={[0, 0, -1]} size={0.04} setOverlay={setOverlay}>Subject</TextObj>
-        <TextObj position={[0, 0.72, 0]} size={0.04} setOverlay={setOverlay}>fictiworld</TextObj>
-        <TextObj position={[0, -0.72, 0]} size={0.04} setOverlay={setOverlay}>dataworld</TextObj>
-        <TextObj position={[0.72, 0, 0]} size={0.04} setOverlay={setOverlay}>archiworld</TextObj>
-        <TextObj position={[-0.72, 0, 0]} size={0.04} setOverlay={setOverlay}>dreamworld</TextObj>
-        <TextObj position={[0, 0, 0.72]} size={0.04} setOverlay={setOverlay}>logiworld</TextObj>
-        <TextObj position={[0, 0, -0.72]} size={0.04} setOverlay={setOverlay}>lifeworld</TextObj>
-        <OrbitControls autoRotate autoRotateSpeed={0.25} enablePan={false} />
+        {metaKey && metaKeywords.map((item, index) => (
+          <Keyword key={index} word={item.word} pos={item.pos} color={keywordsColor["METAVERSE"]} />
+        ))}
+        {pataKey && pataKeywords.map((item, index) => (
+          <Keyword key={index} word={item.word} pos={item.pos} color={keywordsColor["PATAVERSE"]} />
+        ))}
+        {uniKey && uniKeywords.map((item, index) => (
+          <Keyword key={index} word={item.word} pos={item.pos} color={keywordsColor["UNIVERSE"]} />
+        ))}
+        <TextObj position={[0.7, 0.7, 0.7]} size={0.08} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>TOPOVERSE</TextObj>
+        <TextObj position={[-0.7, -0.7, 0.7]} size={0.08} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>METAVERSE</TextObj>
+        <TextObj position={[0.7, -0.7, -0.7]} size={0.08} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>UNIVERSE</TextObj>
+        <TextObj position={[-0.7, 0.7, -0.7]} size={0.08} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>PATAVERSE</TextObj>
+        <TextObj position={[0, 1, 0]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>interSubject</TextObj>
+        <TextObj position={[0, -1, 0]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>intraObject</TextObj>
+        <TextObj position={[1, 0, 0]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>interObject</TextObj>
+        <TextObj position={[-1, 0, 0]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>intraSubject</TextObj>
+        <TextObj position={[0, 0, 1]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>Object</TextObj>
+        <TextObj position={[0, 0, -1]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>Subject</TextObj>
+        <TextObj position={[0, 0.72, 0]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>fictiworld</TextObj>
+        <TextObj position={[0, -0.72, 0]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>dataworld</TextObj>
+        <TextObj position={[0.72, 0, 0]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>archiworld</TextObj>
+        <TextObj position={[-0.72, 0, 0]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>dreamworld</TextObj>
+        <TextObj position={[0, 0, 0.72]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>logiworld</TextObj>
+        <TextObj position={[0, 0, -0.72]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>lifeworld</TextObj>
+        <OrbitControls autoRotateSpeed={0.25} enablePan={false} />
+        {/* autoRotate */}
       </Canvas>
       {overlayVisible && overlayContent}
       <div>

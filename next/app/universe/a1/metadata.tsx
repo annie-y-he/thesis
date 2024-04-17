@@ -1,4 +1,4 @@
-import Cover from '../assets/c1.jpeg'
+import Cover from './assets/cover.png'
 
 export const metadata = {
   title: 'Chronicles and Classifications: Tracing the Historical Emergence and Typological Variations of Mimetic Unicellular Organisms',

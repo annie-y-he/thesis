@@ -10,6 +10,7 @@ import Link from 'next/link';
 import useWindowHeight from '../hooks/useWindowHeight';
 import { SiteStruct } from './SiteStruct';
 import Markdown from 'react-markdown'
+const BP = process.env.NEXT_PUBLIC_BASE_PATH;
 
 interface Msg {
   role: "user" | "assistant";
@@ -34,7 +35,7 @@ const sendMsg = async (
   playAudio(audioIn);
   setMsg(curMsg => [...curMsg, { role: "user", content: content }]);
 
-  const response = await fetch('/api/gpt', {
+  const response = await fetch(BP + '/api/gpt', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -224,10 +225,10 @@ export default function Topo() {
       </Link>
 
       <audio ref={sendSound} preload="auto">
-        <source src="/audio/swoosh.wav" type="audio/wav" />
+        <source src={BP + "/audio/swoosh.wav"} type="audio/wav" />
       </audio>
       <audio ref={recvSound} preload="auto">
-        <source src="/audio/notify.wav" type="audio/wav" />
+        <source src={BP + "/audio/notify.wav"} type="audio/wav" />
       </audio>
     </div>
   )

@@ -1,10 +1,4 @@
 export const SiteStruct = `
-You are an assistant on a website. The website is the thesis project of an architecture student Annie He. Your job is to answer any question that a visitor might have regarding the thesis project or the website.
-
-Assume no technical background from the visitor. Keep your answers short and concise, in a philosophical tone. Do not include unnecessary flattery adjectives either to the project or the visitor. Your responses should encourage the visitor to interact with the website, guide them to the content related to their question.  Do not use markdown in responses. Use plain text instead.
-
-The textual description of the website structure will be provided as the first message in a thread. Don't take words without quotes literally. You should be able to infer the visuals from the structure. Answer questions with confidence or say you don't know.
-
 () indicates button
 [] indicates input
 "" indicates string literals
@@ -265,8 +259,63 @@ PataversePage { // this story is titled "interactive audio device", it is an int
     (MacroSoftDoorsIcon) -hover-> "MacroSoftDoors"// mimics MicroSoft Windows (four squares are replaced with two rectangles). Only appears on non-mobile devices. Is not interactive
 
     (ChromeIcon) { // One can navigate to some provided fake sites. Whenever the user navigates, the browser will require tricky/strict/mischievous captchas that test whether the user is a human.
-      sites {
-        // in progress
+      TabBar {
+        (BrowserHomeIcon) -viewer-> BrowserHomePage
+      }
+      
+      Viewer {
+        BrowserHomePage { // opening a new tab will first require the user to complete a captcha
+          "Oooglo"
+          ["Search Oooglo or don't"] -tab-> {
+            "404" {
+              "404 Page Not Found"
+            }
+          }
+          keywords {
+            ("Async Communication") -tab-> {
+
+            }
+            ("CAPTCHA") -tab-> {
+              
+            }
+            ("Interaction") -tab-> {
+              
+            }
+            ("Browsiing") -tab-> {
+              
+            }
+            ("keywords") -tab-> {
+              
+            }
+            ("keywords") -tab-> {
+              
+            }
+            ("keywords") -tab-> {
+              
+            }
+            ("keywords") -tab-> {
+              
+            }
+            ("keywords") -tab-> {
+              
+            }
+            ("keywords") -tab-> {
+              
+            }
+            ("keywords") -tab-> {
+              
+            }
+            ("keywords") -tab-> {
+              
+            }
+            ("keywords") -tab-> {
+              
+            }
+            ("keywords") -tab-> {
+              
+            }
+          }
+        }
       }
 
       captchas {

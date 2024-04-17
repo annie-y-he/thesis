@@ -108,7 +108,7 @@ const Window: React.FC<WindowProps> = ({ icon, children, minWidth = 300, minHeig
       style={{
         ...style,
         width: isFullScreen ? window.innerWidth : size.width,
-        height: isFullScreen ? window.innerHeight : size.height,
+        height: isFullScreen ? window.innerHeight -54 : size.height,
         position: 'absolute',
         left: isFullScreen ? 0 : pos.left,
         top: isFullScreen ? 0 : pos.top,
@@ -130,14 +130,14 @@ const Window: React.FC<WindowProps> = ({ icon, children, minWidth = 300, minHeig
           </div>
         </div>
       </div>
-      {children}
+      <div>{children}</div>
       {resizable && ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'].map((direction) => (
         <div
           key={direction}
           style={{
             position: 'absolute',
-            width: direction === 'n' || direction === 's' ? 'calc( 100% - 10px )' : '10px',
-            height: direction === 'e' || direction === 'w' ? 'calc( 100% - 10px )' : '10px',
+            width: direction === 'n' || direction === 's' ? 'calc( 100% - 8px )' : '8px',
+            height: direction === 'e' || direction === 'w' ? 'calc( 100% - 8px )' : '8px',
             cursor: `${direction}-resize`,
             top: direction.includes('n') ? '0' : direction.includes('s') ? '100%' : '50%',
             left: direction.includes('w') ? '0' : direction.includes('e') ? '100%' : '50%',

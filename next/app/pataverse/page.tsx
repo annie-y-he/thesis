@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { DragControls, Sphere, Splat, OrbitControls, Gltf, Plane, Box, Text } from '@react-three/drei';
 import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
-import { useEffect, useState, useRef } from 'react';
+import { createContext, useContext, useEffect, useState, useRef, ReactElement } from 'react';
 import Image from 'next/image'
 import ChromeIcon from './assets/chrome.svg'
 import OutlookIcon from './assets/outlook.svg'
@@ -16,10 +16,12 @@ import PrintIcon from './assets/print.png'
 import DoorIcon from './assets/doors.png'
 import ArrowIcon from './assets/arrow.png'
 import UserIcon from './assets/user.png'
+import HomeIcon from './assets/home.png'
 import { Glitch } from '@react-three/postprocessing'
 import { GlitchMode } from 'postprocessing'
 import textFieldEdit, { insertTextIntoField } from 'text-field-edit';
 import useWindowHeight from '../hooks/useWindowHeight';
+const BP = process.env.NEXT_PUBLIC_BASE_PATH;
 
 import Window from './Window'
 
@@ -57,8 +59,106 @@ const CameraControls: React.FC = () => {
   return null;
 };
 
+const Tab = ({ id, children, active, setActive, visible, setVisible }: {
+  id: number, 
+  children: any, 
+  active: number, 
+  setActive: React.Dispatch<React.SetStateAction<number>>,
+  visible: number[],
+  setVisible: React.Dispatch<React.SetStateAction<number[]>>,
+}) => {
+  if (!visible.includes(id)) return null;
+  return (<button onClick={() => setActive(id)} className={active==id ? s.activeTab : ""}>
+    {children}
+    {id != 0 && <div 
+      className={s.close}
+      onClick={(e) => {
+        e.stopPropagation(); 
+        setActive(0); 
+        if (visible.includes(id)) {
+          setVisible(vis => {
+            return vis.filter(tabId => tabId !== id);
+          })
+        }
+      }}
+    >×</div>}
+  </button>)
+}
+
 const Chrome = () => {
-  return <div>chrome fc</div>
+  const [visible, setVisible] = useState<number[]>([0]);
+  const [active, setActive] = useState<number>(0);
+
+  useEffect(() => {
+    console.log(active);
+  }, [active]);
+
+  const tabNames = [
+    <Image src={HomeIcon} width={0} height={0} alt="icon" />,
+    "404",
+    "Operating System",
+    "Desktop",
+    "Browsing",
+    "Printing",
+    "CAPTCHA",
+    "Audio Device",
+    "Interaction",
+    "Async Communication",
+    "Artificial Intelligence",
+    "Consciousness"
+  ]
+
+  const tabConts = [
+    <div className={s.home}>
+      <h1>Oooglo</h1>
+      <input 
+        type="text" 
+        placeholder="Search Oooglo or don't"
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault(); 
+            if (!visible.includes(1)) setVisible(v => [...v, 1]);
+            setActive(1);
+          }
+        }}
+      />
+      <div>
+        {tabNames.map((item, index) => (index != 0 && index != 1 &&
+          <div>
+            <div onClick={() => {
+              if (!visible.includes(index)) setVisible(v => [...v, index]);
+              setActive(index);
+            }} title={item as string}>?</div>
+            <div>{item}</div>
+          </div>
+        ))}
+      </div>
+    </div>,
+    <div className={s.notfound}>
+      <h1>404</h1>
+      <h5>Page Not Found</h5>
+    </div>,
+    <div>Hello</div>,
+    <div>Annie</div>
+  ]
+
+  return (
+    <div className={s.chrome}>
+      <div>
+        {visible.map((item) => (
+          <Tab id={item} 
+            active={active} 
+            setActive={setActive}
+            visible={visible}
+            setVisible={setVisible}
+          >
+            {tabNames[item]}
+          </Tab>
+        ))}
+      </div>
+      <div>{tabConts.map((item, index) => (index == active && item))}</div>
+    </div>
+  )
 }
 
 const playAudio = (audio: React.MutableRefObject<null>) => {
@@ -69,7 +169,7 @@ const playAudio = (audio: React.MutableRefObject<null>) => {
 
 const sendEmail = async ( current: Email, content: string, setEmails: React.Dispatch<React.SetStateAction<Email[]>>, audio: React.MutableRefObject<null>, username: string) => {
   if (!current.thread) {
-    const response = await fetch('/api/gpt', {
+    const response = await fetch(BP + '/api/gpt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -97,7 +197,7 @@ const sendEmail = async ( current: Email, content: string, setEmails: React.Disp
       return [newEmail, ...currentEmails];
     });
   } else {
-    const response = await fetch('/api/gpt', {
+    const response = await fetch(BP + '/api/gpt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -201,10 +301,10 @@ const Outlook = ({username}: {username: string}) => {
         <button disabled={current.sender == 'Sender'} onClick={sendButton}>Send</button>
       </div>
       <audio ref={swooshRef} preload="auto">
-        <source src="/audio/swoosh.wav" type="audio/wav" />
+        <source src={BP + "/audio/swoosh.wav"} type="audio/wav" />
       </audio>
       <audio ref={notifyRef} preload="auto">
-        <source src="/audio/notify.wav" type="audio/wav" />
+        <source src={BP + "/audio/notify.wav"} type="audio/wav" />
       </audio>
     </div>
   )
@@ -237,7 +337,7 @@ const VSCode = ({setPaper}: {setPaper: React.Dispatch<React.SetStateAction<strin
         onKeyDown={handleKeyDown}
       ></textarea>
       <audio ref={printRef} preload="auto">
-        <source src="/audio/print.wav" type="audio/wav" />
+        <source src={BP + "/audio/print.wav"} type="audio/wav" />
       </audio>
     </div>
   )
@@ -296,6 +396,7 @@ export default function Pata() {
   const loginButton = () => {
     if (!userField.current?.value) return;
     setUserName(userField.current.value);
+    handlePointerOver();
   };
 
   return (
@@ -339,10 +440,10 @@ export default function Pata() {
         
         <spotLight position={[0,3,0]} intensity={50} penumbra={1} angle={1.4} castShadow color="#fcb" />
 
-        <Gltf src="/models/mat.glb" scale={sceneScale} />
-        <Gltf src="/models/table.glb" scale={sceneScale} />
-        <Gltf src="/models/printer.glb" scale={sceneScale} />
-        <Splat src="/models/scene.splat" scale={sceneScale} />
+        <Gltf src={BP + "/models/mat.glb"} scale={sceneScale} />
+        <Gltf src={BP + "/models/table.glb"} scale={sceneScale} />
+        <Gltf src={BP + "/models/printer.glb"} scale={sceneScale} />
+        <Splat src={BP + "/models/scene.splat"} scale={sceneScale} />
 
         {/* <DragControls 
           axisLock='y'
@@ -350,7 +451,7 @@ export default function Pata() {
           autoTransform={grab}
         >
           <Splat 
-            src="/models/device.splat" 
+            src={BP + "/models/device.splat"}
             alphaTest={0.1} 
             scale={sceneScale} 
             position={[0,0.05,0]} 
@@ -373,7 +474,7 @@ export default function Pata() {
             anchorX="left" 
             anchorY="top"
             rotation={[-Math.PI/2,0,0]}
-            position={[-1.1,0.03,0]}
+            position={[-2.1,0.03,0]}
             fontSize={0.05}
             maxWidth={2.2}
             clipRect={[0,-3,2.2,0]}
@@ -382,7 +483,7 @@ export default function Pata() {
           <Plane 
             args={[2.5, 3.3]} 
             rotation={[-Math.PI/2,0,0]} 
-            position={[0,0.02,1.5]} 
+            position={[-1,0.02,1.5]} 
             onPointerEnter={() => document.body.style.cursor = "grab"} 
             onPointerOut={() => document.body.style.cursor = "auto"}
           >
@@ -391,7 +492,7 @@ export default function Pata() {
           <Plane 
             args={[2.5, 3.3]} 
             rotation={[-Math.PI/2,0,0]} 
-            position={[0,-0.01,1.5]} 
+            position={[-1,-0.01,1.5]} 
           >
             <meshStandardMaterial color="black" />
           </Plane>

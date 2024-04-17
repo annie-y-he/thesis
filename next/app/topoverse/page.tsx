@@ -14,7 +14,7 @@ import SignInIcon from './assets/signin.svg'
 import DOPIcon from './assets/dop.png'
 import SPIcon from './assets/sp.png'
 
-
+const BP = process.env.NEXT_PUBLIC_BASE_PATH;
 import useWindowHeight from '../hooks/useWindowHeight';
 
 import Image from 'next/image'
@@ -78,8 +78,8 @@ export default function Topo() {
           </div>
           <div className={s.vid}>
             <video controls preload="auto" playsInline>
-              <source src="/videos/ad.mp4" type="video/mp4" />
-              <track src="/assets/circuit.vtt" kind="subtitles" srcLang="en" default />
+              <source src={BP + "/videos/ad.mp4"} type="video/mp4" />
+              <track src={BP + "/assets/circuit.vtt"} kind="subtitles" srcLang="en" default />
             </video>
             <div>
               <h3>Safe Portal Technology | Safe-Portals™</h3>
@@ -95,8 +95,8 @@ export default function Topo() {
           </div>
           <div className={s.vid}>
             <video controls preload="auto" playsInline>
-              <source src="/videos/dop.mp4" type="video/mp4" />
-              <track src="/assets/circuit.vtt" kind="subtitles" srcLang="en" default />
+              <source src={BP + "/videos/dop.mp4"} type="video/mp4" />
+              <track src={BP + "/assets/circuit.vtt"} kind="subtitles" srcLang="en" default />
             </video>
             <div>
               <h3>DOP OWN for prospective Portal Owners webinar</h3>
@@ -110,8 +110,8 @@ export default function Topo() {
           </div>
           <div className={s.vid}>
             <video controls preload="auto" playsInline>
-              <source src="/videos/portable.mp4" type="video/mp4" />
-              <track src="/assets/circuit.vtt" kind="subtitles" srcLang="en" default />
+              <source src={BP + "/videos/portable.mp4"} type="video/mp4" />
+              <track src={BP + "/assets/circuit.vtt"} kind="subtitles" srcLang="en" default />
             </video>
             <div>
               <h3>Unboxing the Portable Portal: The Future of Portal</h3>
@@ -127,7 +127,7 @@ export default function Topo() {
           </div>
           <div className={s.load}>
             <video autoPlay loop muted playsInline>
-              <source src="/videos/loading.mp4" type="video/mp4" />
+              <source src={BP + "/videos/loading.mp4"} type="video/mp4" />
             </video>
           </div>
         </div>
