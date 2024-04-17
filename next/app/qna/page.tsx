@@ -3,6 +3,7 @@
 const BP = process.env.NEXT_PUBLIC_BASE_PATH;
 import { useState } from 'react';
 import s from './page.module.scss'
+import Markdown from 'react-markdown'
 
 const getMsg = async (threadId: string, setMsgList: React.Dispatch<React.SetStateAction<string[]>>) => {
   const response = await fetch(BP + '/api/msg', {
@@ -21,7 +22,7 @@ const getMsg = async (threadId: string, setMsgList: React.Dispatch<React.SetStat
   if (!threadId) {
     setMsgList(body.msg.map((item: any) => item._id));
   } else {
-    setMsgList(body.msg.map((item: any) => item.role + ": " + item.content));
+    setMsgList(body.msg.map((item: any) => "**" + item.role + ": **" + item.content));
   }
 }
 
@@ -34,7 +35,7 @@ export default function QNA () {
       <div className={s.list}>
         {msgList.map((item) => (
           item.includes(": ") ? 
-          item.length < 20000 ? <div>{item}</div>: null :
+          item.length < 20000 ? <Markdown>{item}</Markdown>: null :
           <div onClick={() => getMsg(item, setMsgList)}>{item}</div>
         ))}
       </div>
