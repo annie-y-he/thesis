@@ -122,7 +122,7 @@ export default function Topo() {
       <p>This thesis project is titled HEDRON, an acronym for "<b>Hilarious Exploratory Designs Regarding Ontological Narratives</b>". This project uses parodies and mimicries of mundane subjects to explore the nature of existence. The HEDRON project consists of a theoretical part titled "Versus vs. Verses" and an exploratory part titled "Worlds vs. Stories".</p>
 
       <h3>DISCLAIMER</h3>
-      <p>Please note that the content of this project, including all associated data, narratives, and depictions, is entirely fictional and created for educational and illustrative purposes only. Any resemblance to real persons, living or dead, or actual events is purely coincidental. This project is designed to stimulate discussion and does not represent any real-world data or predictions. We encourage viewers to approach the material with an understanding of its speculative nature, and no part of this project should be construed as factual or used as a basis for real-world application or decision-making.</p>
+      <p>Please note that the content of this project, including all associated data, narratives, and depictions, is <b>entirely fictional</b> and created for educational and illustrative purposes only.</p>
       <p>Any information you enter during your interaction with this site, except for conversations with digital assistants, is <b>not stored</b> or recorded in any way.</p>
       <p>Conversations with digital assistants are stored <b>anonymously</b> for the purpose of improving service quality. These conversations are detached from your personal data to ensure privacy and confidentiality.</p>
 
@@ -191,9 +191,17 @@ export default function Topo() {
       <ul>
         <li>The Pataverse page simulates an immersive operating system.</li>
         <li>A friend has given you the task to debug a mulfunctioning audio device.</li>
+        <li>Visitors should enter a username with optional password.</li>
         <li>Visitors can click and drag desktop items</li>
         <li>A taskbar at the bottom of the screen allows visitors to open different applications.</li>
-        <li>The visitors can intuitively interact with each application window.</li>
+        <li>The visitors can intuitively interact with each application window:
+        <ul>
+          <li>Move, resize, close the window.</li>
+          <li>Click on tabs or search in the browser.</li>
+          <li>Type and print from the text editor.</li>
+          <li>View, compose, and send messages in the email application.</li>
+        </ul>
+        </li>
       </ul>
       <p><b>Metaverse Page:</b> Memory Traversing Machine</p>
       <ul>

@@ -319,7 +319,7 @@ export default function App() {
         <TextObj position={[-0.72, 0, 0]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>dreamworld</TextObj>
         <TextObj position={[0, 0, 0.72]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>logiworld</TextObj>
         <TextObj position={[0, 0, -0.72]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>lifeworld</TextObj>
-        <OrbitControls autoRotateSpeed={0.25} enablePan={false} />
+        <OrbitControls autoRotate autoRotateSpeed={0.25} enablePan={false} />
         {/* autoRotate */}
       </Canvas>
       {overlayVisible && overlayContent}
