@@ -70,6 +70,16 @@
   align-items: center;
   padding: 50px 0;
 
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #777;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #666;
+  }
+
   > * {
     max-width: min(90vw, 600px);
   }
