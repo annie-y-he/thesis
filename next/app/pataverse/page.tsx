@@ -22,6 +22,7 @@ import { GlitchMode } from 'postprocessing'
 import textFieldEdit, { insertTextIntoField } from 'text-field-edit';
 import useWindowHeight from '../hooks/useWindowHeight';
 const BP = process.env.NEXT_PUBLIC_BASE_PATH;
+import { pataKeywords } from '../Keywords';
 
 import Window from './Window'
 
@@ -96,16 +97,7 @@ const Chrome = () => {
   const tabNames = [
     <Image src={HomeIcon} width={0} height={0} alt="icon" />,
     "404",
-    "Operating System",
-    "Desktop",
-    "Browsing",
-    "Printing",
-    "CAPTCHA",
-    "Audio Device",
-    "Interaction",
-    "Async Communication",
-    "Artificial Intelligence",
-    "Consciousness"
+    ...(pataKeywords.map((item) => item.word))
   ]
 
   const tabConts = [

@@ -13,6 +13,7 @@ import SearchIcon from './assets/search.svg'
 import SignInIcon from './assets/signin.svg'
 import DOPIcon from './assets/dop.png'
 import SPIcon from './assets/sp.png'
+import { topoKeywords } from '../Keywords';
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH;
 import useWindowHeight from '../hooks/useWindowHeight';
@@ -64,17 +65,9 @@ export default function Topo() {
         <div className={s.right}>
           <div className={s.keywords}>
             <div>All</div>
-            <div>Transportation</div>
-            <div>Technology</div>
-            <div>Architecture</div>
-            <div>Portal Regulation</div>
-            <div>Government Agency</div>
-            <div>Department of Portals</div>
-            <div>History</div>
-            <div>Social Media</div>
-            <div>Commercial</div>
-            <div>Spacial Topology</div>
-            <div>Geographic Information</div>
+            {topoKeywords.map((item) => (
+              <div>{item.word}</div>
+            ))}
           </div>
           <div className={s.vid}>
             <video controls preload="auto" playsInline>

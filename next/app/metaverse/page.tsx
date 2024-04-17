@@ -12,7 +12,7 @@ import FolderIcon from './assets/folder.svg'
 import AnnieProf from './assets/annieProf.jpg'
 import HedronIcon from '@/images/hedron.png'
 import useWindowHeight from '../hooks/useWindowHeight';
-
+import { metaKeywords } from '../Keywords';
 export default function Meta() {
   useWindowHeight();
   const [dir1, setDir1] = useState(false);
@@ -89,21 +89,10 @@ export default function Meta() {
             <br />
             <div className={s.select}>Final project for ECE150: Digital Logic Design</div>
             <br />
-            <div className={s.tags}>
-              <div>digital-logic</div>
-              <div>memory</div>
-              <div>electronics</div>
-              <div>circuit-design</div>
-              <div>virtual-reality</div>
-              <div>hardware-software-interface</div>
-              <div>simulation</div>
-              <div>neurotechnology</div>
-              <div>user-experience</div>
-              <div>digital-fabrication</div>
-              <div>interdisciplinary-collaboration</div>
-              <div>cyber-physical-system</div>
-              <div>augmented-cognition</div>
-              <div>debugging</div>
+            <div className={s.keywords}>
+              {metaKeywords.map((item) => (
+                <div>{item.word}</div>
+              ))}
             </div>
             <hr />
           </div>

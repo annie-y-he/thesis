@@ -1,0 +1,16 @@
+.main {
+  overflow-y: scroll;
+  height: 100%;
+  padding: 50px;
+}
+
+.list {
+  > * {
+    border-bottom: 1px gainsboro solid;
+    padding: 30px 15px;
+    &:hover {
+      background-color: #fafafa;
+      cursor: pointer;
+    }
+  }
+}
