@@ -207,7 +207,7 @@ const TextObj: React.FC<TextObjProps> = ({ setTopoKey, setMetaKey, setPataKey, s
       ref={textRef}
       position={position}
       fontSize={size}
-      color={ children && hovered ? keywordsColor[children] || "salmon" : "white" }
+      color={ children && hovered ? keywordsColor[children] || "white" : "white" }
       anchorX="center"
       anchorY="middle"
       onPointerOver={() => hover(true)}
