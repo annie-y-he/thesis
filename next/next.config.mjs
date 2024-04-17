@@ -7,6 +7,7 @@ const nextConfig = {
     });
     return config;
   },
+  basePath: '/databases',
 };
 
 export default nextConfig;
