@@ -171,7 +171,9 @@
   width: 100%;
   height: fit-content;
   line-height: 24px;
-
+  h1 {
+    line-height: 42px;
+  }
   hr {
     margin-top: 10px;
     border: 1px solid #eee;

@@ -7,7 +7,7 @@ import PLOSIcon from './assets/plos.svg'
 import PLOSWIcon from './assets/plos-white.svg'
 import HedronIcon from './assets/hedron.png'
 import useWindowHeight from '../hooks/useWindowHeight';
-
+import { uniKeywords } from '../Keywords';
 import { metadata as m1 } from './a1/metadata'
 import { metadata as m2 } from './a2/metadata'
 import { metadata as m3 } from './a3/metadata'
@@ -47,6 +47,8 @@ export default function Uni() {
             <br />
             <p>This curated collection converges the forefront of multidisciplinary research and theoretical discourse surrounding the groundbreaking discovery of mimetic unicellular organisms and their colonial arrangements. It showcases a compendium of perspectives that span from the intricacies of single-cell mimicry to the complex behaviors of colonial formations. Scholars and innovators from fields as diverse as cellular biology, synthetic design, computational modeling, and architectural biomimicry contribute to a body of work that not only dissects the functional dynamics of these organisms but also extrapolates their potential to inspire revolutionary applications in technology, medicine, and sustainable design. The collection seeks to offer insights into how these biological entities, characterized by their remarkable adaptive capabilities, can reshape our understanding of natural processes and inform the next generation of cross-disciplinary innovations.</p>
           </div>
+          <hr />
+          <div className={s.keywords}>{uniKeywords.map((item) => <div>{item.word}</div>)}</div>
         </div>
       </div>
       <div className={s.body}>

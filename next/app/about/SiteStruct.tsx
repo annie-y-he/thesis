@@ -447,14 +447,13 @@ TopoversePage { // this story is titled "safe portal technology", it is a video 
       }
 
       video {
-        // this video is hand drawn using Procreate on an iPad. The voice uses iMyFone VoxBox text to speech. The music is made with StrudleCycles a javascript version of music live coding program TidalCycles
+        // this video is hand drawn using Procreate on an iPad. The voice uses iMyFone VoxBox text to speech. The music is made with StrudleCycles, a javascript version of music live coding program TidalCycles
 
         scene by scene {
           // black background. 
           "In times before portals,
           space was bound and defined,"
           // circle forms from a point. circle morphs into square
-          
 
           "By physics and air, through walls they're blind."
           // square turns blobby due to gravity. square's outline breaks up into pieces. pieces fly away like wind. pieces collide into edge of the video.
@@ -542,19 +541,15 @@ TopoversePage { // this story is titled "safe portal technology", it is a video 
           // a portal appears from the center pushing all others away. it then shrinks to be very small.
           "Browse, choose, and embark on a journey anew,
           In the world of safe portals, your trust we pursue."
-
-          // the portal turns into medium size. it turns into an old tv. on the tv texts start typing out.
-
-          TextOnScreen {
-            "STARTING AT
-            $999
-            VISIT US AT
-            WWW.SAFE-PORTALS.COM
-            IN THE WORLDS OF
-            SAFE PORTALS
-            YOUR TRUST
-            WE PURSUE"
-          }
+          // the portal turns into medium size. it turns into an old tv. on the tv texts start typing out. 
+          // "STARTING AT
+          // $999
+          // VISIT US AT
+          // WWW.SAFE-PORTALS.COM
+          // IN THE WORLD OF
+          // SAFE PORTALS
+          // YOUR TRUST
+          // WE PURSUE"
         }
       }
 
@@ -563,7 +558,7 @@ TopoversePage { // this story is titled "safe portal technology", it is a video 
       "Sponsored · {SafePortalsIcon} Safe-Portals™"
     }
 
-    "DOP OWN for prospective Portal Owners webinar" {
+    "DOP OWN for Prospective Portal Owners Webinar" {
       cover {
         // in progress
       }

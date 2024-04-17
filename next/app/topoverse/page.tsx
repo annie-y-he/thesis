@@ -92,7 +92,7 @@ export default function Topo() {
               <track src={BP + "/assets/circuit.vtt"} kind="subtitles" srcLang="en" default />
             </video>
             <div>
-              <h3>DOP OWN for prospective Portal Owners webinar</h3>
+              <h3>DOP OWN for Prospective Portal Owners Webinar</h3>
               <br />
               <div><small>3.59K views · {dateDiff(new Date("2023-10-23"), new Date())} ago</small></div>
               <br />
