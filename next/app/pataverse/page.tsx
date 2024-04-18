@@ -302,12 +302,12 @@ const Outlook = ({username}: {username: string}) => {
 
 // hash to audible range. use Tone.js
 const salt = bcrypt.genSaltSync();
-const synth = new Tone.Synth().toDestination();
 
 function toSound(input: string) {
   const words = input.replace(/[^a-zA-Z\s]/g, '').toLowerCase().split(' ');
   console.log(words);
   console.log(salt);
+  const synth = new Tone.Synth().toDestination();
   let now = Tone.now()
 
   words.forEach((item) => {
