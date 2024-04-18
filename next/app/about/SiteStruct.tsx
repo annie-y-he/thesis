@@ -20,28 +20,72 @@ HedronPage {
           "Definition: Topoverse is a verse that renders monads structurally."
           "Explanation: From the topoverse, we see only structures or relations. Their perceptible analogies would be diagrams, graphs, etc."
           ("SAFE PORTAL TECHNOLOGY") -link-> TopoversePage 
-          ("∴") -> toggle keyword locations
+          ("∴") -toggle-> {
+            "transporation": [0.5,0.7,0.4]
+            "narrative history": [-0.1,0.9,-0.3]
+            "social media": [-0.1,0.9,0]
+            "portal technology": [0.9,-0.6,0.7]
+            "government regulation": [0.4,0.7,-0.3]
+            "spacial topology": [0.2,-0.1,0.9]
+            "geographic information": [0.5,-0.6,0.9]
+            "code & planning": [0.1,0.2,0.4]
+            "manipulative advertising": [0.3,0.9,-0.7]
+            "product assembly": [0.6,0,0.1]
+          }
         }
         ("METAVERSE") popup {
           "Origin: The conventional use of 'metaverse', to describe virtual reality spaces, inaccurately implies, through the prefix 'meta-'', a transcendental nature of such spaces."
           "Definition: Metaverse is a verse that renders monads conceptually."
           "Explanation: With a metaversal perspective, we see existences as ideas that do not necessarily map to human understanding."
           ("MEMORY TRAVERSING MACHINE") -link-> MetaversePage
-          ("∴") -> toggle keyword locations
+          ("∴") -toggle-> {
+            "digital logic": [0.4,-0.2,0.9]
+            "human memory": [-0.9,-0.2,0]
+            "photogrammetry": [0.1,-0.9,0.2]
+            "hardware software interface": [0.4,-0.1,0.3]
+            "neurotechnology": [-0.4,-0.6,0.2]
+            "time": [0,-0.3,0.9]
+            "computer memory": [0.2,-0.7,0.5]
+            "causality": [-0.2,-0.1,0.9]
+            "chronological narrative": [-0.4,0.3,0.6]
+            "context morphing": [-0.8,-0.4,-0.2]
+          }
         }
         ("PATAVERSE") popup {
           "Origin: Inspired by Alfred Jarry's 'Pataphysics, a parody of science often described as the 'science of imaginary solutions'."
           "Definition: Pataverse is a verse that renders monads imaginarily."
           "Explanation: The relationship between pataverse and metaverse is analogous to that between metaverse and universe. Yet, beyond the metaversal, it wraps back to the components of the psyche."
           ("INTERACTIVE AUDIO DEVICE") -link-> PataversePage
-          ("∴") -> toggle keyword locations
+          ("∴") -toggle-> {
+            "internet browsing": [0.1,0.5,-0.9]
+            "asynchronous communication": [-0.3,0.8,0.2]
+            "interpersonal relationship": [-0.4,0.9,-0.3]
+            "large language model": [-0.3,-0.4,0.3]
+            "consciousness": [-0.9,0.2,0.5]
+            "turing test": [-0.9,-0.2,0.2]
+            "interactive sensing": [-0.3,0.1,-0.8]
+            "personality": [-0.7,0.1,-0.3]
+            "online identity": [-0.2,0.9,-0.1]
+            "linguistic comprehension": [-0.3,0.4,-0.3]
+          }
         }
         ("UNIVERSE") popup {
           "Origin: The prefix "uni-" is purely historical. It does not convey the notion that the universe is the sole perspective on existence."
           "Definition: Universe is a verse that renders monads physically."
           "Explanation: The universe deals with particles and waves and their properties. They might macroscopically manifest as organisms, cosmological bodies, etc."
           ("MIMETIC UNICELLULAR ORGANISMS") -link-> UniversePage
-          ("∴") -> toggle keyword locations
+          ("∴") -toggle-> {
+            "cell biology": [0.9,-0.2,-0.6]
+            "scientific research": [0.8,0.4,-0.6]
+            "taxonomy": [0.6,-0.9,0.2]
+            "celluar automata": [0.6,-0.9,0.8]
+            "sensory receptors": [0.2,-0.3,-0.9]
+            "object-oriented ontology": [0.7,0.2,0.9]
+            "biomimicry": [-0.3,-0.6,-0.9]
+            "chronology": [0.9,0.3,0.3]
+            "intercellular language": [0.2,-0.8,-0.6]
+            "cultural assimilation": [0.8,0.9,-0.1]
+          }
         }
       }
 
@@ -100,7 +144,10 @@ HedronPage {
       }
     }
 
-    Sphere3D // the surface of the sphere is where worlds reside. After clicking the buttons that enable keyword locations, each keyword will be displayed on the surface of the sphere. Their location will demonstrate their relationship with each verse, typical world, or jects.
+    Sphere3D // the surface of the sphere is where worlds reside. After clicking the buttons that enable keyword locations, the positions are projected onto the Sphere3D and are represented by small icosahedra. the values range from -1 to 1, corresponding to the references below. hovering over an icosahedron will display the word.
+    // x: intrasubject -> interobject
+    // y: intraobject -> intersubject
+    // z: subject -> object
   }
 
   Footer { // navigation instructions
@@ -117,7 +164,7 @@ About Page {
     Viewer { // displays conversation with the assistant
       "Please note that the bot assistant operates unsupervised and provides responses generated by programmed algorithms and predefined knowledge databases. The answers given by the bot assistant may not always reflect the personal opinions or intentions of the author. For more accurate or in-depth explanations, it is recommended to directly consult the author."
     }
-    ["ask about this project"]
+    ["ask about this project" || "formulating response..."]
     ("send")
     ("clear")
   }
@@ -127,7 +174,11 @@ About Page {
   }
 
   "DISCLAIMER" {
-    "Please note that the content of this project, including all associated data, narratives, and depictions, is entirely fictional and created for educational and illustrative purposes only. Any resemblance to real persons, living or dead, or actual events is purely coincidental. This project is designed to stimulate discussion and does not represent any real-world data or predictions. We encourage viewers to approach the material with an understanding of its speculative nature, and no part of this project should be construed as factual or used as a basis for real-world application or decision-making."
+    "Please note that the content of this project, including all associated data, narratives, and depictions, is entirely fictional and created for educational and illustrative purposes only.
+
+    Any information you enter during your interaction with this site, except for conversations with digital assistants, is not stored or recorded in any way.
+
+    Conversations with digital assistants are stored anonymously for the purpose of improving service quality. These conversations are detached from your personal data to ensure privacy and confidentiality." 
   }
 
   "STATEMENTS" {
@@ -201,9 +252,14 @@ About Page {
     Pataverse Page: Interactive Audio Device
     - The Pataverse page simulates an immersive operating system.
     - A friend has given you the task to debug a mulfunctioning audio device.
+    - Visitors should enter a username with optional password.
     - Visitors can click and drag desktop items
     - A taskbar at the bottom of the screen allows visitors to open different applications.
-    - The visitors can intuitively interact with each application window.
+    - The visitors can intuitively interact with each application window:
+      - Move, resize, close the window.
+      - Click on tabs or search in the browser.
+      - Type and print from the text editor.
+      - View, compose, and send messages in the email application.
 
     Metaverse Page: Memory Traversing Machine
     - The Metaverse page simulates a version control platform.
@@ -264,7 +320,7 @@ PataversePage { // this story is titled "interactive audio device", it is an int
       }
       
       Viewer {
-        BrowserHomePage { // opening a new tab will first require the user to complete a captcha
+        BrowserHomePage { // opening a new tab will first require the user to complete a random captcha
           "Oooglo"
           ["Search Oooglo or don't"] -tab-> {
             "404" {
@@ -272,46 +328,34 @@ PataversePage { // this story is titled "interactive audio device", it is an int
             }
           }
           keywords {
-            ("Async Communication") -tab-> {
+            ("internet browsing") -tab-> {
 
             }
-            ("CAPTCHA") -tab-> {
+            ("asynchronous communication") -tab-> {
               
             }
-            ("Interaction") -tab-> {
+            ("interpersonal relationship") -tab-> {
               
             }
-            ("Browsiing") -tab-> {
+            ("large language model") -tab-> {
               
             }
-            ("keywords") -tab-> {
+            ("consciousness") -tab-> {
               
             }
-            ("keywords") -tab-> {
+            ("turing test") -tab-> {
               
             }
-            ("keywords") -tab-> {
+            ("interactive sensing") -tab-> {
               
             }
-            ("keywords") -tab-> {
+            ("personality") -tab-> {
               
             }
-            ("keywords") -tab-> {
+            ("online identity") -tab-> {
               
             }
-            ("keywords") -tab-> {
-              
-            }
-            ("keywords") -tab-> {
-              
-            }
-            ("keywords") -tab-> {
-              
-            }
-            ("keywords") -tab-> {
-              
-            }
-            ("keywords") -tab-> {
+            ("linguistic comprehension") -tab-> {
               
             }
           }
@@ -323,7 +367,7 @@ PataversePage { // this story is titled "interactive audio device", it is an int
       }
     }
 
-    (VSCodeIcon) { // one can create new files or edit existing files. one can also print files. the printed files will appear as letter paper with the appropriate text in the three.js desktop scene.
+    (VSCodeIcon) {
       ["placeholder text"]
       (PrinterIcon) // prints the text onto Paper3D in DesktopCanvas, plays printer sound
     }
@@ -379,7 +423,7 @@ PataversePage { // this story is titled "interactive audio device", it is an int
         }
       }
 
-      Viewer { // displays the content of the email clicked on. will also say what the assistant is replying to.
+      Viewer { // displays the content of the email clicked on. will also say which message the assistant is replying to.
         "click to view emails"
       }
 
@@ -851,21 +895,8 @@ MetaversePage { // this story is titled "memory traversing machine", it is a ver
 
   "About" {
     "Final project for ECE150: Digital Logic Design"
-    keywords {
-      ("digital-logic") // fake
-      ("memory") // fake
-      ("electronics") // fake
-      ("circuit-design") // fake
-      ("virtual-reality") // fake
-      ("hardware-software-interface") // fake
-      ("simulation") // fake
-      ("neurotechnology") // fake
-      ("user-experience") // fake
-      ("digital-fabrication") // fake
-      ("interdisciplinary-collaboration") // fake
-      ("cyber-physical-system") // fake
-      ("augmented-cognition") // fake
-      ("debugging") // fake
+    metaKeywords {
+      // as fake buttons
     }
   }
 
@@ -889,16 +920,20 @@ UniversePage { // this story is titled "mimetic unicellular organisms", it is a 
     "Published April 9, 2024 Curated Collections"
     
     "This curated collection converges the forefront of multidisciplinary research and theoretical discourse surrounding the groundbreaking discovery of mimetic unicellular organisms and their colonial arrangements. It showcases a compendium of perspectives that span from the intricacies of single-cell mimicry to the complex behaviors of colonial formations. Scholars and innovators from fields as diverse as cellular biology, synthetic design, computational modeling, and architectural biomimicry contribute to a body of work that not only dissects the functional dynamics of these organisms but also extrapolates their potential to inspire revolutionary applications in technology, medicine, and sustainable design. The collection seeks to offer insights into how these biological entities, characterized by their remarkable adaptive capabilities, can reshape our understanding of natural processes and inform the next generation of cross-disciplinary innovations."
+
+    uniKeywords {
+      // as fake buttons
+    }
   }
 
   Articles {  
     Article1 {
-      ("Chronicles and Classifications: Tracing the Historical Emergence and Typologial Variations of Mimetic Unicellular Organisms") -link-> Article1Page
-      "March 18, 2016"
-      "Carl Linnaeus, George Cuvier, Gregor Mendel, Ernst Mayr, Rosalind Franklin, E. O. Wilson, Carolus Gustavus"
-      "This comprehensive review examines the evolutionary trajectory and taxonomic categorization of mimetic unicellular organisms. Integrating historical and contemporary research, we..."
+      (a1p.title) -link-> Article1Page
+      a1p.date
+      a1p.authors
+      a1p.abstract
       coverImage {
-        // in progress
+        // cells forming into a cluster under a microscope
       }
     }
 
@@ -922,7 +957,7 @@ UniversePage { // this story is titled "mimetic unicellular organisms", it is a 
       }
     }
 
-    Article4Page {
+    Article4 {
       ("Conceptualizing Existence Through the Microscopic Lens: A Philosophical Inquiry into the Ontological Implications of Mimetic Unicellular Organisms and the Semiotics of Their Simulacra") -link-> Article4Page
       "March 18, 2016"
       "Michel Foucault, Daniel Dennett, Patricia Churchland, Thomas Nagel, Mary Midgley, Jean Baudrillard"
@@ -948,4 +983,117 @@ UniversePage { // this story is titled "mimetic unicellular organisms", it is a 
     (HedronIcon "POLY") -link-> HedronPage
     "PLOS (Parodic Library of Science) is a nonprofit 501(c)(3) corporation, #C2354500, and is based in San Francisco, California, US"
   }
-}`
+}
+
+Article1Page {
+  title: "Chronicles and Classifications: Tracing the Historical Emergence and Typological Variations of Mimetic Unicellular Organisms"
+
+  authors: "Carl Linnaeus, George Cuvier, Gregor Mendel, Ernst Mayr, Rosalind Franklin, E. O. Wilson, Carolus Gustavus"
+
+  date: "Published: March 18, 2016"
+
+  abstract: "This comprehensive review examines the evolutionary trajectory and taxonomic categorization of mimetic unicellular organisms. Integrating historical and contemporary research, we outline significant discoveries that have shaped our understanding of these entities. Through comparative analysis, we discern the various typologies characterized by distinct morphological and genetic criteria. Leveraging methodologies ranging from classical microscopy to advanced genomic sequencing, our synthesis clarifies the complex lineage and adaptive strategies these organisms exhibit. Results indicate a diversified evolution with implications for broader ecological and evolutionary theories. The study culminates in a refined classification system that accommodates the nuanced spectrum of mimetic capabilities, proposing a new paradigm in unicellular taxonomy. This work provides a foundational resource for further research in evolutionary biology and a robust framework for identifying emerging species."
+
+  "I. Historical Accounts and Early Discoveries
+  The enigmatic creatures known as 'liminal beings' have been a part of local folklore around the Coral Triangle for generations. These narratives often described organisms with the extraordinary ability to seamlessly blend attributes of various marine life forms, such as creatures that appeared part fish and part seaweed or others that resembled a hybrid of coral and mollusk. These beings, revered in local traditions, were thought to be shapeshifters or guardians of the sea, capable of extraordinary transformations to protect or nurture their habitats.
+  
+  Western scientific interest in these accounts was piqued when environmental historians and anthropologists began documenting these myths in the late 21st century. Intrigued by the consistency of such accounts across various island communities, a small team of marine biologists launched an exploratory study to investigate whether these stories could have a basis in real biological phenomena.
+  
+  II. Scientific Discovery and Initial Documentation
+  The turning point in understanding these liminal beings came with a groundbreaking expedition led by Dr. Emiliana Costa in 2042. Tasked with exploring the rich biodiversity of the Coral Triangle, Dr. Costa's team utilized sophisticated underwater filming equipment to document the region's marine life. What they discovered exceeded all expectations: footage of a creature that was in the process of transitioning from a sea slug into a form closely resembling coral polyps.
+  
+  {Image: of creature half sea slug half coral polyps}
+
+  This footage captured the scientific world's attention, leading to the first detailed scientific report on these organisms, published in the 'Journal of Marine Biology and Anomalies.' The report described several instances where creatures possessed characteristics of completely different marine species, blurring the lines between traditional biological classifications.
+
+  Subsequent expeditions focused on capturing live specimens at various stages of their transformation. Through careful observation and non-invasive sampling, researchers discovered that the size of the target organism significantly influenced the mimetic capabilities of the unicellular colonies. Smaller targets were easier for the mimetic cells to replicate entirely due to the reduced need for extensive cellular communication and coordination within the colony. Larger targets often resulted in incomplete or disjointed mimicry, with colonies sometimes failing to reach a consensus on the transformation, leading to disorganized forms, colony separation, or collective death, leaving survivors to roam freely as individual cells.
+
+  III. Further Discoveries and Expanded Understanding
+  As research intensified, scientists expanded their search to other ecosystems, notably the dense rainforests adjacent to freshwater systems. Here, they discovered new types of mimetic unicellular organisms capable of mimicking amphibious animals and other semi-aquatic life forms. The ability of these mimetic cells to swim freely in water played a crucial role in their adaptive strategies, facilitating direct interaction with a diverse range of organisms and enhancing their mimicry capabilities.
+
+  In these rainforest environments, researchers also encountered mimetic organisms that combined living and non-living elements in their structures. This type of mimicry was particularly fascinating and complex, involving the integration of non-cellular materials into their cellular matrix. For example, certain mimetic organisms were observed assimilating siliceous materials from the environment to form protective outer layers resembling the shells of mollusks, yet retaining the flexibility and responsiveness of organic tissues.
+
+  This discovery indicated that not all mimetic organisms possessed the capability to incorporate non-biological elements. It became apparent that there were distinct types of mimetic capabilities among these organisms, suggesting a need for a more nuanced classification system. The ability to mimic non-living materials introduced a new dimension to the taxonomy of these organisms, complicating the traditional methods of biological classification.
+
+  IV. The Necessity of Classification
+  The variation in mimetic abilities—ranging from simple biological mimicry to the complex integration of non-living elements—posed significant challenges for taxonomists. It became imperative to develop a classification system that could accommodate the broad spectrum of observed behaviors and capabilities. This system needed to distinguish between those capable of only biological mimicry and those with the extraordinary ability to integrate and mimic non-biological materials.
+
+  These findings propelled further interdisciplinary research, merging biology with materials science to understand the mechanisms behind this unique form of mimicry. The classification efforts aimed not only to catalog these organisms but also to understand their evolutionary pathways and ecological roles, providing insights into the adaptability and resilience of life forms that defy conventional biological boundaries.
+
+  V. Classification of Mimetic Abilities in Unicellular Organisms
+  The mimetic abilities of unicellular organisms, particularly those described as 'liminal beings,' represent a remarkable biological phenomenon. As research has expanded, it has become clear that these abilities are not uniform but vary significantly in mechanism and complexity. This section outlines the primary classifications of mimetic abilities observed in these organisms, providing a framework for understanding their diverse adaptive strategies.
+
+  DNA Assimilation and Integration
+  - Description: This ability involves the organism consuming another living cell, assimilating its genetic material, and seamlessly integrating this foreign DNA into its own genome. This process allows the mimetic organism to acquire and express genetic traits from the consumed cell, effectively adopting its biological functions and characteristics.
+  - Mechanism: The mimetic cell engulfs or attaches to its target, transferring genetic material either through direct ingestion or via specialized membranous structures that facilitate DNA transfer. Enzymes then incorporate this material into the organism's own genome, often guided by complex regulatory proteins that ensure functional integration.
+  
+  Genetic Injection and Modification
+  - Description: In this category, the mimetic organism injects its own DNA into a target cell, modifying the target's genetic expression without completely consuming it. This allows the mimetic organism to control or influence the behavior and characteristics of the target cell.
+  - Mechanism: The process typically involves the use of needle-like structures or viral vector-like mechanisms that penetrate the target cell's membrane to deliver specific genetic sequences. These sequences are designed to integrate with the host's DNA, altering its gene expression in a way that benefits the mimetic organism.
+  
+  Non-Cellular Material Assimilation
+  - Description: Some mimetic organisms possess the ability to consume and process non-animate materials, such as siliceous or calcareous compounds, integrating them into their cellular structure to form protective layers or support structures.
+  - Mechanism: This ability involves biochemical processes that dissolve or erode non-living materials, followed by the sequestration of these materials within the cell. Enzymatic pathways then repurpose these particles, using them to enhance the organism's structural integrity or to mimic the physical characteristics of surrounding non-living elements.
+  
+  Environmental Mimicry and Camouflage
+  - Description: This category encompasses the ability to mimic non-biological environmental features, such as rocks or vegetation, to avoid predation or enhance metabolic efficiency (e.g., photosynthetic mimics).
+  - Mechanism: Cells alter their outer membrane composition and structure to reflect the textural and color properties of their environment. This often involves the expression of pigments or the production of surface proteins that mimic the optical properties of nearby inanimate objects.
+  
+  VI. Classification of Collective Behavior and Communication in Mimetic Unicellular Organisms
+  The complex social behaviors and communication methods of mimetic unicellular organisms underscore their unique place in the biological world. These behaviors are crucial for the coordination of their remarkable mimetic abilities, particularly when forming large, multicellular-like structures or when undergoing significant transformations. This section classifies the types of collective behavior and communication observed among these organisms.
+
+  Chemical Communication
+  - Description: Chemical signals are the most common form of communication among mimetic unicellular organisms, used to coordinate actions and share information about the environment or the physiological state of the colony.
+  - Mechanism: These organisms release and detect specific chemical compounds that can induce changes in behavior or developmental processes in other cells. This type of communication is essential for maintaining homogeneity in mimetic actions, especially in large colonies where precise coordination is required.
+  - Behavioral Impact: Chemical communication allows for the efficient spread of signals across a colony, enabling rapid responses to environmental changes or threats. It also plays a critical role in reproductive processes and in establishing social hierarchies within colonies.
+  
+  Mechanical Communication
+  - Description: Some mimetic organisms employ mechanical means to communicate, using vibrations or other physical interactions to convey information.
+  - Mechanism: This can involve direct contact between cells or the generation of vibrations through the substrate on which they are located. Mechanical signals are often used in environments where chemical signals are not effective, such as in fast-flowing water or tightly packed soil.
+  - Behavioral Impact: Mechanical communication is particularly useful for initiating coordinated physical actions, such as changing the structure of the colony to adapt to physical stressors or to optimize resource acquisition.
+  
+  Electrical Communication
+  - Description: Electrical impulses are used by some advanced mimetic unicellular organisms, particularly those involved in complex mimicry of nerve-bearing organisms.
+  - Mechanism: These organisms generate and transmit electrical signals along specialized membrane structures that function similarly to neural pathways. This form of communication is faster than chemical signaling and can be directed more precisely.
+  - Behavioral Impact: Electrical communication enables sophisticated, rapid coordination across a colony, facilitating behaviors akin to those of multicellular organisms with nervous systems. This includes rapid adaptation to environmental stimuli and complex predatory or defensive behaviors.
+  
+  Social Regulation and Enforcement
+  - Description: In colonies with highly integrated collective behavior, there are often mechanisms for regulating individual cell actions to ensure conformity with colony-wide objectives. This includes behaviors that might suppress or eliminate cells that deviate from the colony's consensus.
+  - Mechanism: Regulation can occur via 'policing' chemicals that suppress aberrant behaviors or through the physical isolation or destruction of non-conforming cells.
+  - Behavioral Impact: These regulatory mechanisms ensure that the colony remains focused on a coherent set of goals, enhancing survival and adaptability. However, they also impose a form of selection pressure within the colony, influencing the evolutionary path of the colony as a whole.
+  
+  Collective Intelligence
+  - Description: The most complex mimetic unicellular colonies exhibit behaviors that suggest a form of collective intelligence, where the colony appears to make decisions and react as a single organism.
+  - Mechanism: This involves intricate networks of communication and feedback loops that allow the colony to process information, learn from past experiences, and make predictions about future conditions.
+  - Behavioral Impact: Colonies with collective intelligence can undertake complex tasks that are impossible for individual cells, such as intricate mimicry of large organisms or manipulation of their environment on a scale similar to that of multicellular organisms.
+  
+  VII. Conclusion
+  The journey into the enigmatic world of mimetic unicellular organisms has unveiled a realm where the boundaries between traditional biological categories blur, challenging our understanding of life's diversity and adaptability. The classification of these remarkable organisms remains a vibrant area of active research, primarily due to their extraordinary genetic fluidity and mimicry capabilities. Their unique ability to manipulate and integrate diverse genetic materials complicates traditional taxonomic approaches that typically rely on stable genetic signatures.
+
+  The inherent complexity of these organisms defies simple classification; instead, it invites a broader, more dynamic framework. Current classification efforts have begun to pivot from purely genetic bases to include the organisms' behavioral patterns and mimetic abilities. This shift recognizes that the functional attributes and ecological roles of these organisms—reflected in how they communicate, adapt, and interact within their environments—are crucial for understanding their place in the natural world.
+
+  Future studies will need to continue exploring these behavioral and ecological aspects, which hold the key to unlocking the mysteries of these organisms' evolutionary origins and their survival strategies. By focusing on how these organisms behave as individuals and in colonies, and how they influence and are influenced by their ecosystems, researchers can gain valuable insights into the fundamental processes of life.
+
+  Furthermore, the study of mimetic unicellular organisms offers promising avenues for biotechnological applications, particularly in fields like synthetic biology, where understanding and harnessing the capabilities of these organisms could lead to revolutionary advances in materials science, medicine, and environmental management.
+
+  In conclusion, while the classification of mimetic unicellular organisms poses significant challenges, it also presents unparalleled opportunities to expand our understanding of biology. As we delve deeper into the study of their unique properties and behaviors, we pave the way for future scientific breakthroughs that could redefine what it means to be a living organism in the ever-evolving tapestry of life."
+}
+
+Article2Page {
+  // in progress
+}
+
+Article3Page {
+  // in progress
+
+}
+
+Article4Page {
+  // in progress
+
+}
+
+Article5Page {
+  // in progress
+}
+`

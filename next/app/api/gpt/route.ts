@@ -20,9 +20,10 @@ async function retrieveAssistants(ids: string[]) {
 }
 
 const assistantIds = [
-  'asst_naw7IP375gfq3WiJCgH6CmB2', // richard
-  'asst_nGnkicSRHpuRV6e4GCvv7W0t', // jeffrey
-  'asst_QSXPs7EAB1SQTb6QOyGxFyNz', // hedron
+  'asst_hiFFWByqqhMv5O4S6gAQLgXi', // richard
+  'asst_mLnaQax5FAYMx4z2QSTwQLZ9', // jeffrey
+  'asst_eX3rm6BNlL2GD87Xm05kjpxg', // hedron
+  'asst_u1GINTlCP3MwXoZGpT7XDPdO', // device
 ];
 
 async function handler(req: any) {
@@ -86,8 +87,6 @@ async function handler(req: any) {
   );
 
   if (run.status === 'completed') {
-
-    console.log(run);
     const messages = await openai.beta.threads.messages.list( thread.id );
     const response = (messages.data[0].content[0] as any).text.value;
     toInsert.push({

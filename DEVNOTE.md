@@ -20,19 +20,18 @@ main:
 - [x] default view top/bottom rotating
 - points generation
 - [x] safari button color is blue
-- random points reset after click
-- add "language" to intersubject
-- text color
+- [x] text color
+- [x] add "language" to intersubject
 
 meta:
 - [x] mobile versions
 - [x] content
 - [x] add back link
 - [x] disable keyword user select
+- [x] gpt unable to figure out logic
 - rerender
 - text errors in video
 - debug section
-- gpt unable to figure out logic
 
 uni:
 - [x] uni: mobile versions
@@ -43,12 +42,11 @@ uni:
 - [x] cover images
 - [x] add back link
 - [x] plos logo design
-- article outlines
+- [x] keywords
 - article contents
-- article refine abstract
-- refine cover image
+- cover image
 - authors name design
-- keywords
+- collection cover
 
 pata:
 - [x] application windows
@@ -76,15 +74,17 @@ pata:
 - [x] enter key for send email
 - [x] printer sound
 - [x] signin page and username
-- chrome and captcha
+- [x] pata keywords
+- [x] chrome
+- [x] sound hash
+- captcha
+- pages
 - story line
 - more persona
-- password restrictions
-- pata keywords
 - device mesh
-- r2d2 sound hash
 - demo text on paper
-- x:
+- paper monospace
+- prob shift char
 
 topo:
 - [x] mobile versions
@@ -96,7 +96,9 @@ topo:
 - [x] add channel icon
 - [x] keywords
 - scene by scene description
-- shop page
+- video cover
+- video subtitle
+- video trim
 
 about:
 - [x] statements
@@ -113,7 +115,7 @@ about:
 - [x] mobile ask width
 - [x] gpt use plain text
 - [x] prewrap
-
+- [x] change assistants
 
 all:
 - [x] color theme
@@ -124,10 +126,6 @@ all:
 - [x] user select
 - [x] disable zoom
 - [x] safari toolbar height
-- video cover
-- video subtitle
-- add "loading page"
-
 
 pre:
 - panel discussion outline

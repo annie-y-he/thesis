@@ -20,7 +20,6 @@ export const metaKeywords = [
   {word: "photogrammetry", pos: new V3(0.1,-0.9,0.2)},
   {word: "hardware software interface", pos: new V3(0.4,-0.1,0.3)},
   {word: "neurotechnology", pos: new V3(-0.4,-0.6,0.2)},
-  {word: "digital fabrication", pos: new V3(0.7,-0.2,0.2)},
   {word: "time", pos: new V3(0,-0.3,0.9)},
   {word: "computer memory", pos: new V3(0.2,-0.7,0.5)},
   {word: "causality", pos: new V3(-0.2,-0.1,0.9)},

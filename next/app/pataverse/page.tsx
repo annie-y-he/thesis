@@ -23,7 +23,8 @@ import textFieldEdit, { insertTextIntoField } from 'text-field-edit';
 import useWindowHeight from '../hooks/useWindowHeight';
 const BP = process.env.NEXT_PUBLIC_BASE_PATH;
 import { pataKeywords } from '../Keywords';
-
+import bcrypt from 'bcryptjs'
+import * as Tone from 'tone'
 import Window from './Window'
 
 interface Email {
@@ -90,10 +91,6 @@ const Chrome = () => {
   const [visible, setVisible] = useState<number[]>([0]);
   const [active, setActive] = useState<number>(0);
 
-  useEffect(() => {
-    console.log(active);
-  }, [active]);
-
   const tabNames = [
     <Image src={HomeIcon} width={0} height={0} alt="icon" />,
     "404",
@@ -116,7 +113,7 @@ const Chrome = () => {
       />
       <div>
         {tabNames.map((item, index) => (index != 0 && index != 1 &&
-          <div>
+          <div key={index}>
             <div onClick={() => {
               if (!visible.includes(index)) setVisible(v => [...v, index]);
               setActive(index);
@@ -139,6 +136,7 @@ const Chrome = () => {
       <div>
         {visible.map((item) => (
           <Tab id={item} 
+            key={item}
             active={active} 
             setActive={setActive}
             visible={visible}
@@ -148,7 +146,7 @@ const Chrome = () => {
           </Tab>
         ))}
       </div>
-      <div>{tabConts.map((item, index) => (index == active && item))}</div>
+      <div>{tabConts.find((item, index) => (index == active && item))}</div>
     </div>
   )
 }
@@ -302,8 +300,74 @@ const Outlook = ({username}: {username: string}) => {
   )
 }
 
-const VSCode = ({setPaper}: {setPaper: React.Dispatch<React.SetStateAction<string>>}) => {
+// hash to audible range. use Tone.js
+const salt = bcrypt.genSaltSync();
+const synth = new Tone.Synth().toDestination();
 
+function toSound(input: string) {
+  const words = input.replace(/[^a-zA-Z\s]/g, '').toLowerCase().split(' ');
+  console.log(words);
+  console.log(salt);
+  let now = Tone.now()
+
+  words.forEach((item) => {
+    const hash = bcrypt.hashSync(item, salt).replace(salt, "");
+    let num = 0;
+    for (let i = 0; i < hash.length; i++) {
+      const char = hash.charCodeAt(i);
+      num = ((num << 5) - num) + char;
+      num = num & num;
+    }
+    console.log(hash);
+    synth.triggerAttackRelease(2 ** (Math.abs(num) % 10000 / 1000 + 3), "1024n", now);
+    now += 0.1;
+  });
+}
+
+async function handlePrint(
+  textRef: React.RefObject<HTMLTextAreaElement>, 
+  printRef: React.MutableRefObject<null>, 
+  setPaper: React.Dispatch<React.SetStateAction<string>>,
+  threadId: string,
+  setThreadId:  React.Dispatch<React.SetStateAction<string>>,
+  comprehension: number,
+) {
+  const req = textRef.current?.value || "";
+  setPaper(req);
+  playAudio(printRef);
+  console.log(req);
+  const response = await fetch(BP + '/api/gpt', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      sender: "Audio Device", 
+      content: req,
+      threadInfo: threadId,
+      instruction: comprehension * 100 + "%",
+    }),
+  });
+  const body = await response.json();
+  setThreadId(body.tid);
+  console.log(body.msg);
+  toSound(body.msg);
+}
+
+const initPaper = `
+Linear Algebra:
+1. Check if the set of vectors (1,2,3), (4,5,6), and (7,8,9) are dependent or independent.
+Determine the characteristic values and characteristic vectors for the matrix with rows [1, 2] and [3, 4].
+2. Solve the linear equations: x plus 2y minus 3z equals 7, 2x minus y plus z equals minus 1, and 3x plus y minus 2z equals 2.
+
+Differential Equations:
+1. Solve the differential equation where the rate of change of y with respect to x equals y times the sine of x, with the condition y equals 1 when x equals 0.
+2. Find the general solution for the second-order differential equation where the second derivative of y minus four times the first derivative of y plus four times y equals e raised to 2x.
+3. Determine the stability of the zero solution for the system of differential equations given by the matrix [0, 1; -1, 0].`
+
+const VSCode = ({setPaper}: {setPaper: React.Dispatch<React.SetStateAction<string>>}) => {
+  const [threadId, setThreadId] = useState("");
+  const [comprehension, setComprehension] = useState(0);
   const textRef = useRef<HTMLTextAreaElement>(null);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -317,16 +381,14 @@ const VSCode = ({setPaper}: {setPaper: React.Dispatch<React.SetStateAction<strin
 
   return (
     <div className={s.vscode} >
-      <button onClick={() => {
-        setPaper(textRef.current?.value || "");
-        playAudio(printRef);
-      }}>
+      <button onClick={() => handlePrint(textRef, printRef, setPaper, threadId, setThreadId, comprehension)}>
         <Image src={PrintIcon} width={0} height={0} alt="icon" />
       </button>
       <textarea 
         spellCheck="false" 
         ref={textRef}
         onKeyDown={handleKeyDown}
+        defaultValue={initPaper}
       ></textarea>
       <audio ref={printRef} preload="auto">
         <source src={BP + "/audio/print.wav"} type="audio/wav" />
@@ -383,7 +445,7 @@ export default function Pata() {
     }, 1000);
   };
 
-  const [paper, setPaper] = useState("");
+  const [paper, setPaper] = useState(initPaper);
   const userField = useRef<HTMLInputElement>(null);
   const loginButton = () => {
     if (!userField.current?.value) return;
