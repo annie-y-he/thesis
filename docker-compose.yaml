@@ -12,8 +12,7 @@ services:
     working_dir: /app
   app:
     image: node:latest
-    # command: npm run start
-    command: tail -f /dev/null
+    command: npm run start
     ports:
       - "3000:3000"
     restart: always
