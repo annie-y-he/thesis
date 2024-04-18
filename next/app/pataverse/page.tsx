@@ -127,8 +127,16 @@ const Chrome = () => {
       <h1>404</h1>
       <h5>Page Not Found</h5>
     </div>,
-    <div>Hello</div>,
-    <div>Annie</div>
+    <div>work in progress, check back later</div>,
+    <div>work in progress, check back later</div>,
+    <div>work in progress, check back later</div>,
+    <div>work in progress, check back later</div>,
+    <div>work in progress, check back later</div>,
+    <div>work in progress, check back later</div>,
+    <div>work in progress, check back later</div>,
+    <div>work in progress, check back later</div>,
+    <div>work in progress, check back later</div>,
+    <div>work in progress, check back later</div>,
   ]
 
   return (
@@ -304,13 +312,14 @@ const Outlook = ({username}: {username: string}) => {
 const salt = bcrypt.genSaltSync();
 
 function toSound(input: string) {
-  const words = input.replace(/[^a-zA-Z\s]/g, '').toLowerCase().split(' ');
+  console.log(input);
+  const words = input.replace(/[^a-zA-Z0-9\s]/g, '').toLowerCase().split(' ');
   console.log(words);
-  console.log(salt);
   const synth = new Tone.Synth().toDestination();
   let now = Tone.now()
 
   words.forEach((item) => {
+    if (!item) return;
     const hash = bcrypt.hashSync(item, salt).replace(salt, "");
     let num = 0;
     for (let i = 0; i < hash.length; i++) {
@@ -318,7 +327,6 @@ function toSound(input: string) {
       num = ((num << 5) - num) + char;
       num = num & num;
     }
-    console.log(hash);
     synth.triggerAttackRelease(2 ** (Math.abs(num) % 10000 / 1000 + 3), "1024n", now);
     now += 0.1;
   });
