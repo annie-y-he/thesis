@@ -17,11 +17,13 @@ import { topoKeywords } from '../Keywords';
 
 const BP = process.env.NEXT_PUBLIC_BASE_PATH;
 import useWindowHeight from '../hooks/useWindowHeight';
+import useInactivityRedirect from '../hooks/useInactivityRedirect';
 
 import Image from 'next/image'
 
 export default function Topo() {
   useWindowHeight();
+  useInactivityRedirect();
 
   function dateDiff(date1: Date, date2: Date) {
     const milliseconds = Math.abs(date2.getTime() - date1.getTime());
@@ -65,14 +67,14 @@ export default function Topo() {
         <div className={s.right}>
           <div className={s.keywords}>
             <div>All</div>
-            {topoKeywords.map((item) => (
-              <div>{item.word}</div>
+            {topoKeywords.map((item, index) => (
+              <div key={index}>{item.word}</div>
             ))}
           </div>
           <div className={s.vid}>
             <video controls preload="auto" playsInline>
               <source src={BP + "/videos/ad.mp4"} type="video/mp4" />
-              <track src={BP + "/assets/circuit.vtt"} kind="subtitles" srcLang="en" default />
+              <track src={BP + "/captions/ad.vtt"} kind="subtitles" srcLang="en" default />
             </video>
             <div>
               <h3>Safe Portal Technology | Safe-Portals™</h3>
@@ -89,7 +91,7 @@ export default function Topo() {
           <div className={s.vid}>
             <video controls preload="auto" playsInline>
               <source src={BP + "/videos/dop.mp4"} type="video/mp4" />
-              <track src={BP + "/assets/circuit.vtt"} kind="subtitles" srcLang="en" default />
+              <track src={BP + "/captions/dop.vtt"} kind="subtitles" srcLang="en" default />
             </video>
             <div>
               <h3>DOP OWN for Prospective Portal Owners Webinar</h3>
@@ -104,7 +106,7 @@ export default function Topo() {
           <div className={s.vid}>
             <video controls preload="auto" playsInline>
               <source src={BP + "/videos/portable.mp4"} type="video/mp4" />
-              <track src={BP + "/assets/circuit.vtt"} kind="subtitles" srcLang="en" default />
+              <track src={BP + "/captions/portable.vtt"} kind="subtitles" srcLang="en" default />
             </video>
             <div>
               <h3>Unboxing the Portable Portal: The Future of Portal</h3>

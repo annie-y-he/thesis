@@ -18,7 +18,7 @@ interface TextObjProps {
   children?: string;
   position?: [number, number, number];
   size?: number;
-  setOverlay?: (setOverlay: React.JSX.Element) => void;
+  setOverlay?: (setOverlay: React.JSX.Element | undefined) => void;
 }
 
 interface OverlayProps {
@@ -191,7 +191,7 @@ const TextObj: React.FC<TextObjProps> = ({ setTopoKey, setMetaKey, setPataKey, s
         <div className={s.definition}>
           <div className={s.overlay}>
             <Overlay setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>{children}</Overlay>
-            <div><small>click scene to close</small></div>
+            <button onClick={(event) => setOverlay(undefined)}>✕</button>
           </div>
         </div>
       );
@@ -251,7 +251,7 @@ const Keyword = ({word, pos, color}: {word: string, pos: THREE.Vector3, color: s
 export default function App() {
   useWindowHeight();
   const [overlayVisible, setVisible] = useState(false);
-  const [overlayContent, setOverlay] = useState<React.JSX.Element>()
+  const [overlayContent, setOverlay] = useState<React.JSX.Element | undefined>()
 
   const [topoKey, setTopoKey] = useState(false);
   const [metaKey, setMetaKey] = useState(false);
@@ -273,7 +273,6 @@ export default function App() {
       <Canvas 
         style={{ background: "#181818" }} 
         camera={{ fov: 18, position: [0, 0, 10] }}
-        onClick={(event) => {setOverlay(undefined)}}
       >
         <ambientLight intensity={1} />
 
@@ -319,8 +318,7 @@ export default function App() {
         <TextObj position={[-0.72, 0, 0]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>dreamworld</TextObj>
         <TextObj position={[0, 0, 0.72]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>logiworld</TextObj>
         <TextObj position={[0, 0, -0.72]} size={0.04} setOverlay={setOverlay} setTopoKey={setTopoKey} setMetaKey={setMetaKey} setPataKey={setPataKey} setUniKey={setUniKey}>lifeworld</TextObj>
-        <OrbitControls autoRotate autoRotateSpeed={0.25} enablePan={false} />
-        {/* autoRotate */}
+        <OrbitControls autoRotate autoRotateSpeed={0.25} enablePan={false} minDistance={5} maxDistance={20} />
       </Canvas>
       {overlayVisible && overlayContent}
       <div>

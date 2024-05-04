@@ -87,7 +87,8 @@
   }
   > :first-child {
     @media (max-width: 650px) {
-      width: 30px;
+      min-width: 30px;
+      max-width: 30px;
       overflow: hidden;
     }
   }

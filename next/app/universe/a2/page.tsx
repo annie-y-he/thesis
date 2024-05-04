@@ -6,9 +6,11 @@ import s from '../page.module.scss'
 import PLOSWIcon from '../assets/plos-white.svg'
 import { metadata } from './metadata'
 import useWindowHeight from '../../hooks/useWindowHeight';
+import useInactivityRedirect from '../../hooks/useInactivityRedirect';
 
 export default function Page() {
   useWindowHeight();
+  useInactivityRedirect();
   return (
     <main className={s.main}>
       <div className={s.subheader}>
@@ -20,6 +22,7 @@ export default function Page() {
         <p>Published: {metadata.date}</p>
         <h3>Abstract</h3>
         <p>{metadata.abstract}</p>
+        <hr />
         <Image src={metadata.cover} width={0} height={0} alt="cover"></Image>
       </div>
       <div className={s.subfooter}>

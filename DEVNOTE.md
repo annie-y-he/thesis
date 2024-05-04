@@ -18,10 +18,14 @@ main:
 - [x] hover color for verses
 - [x] points overlay
 - [x] default view top/bottom rotating
-- points generation
+- [x] points generation
 - [x] safari button color is blue
 - [x] text color
 - [x] add "language" to intersubject
+- [ ] keyword top left
+- [x] add close button
+- [x] zoom limit
+- [ ] edit definition
 
 meta:
 - [x] mobile versions
@@ -77,14 +81,17 @@ pata:
 - [x] pata keywords
 - [x] chrome
 - [x] sound hash
-- captcha
-- pages
+- [x] prob shift char
+- [ ] sample text
+- [x] demo text on paper
+- [x] click inbox to view emails
+- [x] device mesh
+- [ ] captcha
 - story line
-- more persona
-- device mesh
-- demo text on paper
-- paper monospace
-- prob shift char
+- [ ] more persona
+- [ ] paper monospace
+- [x] change pata hedron loc
+- [ ] device led
 
 topo:
 - [x] mobile versions
@@ -96,9 +103,10 @@ topo:
 - [x] add channel icon
 - [x] keywords
 - scene by scene description
-- video cover
-- video subtitle
-- video trim
+- [ ] video cover
+- [x] video subtitle
+- [x] video trim
+- [x] loading video has edge
 
 about:
 - [x] statements
@@ -126,6 +134,9 @@ all:
 - [x] user select
 - [x] disable zoom
 - [x] safari toolbar height
+- [x] inactivity redirect 
 
 pre:
-- panel discussion outline
+- [x] panel discussion outline
+- panel discssion shooting
+- panel discussion editing

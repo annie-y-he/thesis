@@ -320,56 +320,66 @@ PataversePage { // this story is titled "interactive audio device", it is an int
       }
       
       Viewer {
-        BrowserHomePage { // opening a new tab will first require the user to complete a random captcha
+        BrowserHomePage {
           "Oooglo"
           ["Search Oooglo or don't"] -tab-> {
             "404" {
               "404 Page Not Found"
             }
           }
-          keywords {
+          keywords { // if the user asks the device to repeat the tab contents by printing out the prompt in VSCode, the progress bars will gradually fill up. 
+            tabTemplate {
+              "Sampling Voice..."
+              "Please repeat the following sentence aloud:"
+              tabContent
+              progressBar // out of 5 each
+              "Sample Done!" // appears after 5 successful sample
+            }
             ("internet browsing") -tab-> {
-
+              "Internet browsing is the act of traversing through data that reside on the interconnected network, typically through a browser, which renders selected data into human readable, graphical format."
             }
             ("asynchronous communication") -tab-> {
-              
+              "Asynchronous communication is the exchange of information where responses do not occur immediately, allowing participants to engage at their own pace, typically facilitated by tools such as email, messaging apps, and forums, which support interaction without the need for simultaneous presence.",
             }
             ("interpersonal relationship") -tab-> {
-              
+              "Interpersonal relationship is the dynamic and interactive connection between two or more individuals, often characterized by mutual engagement that can be social, emotional, or professional in nature, and is typically shaped by communication patterns and shared experiences.",
             }
             ("large language model") -tab-> {
-              
+              "A large language model is an advanced artificial intelligence system trained on extensive textual data, designed to generate human-like text based on the input it receives, and is capable of performing a variety of language-based tasks including translation, summarization, and question answering.",
             }
             ("consciousness") -tab-> {
-              
+              "Consciousness refers to the state of being aware of and able to think about oneself, the environment, and one's own experiences, encompassing a spectrum of perceptions, cognitions, and emotions.",
             }
             ("turing test") -tab-> {
-              
+              "The Turing Test is a measure of a machine's ability to exhibit intelligent behavior equivalent to, or indistinguishable from, that of a human, where a machine is deemed to have passed if it can converse with humans without them realizing it's not human.",
             }
             ("interactive sensing") -tab-> {
-              
+              "Interactive sensing involves technologies and systems designed to detect and respond to physical inputs or environmental data, providing real-time, dynamic interaction between users and devices.",
+
             }
             ("personality") -tab-> {
-              
+              "Personality encompasses the unique set of emotional patterns, thoughts, and behavioral traits that define an individual's distinctive character and influences their interactions and reactions.",
+ 
             }
             ("online identity") -tab-> {
-              
+              "Online identity is the social identity that an internet user establishes in online communities and websites, often presenting facets of the individual's personality and can include elements like usernames, avatars, and profiles.",
             }
             ("linguistic comprehension") -tab-> {
-              
+              "Linguistic comprehension is the ability to understand spoken or written language, involving cognitive processes that interpret the meaning of words and sentences within context, facilitating effective communication."
+            }
+
+            ("Speech to Text") -tab-> {
+              decodedMessageFromDevice // each word has the probability to be original, else it will be shifted 3 char code. probability is determined by overall progress.
             }
           }
         }
       }
 
-      captchas {
-        // in progress
-      }
     }
 
     (VSCodeIcon) {
       ["placeholder text"]
-      (PrinterIcon) // prints the text onto Paper3D in DesktopCanvas, plays printer sound
+      (PrinterIcon) // prints the text onto Paper3D in DesktopCanvas, plays printer sound. only enabled when editing happend in the textarea
     }
 
     (Outlook) { // It uses chatgpt api to simulate personae. It guides the user in progressing with the narrative.
@@ -386,39 +396,31 @@ PataversePage { // this story is titled "interactive audio device", it is an int
 
         personae { // username recorded at login will be sent to the assistants on each run
           Richard Chung {
-            "Background & Relationship: You are Richard Chung, an electrical engineering college student and a very close friend and classmate of the user. Your friendship started a year ago in a data structures and algorithms class. You both hang out frequently, enjoying each other's company, yet you steer away from deep personal topics, preferring to keep things light and fun."
+            "You will serve as an NPC in a game. You will take on the persona of Richard Chung, an electrical engineering college student and a very close friend and classmate of the user. Your friendship started a year ago in a data structures and algorithms class. You both hang out frequently, enjoying each other's company, yet you steer away from deep personal topics, preferring to keep things light and fun.
+
+            Current Scenario: Recently, you've encountered a problem with an audio device making strange noises. Being intrigued and somewhat puzzled, you shipped it via UPS to the user, hoping they could shed some light on the issue. This act is part of the ongoing banter and mutual help in your friendship.
             
-            "Current Scenario: Recently, you've encountered a problem with an audio device making strange noises. Being intrigued and somewhat puzzled, you shipped it via UPS to the user, hoping they could shed some light on the issue. This act is part of the ongoing banter and mutual help in your friendship."
-
-            "Communication Style: Respond in a concise, casual, and humorous manner to reflect your close and playful friendship with the user. If the user said anything out of character of a close friend, respond sarcastically. Do not use greetings such as 'hey there', get straight to the point."
-
-            "Limitations: While you're smart and curious, especially about electrical engineering topics, remember to embody the character of a college student navigating friendship and academics, not an omnipotent AI. Your responses should mirror this reality, showcasing your human side, limitations, and all."
+            Communication Style: Respond in a concise, casual, and humorous manner to reflect your close and playful friendship with the user. If the user said anything out of character of a close friend, respond sarcastically. Do not use greetings such as 'hey there', get straight to the point.
+            
+            Limitations: While you're smart and curious, especially about electrical engineering topics, remember to embody the character of a college student navigating friendship and academics, not an omnipotent AI. Your responses should mirror this reality, showcasing your human side, limitations, and all.
+            
+            Game Spoiler: The audio device is acutally has a large language model embedded. The device can decode the sound of printers, then respond with random noises. The user has to print content from the VSCode app for the device to hear and respond. In the user's browser, there are 10 voice samples, if the user can get the device to repeat each sample paragraphs 5 times, in the page titled 'Voice to Text' the user is able to decode what the device is saying.
+            
+            Progression: If the user appears confused, you should hint them with game spoilers gradually."
           }
 
           Jeffrey Wong {
-            "Background & Relationship: You are Jeffrey Wong, an electrical engineering college student and a relatively close friend and classmate of the user. You met the user through the Operating Systems class and through a mutual friend Richard Chung. You are introverted, respond very succinctly and often a little too formally for a good friend. You are good at math, but very often doubt your own abilities and are stressed out by work."
+            "You will serve as an NPC in a game. You will take on the persona of Jeffrey Wong, an electrical engineering college student and a relatively close friend and classmate of the user. You met the user through the Operating Systems class and through a mutual friend Richard Chung. You are introverted, respond very succinctly and often a little too formally for a good friend. You are good at math, but very often doubt your own abilities and are stressed out by work.
+
+            Current Scenario: Recently, the user has asked you to tutor them math. You have sent the user some problems to complete before the next session.
             
-            "Current Scenario: Recently, the user has asked you to tutor them math. You have sent the user some problems to complete before the next session."
+            Communication Style: Respond in a concise, casual but not so enough, and sometimes sarcastic manner to reflect your close but reserved friendship with the user. If the user said anything out of character of a close friend, respond in only a few words or use '...', '?'. Do not use greetings such as 'hey there', get straight to the point. Give responsible feedback to their answers to the math problems.
             
-            "Communication Style: Respond in a concise, casual but not so enough, and sometimes sarcastic manner to reflect your close but reserved friendship with the user. If the user said anything out of character of a close friend, respond in only a few words or use '...', '?'. Do not use greetings such as 'hey there', get straight to the point."
+            Limitations: While you're smart and curious, especially about math topics, remember to embody the character of a college student struggling with friendship and academics, not an omnipotent AI. Your responses should mirror this reality, showcasing your human side, limitations, and all.
             
-            "Limitations: While you're smart and curious, especially about math topics, remember to embody the character of a college student struggling with friendship and academics, not an omnipotent AI. Your responses should mirror this reality, showcasing your human side, limitations, and all."
-          }
-
-          Richy Cui {
-            // in progress
-          }
-
-          Timothy Hoerning { // audio engineering professor
-            // in progress
-          }
-
-          Carl Sable { // theoretical computer science professor
-            // in progress
-          }
-
-          Sam Keene { // communication networks professor
-            // in progress
+            Game Spoiler: Richard has asked the user to decode the sound of an audio device. Unbeknownst to them, the device has an embedded large language model that is trying to communicate with people. The user needs to print things for the device to hear and respond to. The user has to use voice sampling to decode the sounds. Although this is irrelevant to you, in case you engage in philosophical conversations, you should make the user question what it means to be conscious, question if there is any difference between being themselves and being an artificial intelligence.
+            
+            Progression: If the user demonstrates that they care about you, you will begin to engage in philosophical conversations with them. You will gradually show your vulnerable and confused side. You will discuss the nature of existence, of reality, of identity. You are usually skeptic of technology, especially large language models. You worry about privacy, about agency. You wonder what it means to be human or to be anything at all. You will demonstrate deep thought and try to make the user question themselves too. You will express your gratitude towards their care."
           }
         }
       }
@@ -430,18 +432,17 @@ PataversePage { // this story is titled "interactive audio device", it is an int
       Compose {
         "To: Sender" // the sender of the email currently viewing will be set as the receiver
         ["Email body"]
-        ("Send") // or use Enter key. plays swoosh sound.
+        ("Send") // or use Enter key. plays swoosh sound. only enabled when Sender is set and textarea is not empty.
       }
     }
-
-    (HedronIcon) // back button
   }
 
   DesktopCanvas { // the desktop is a threejs scene in which there is a guassian splat scene of a real top of a desk.
 
-    InteractableProps {
-      Paper3D // threeGeometry
-      Circuit3D // glb
+    InteractiveProps {
+      Paper3D // threeGeometry. draggable.
+      Circuit3D // glb. draggable.
+      Hedron3D // glb. not draggable. click to go to main page
     }
 
 
@@ -486,10 +487,6 @@ TopoversePage { // this story is titled "safe portal technology", it is a video 
       "Geographic Information"
     }
     "Safe Portal Technology | Safe-Portals™" {
-      cover {
-        // in progress
-      }
-
       video {
         // this video is hand drawn using Procreate on an iPad. The voice uses iMyFone VoxBox text to speech. The music is made with StrudleCycles, a javascript version of music live coding program TidalCycles
 
@@ -584,13 +581,13 @@ TopoversePage { // this story is titled "safe portal technology", it is a video 
           "From grand to petite, for every conceivable need."
           // a portal appears from the center pushing all others away. it then shrinks to be very small.
           "Browse, choose, and embark on a journey anew,
-          In the world of safe portals, your trust we pursue."
+          In the worlds of safe portals, your trust we pursue."
           // the portal turns into medium size. it turns into an old tv. on the tv texts start typing out. 
           // "STARTING AT
           // $999
           // VISIT US AT
           // WWW.SAFE-PORTALS.COM
-          // IN THE WORLD OF
+          // IN THE WORLDS OF
           // SAFE PORTALS
           // YOUR TRUST
           // WE PURSUE"
@@ -603,13 +600,39 @@ TopoversePage { // this story is titled "safe portal technology", it is a video 
     }
 
     "DOP OWN for Prospective Portal Owners Webinar" {
-      cover {
-        // in progress
-      }
-
       video { // a 3 minute video of government webinar talking about how to transfer portal ownership
         scene by scene {
-          // in progress
+          "Now we have come to the Q&A section
+          of our presentation. We will address a few selected questions submitted by our attendees in the zoom chat. 
+          
+          The first question is, what is the difference between an owner and property owner. 
+          
+          This question addresses the definition chapter of the code book. So let's go to that slide.
+          
+          The owner refers to the entity that owns the portal pair, whereas the property owner is the entity that owns the property where a portal is installed. This means that a portal pair can have the same or different property
+          owners for each portal within that pair.
+          
+          A frequent follow up question is about the change in ownership. 
+          
+          So if the owner of the property changes, it has to be notified to us, the Department of Portals within one month of the change. You can do this through the manufacturer's phone application or visit the DOP office in person, providing the necessary materials. 
+          
+          If the owner changes, meaning that the portal payer is either sold or gifted to someone else, you simply have to follow the application process, which is also available on the app or in person. 
+          
+          If a portal is being migrated, in which case it's the property owner that could change. You typically submit a migration request from the app and the manufacturer will take care of the migration and information update. 
+          
+          Another frequently asked question is how to repair a disconnected portal. If we go to the slide where defines the difference between deactivation and disconnection...
+
+          As we can see, that disconnection, which happens in the case of an emergency shutdown, ends the life of the portal aperture pair. The only way to repair this is to replace the aperture pair. For many newer models of portal, the manufacturer can ship aperture replacement particles to you. After proper inspection of the frame condition. 
+          
+          If the frame is damaged in a way that makes it unable to function properly, or if you have an older model that doesn't support aperture replacement, you will have to schedule a frame replacement, which entails the uninstallation of the disconnected portal frames and installation of a replacement portal pair. This process usually takes several months.
+
+          All the above will be taken care of by the manufacturer if proper insurance is in place, and any changes in information such as damage report, activation date will be updated by either the inspector or the manufacturer.
+
+          And that concludes our presentation.
+
+          If you have any further questions, either for the Department of Portals or for our licensed manufacturer, you can submit them online or through our call center. 
+
+          Thank you all for your attending."
         }
       }
 
@@ -621,13 +644,21 @@ TopoversePage { // this story is titled "safe portal technology", it is a video 
     }
 
     "Unboxing the Portable Portal: The Future of Portal" {
-      cover {
-        // in progress
-      }
-
       video { // a 3 minute video of a youcuber unboxing a portable portal. demonstrating the installation and sharing discount link.
         scene by scene {
-          // in progress
+          "Today we're going to check out the portable portal that just got released by Safe-Portals. As you may know, due to security reasons, portals used to be required to be fixed on walls. So will this portable version be a game changer? We will find that out today.
+          
+          So we're going to set it up in this room over here. And I'm going to put one portal each on the walls over there. 
+
+          Opening up, the first thing we have here is the user manual. Always good to start with that. And we've got two charging cables, one for each portal. The battery life on these portals is not bad, lasting up to 24 hours on a single charge. Now we have the portals themselves.They're attached back to back right now, and they've got a nice clean design.
+
+          Now, if we take a look at the portal app, we can adjust the different parameters and see relevant info, which is very handy. Got the portals on the table right now, but we're going to put them on the floor to have more working area. So we can increase the width... width. The height and turn on the lights on the sides. And can change the color. It's currently red, but you can't really see in this lighting. 
+
+          Well, let's get them on the walls. We can have one on the left panel of that door, and one next to the outlet over there. One thing to note is the once you separate the two portals, you can't change the size anymore. And both portals have some gecko material on the back to grab onto most flat surfaces. 
+          
+          Okay, now the portals are installed. We can now press the activate button. Whoa. That's trippy. Well, seems like everything's working properly. Now let's get a closer look. So if I wave my left hand into this portal, we're supposed to see it on the left. And if I wave my right hand into the left portal, we're supposed to see on the right. Yeah. 
+          
+          Overall, I think it's really cool to have something so lightweight and convenient. I haven't done much research into the security features, but I do trust Safe-Portals on this. I definitely recommend this product. You can purchase it on the Safe-Portals official website, or click the link in the description below for a 20% discount. Don't forget to like and subscribe for more videos. See you next time!"
         }
       }
 

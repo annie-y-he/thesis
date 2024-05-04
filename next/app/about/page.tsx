@@ -8,6 +8,7 @@ import Image from 'next/image';
 import HedronIcon from '@/images/hedronWhite.png'
 import Link from 'next/link';
 import useWindowHeight from '../hooks/useWindowHeight';
+import useInactivityRedirect from '../hooks/useInactivityRedirect';
 import { SiteStruct } from './SiteStruct';
 import Markdown from 'react-markdown'
 const BP = process.env.NEXT_PUBLIC_BASE_PATH;
@@ -57,6 +58,7 @@ const sendMsg = async (
 
 export default function Topo() {
   useWindowHeight();
+  useInactivityRedirect();
   const [textOpen, setTextOpen] = useState(false);
   const [msgHist, setMsgHist] = useState<Msg[]>([]);
   const [textContent, setTextContent] = useState("");

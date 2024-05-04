@@ -53,7 +53,7 @@ export default function Readme() {
       <hr />
       <video controls preload="auto">
         <source src={BP + "/videos/circuit.mp4"} type="video/mp4" />
-        <track src={BP + "/fonts/circuit.vtt"} kind="subtitles" srcLang="en" default />
+        <track src={BP + "/captions/circuit.vtt"} kind="subtitles" srcLang="en" default />
       </video>
       <br />
       <br />

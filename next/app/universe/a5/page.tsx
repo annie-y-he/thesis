@@ -6,9 +6,11 @@ import s from '../page.module.scss'
 import PLOSWIcon from '../assets/plos-white.svg'
 import { metadata } from './metadata'
 import useWindowHeight from '../../hooks/useWindowHeight';
+import useInactivityRedirect from '../../hooks/useInactivityRedirect';
 
 export default function Page() {
   useWindowHeight();
+  useInactivityRedirect();
   return (
     <main className={s.main}>
       <div className={s.subheader}>

@@ -1,0 +1,184 @@
+R:
+
+Hi everyone, good evening. My name is Ru Jia, I am ___. Welcome to the project launch and conversation of HEDRON. The name of the project, HEDRON, stands for Hilarious Exploratory Designs Regarding Ontological Narratives. It is a creative, interdisciplinary endeavor that combines humor with philosophical inquiry into the exploration of the nature of reality through various forms of digital media. 
+
+The project presents itself as an interactive web experience, which can be accessed at annie-he.com/thesis on any device. Although the project appears to be a website, the exploraroty nature of it insists to defy traditional definition and categorization. The author of the project, Annie He, is a thinker, dreamer, senser, storyteller, analyst, and architect. The project involves four narratives, each relating to a vertex of the tetrahedron theory. 
+
+We have also invited Jiayi Chen to join this conversation. Jiayi is ___. 
+
+Section I Intro
+
+R: 
+
+I think we can start by talking about the overall project before delving into the individual narratives. My first question relates to the terms you've mapped onto the tetrahedron and octahedron. Some of the terms, such as 'universe,' 'subject, and 'object,' are identical to, while others play with, terms we are already familiar with. So the question is, how do you relate your words to the existing, I would assume words that you referenced, and perhaps on a more personal note, if there is an anecdote that you would like to share about their genesis.
+
+A:
+
+Thank you for the question. The first words that we played with are dreamworld and intrasubject, as opposed to lifeworld and intersubject respectively. The tetrahedron, as we originally conceived, was only a triangle without the topoverse vertex, which was later added to stabalize the structure with the missing dimension. As for the perceived similarity to popular words, the terms either critique or pay homage to the original use. One of the recurring themes in this project is the building of worlds, which is achieved by allowing the worlds to grow on their own. Although the hedra describe the relationships between worlds on a higher level, the fact that it is perceptible to our eyes and minds indicate that it is itself a world or in a world. Therefore the self-growing is as important as the state it is in now. 
+
+R:
+
+I can see, on many different levels, this desire to make the project autonomous. The most obvious one would be the inclusion of a large language model, which allows the project to explain itself. And it's fascinating because it touches upon the question of authorship. I'vs also noticed that you have been using the word we, either in writing or your response just now. Would you elaborate on what that "we" entails?
+
+A:
+
+Certainly. The use of the word 'we' in our discussions and descriptions is not just a linguistic choice but a philosophical stance. It's an indication of the inherent uncertainty about the boundaries between individual subjectivities. It is also an acknowledgement to the people, ideas, materials, and relationships that either directly or indirectly participated in this project. 
+
+R:
+
+Jiayi, considering your expertise in the cultural impact of media and your understanding of philosophical history, the HEDRON project layers simulation upon simulation, not just technologically but also conceptually. How do you see this approach aligning with, or diverging from, established theories like Baudrillard's simulacra and simulation? What implications might this have for our understanding of reality and our interactions with media-created worlds?
+
+J:
+
+Thank you, Ru, for that thought-provoking question. The HEDRON project, with its layered simulations, indeed offers a lens through which we can examine Baudrillard's concepts of simulacra and simulation. The project transcends simple digital representation, evolving into an autonomous experience that blurs the boundaries between the digital and the physical, the creator and the viewer. This confluence is particularly resonant with Baudrillard's idea that simulacra are not degraded copies, but rather new truths in their own right.
+
+An interesting aspect of the HEDRON project that relates to this is how elements like the taskbar in one of the narratives are often overlooked by users. This taskbar, while part of the interface, is too familar to us that it becomes invisible. This invisibility paradox is a direct reflection of Baudrillard’s assertion: the more convincingly realistic a simulation, the less likely it is to be perceived as a simulation. In this way, HEDRON not only mirrors Baudrillard's theories but also adapts them, presenting a model where simulations can foster a rich, interactive space that prompts users to question and redefine their perceptions of reality. This exploration of the unseen or unnoticed elements in digital interactions raises significant questions about what we accept as the 'real' in our increasingly digital lives. I think we can go more in-depth about some of these concepts when we start talking about the narratives.
+
+Section II Universe
+
+R:
+
+This project has made it really clear that the verses are devoid of order, so I propose that we start with universe since the word is the most familiar. Annie, would you like to give an introduction for this vertex, including its narrative, form of representation, and concepts?
+
+A:
+
+Of course. The user interface of this vertex mimics that of the scientific journal website, PLOS, which stands for Public Library of Science. The intention is to simulate an environment where academic, especially interdisciplinary, discourses happen. Each article tries to provide insights to the discovery of fictional mimetic unicellular organisms which are able to mimic, on different levels, the behavior or structure of other organisms or materials. They approch this from different perspectives such as history, biology, computer science, philosophy, architecture, etc. Similar to every other verse, this section attempts to represent the universe through its adjacent worlds and jects. For the universe specifically, it is through interobject, subject, and intraobject.
+
+We have found the representation of the universe to be the most difficult, primarily because the term is so deeply embedded in our collective understanding and language. It carries extensive cognitive and cultural associations that are hard to disentangle or reinterpret. 
+
+J:
+
+I find the inclusion of "subject" in the universe narrative deeply intriguing, particularly in the context of your statement about the ambiguity of subject boundaries. This resonates strongly with the vertex's exploration of the senses of mimetic cells. By examining how these cells sense and mimic their environments, the study itself becomes a metaphor for the scientific process—where the boundaries between the observer and the observed blur, reflecting the very ambiguity you mentioned. This dual layer of sensing—both by the cells and by the scientific community—challenges our traditional views of what constitutes a 'subject' in scientific narratives. It prompts us to reconsider the act of sensing not merely as a biological or human function but as a fundamental aspect of knowledge construction and experience. This reimagining of subjectivity invites a broader dialogue about the interconnectedness of life and knowledge systems, urging us to question where one 'subject' ends and another begins in the continuum of scientific exploration.
+
+R:
+
+From my understanding, the 'jects,' including the subject, exist outside the conventional boundaries of perception. This positioning perhaps explains the difficulties encountered when trying to grasp these concepts. If we were only dealing with the 'lifeworld' it might be easier to have an intuitive understanding. However, the 'lifeworld' in this framework, while encompassing collective experiences, differs significantly from the 'intersubject' or 'fictiworld,' as these focus more on the relationships and overall structure of interactions. We could delve deeper into these distinctions when we discuss the 'topoverse'. For now, let's transition to discussing 'Dataworld' and 'Intraobject.' These concepts help bridge into the metaverse vertex. Annie, could you elaborate on how 'Dataworld' serves as this intersection? How does it influence our understanding of both the universe and the metaverse, and what implications might this have for our engagement with these overlapping realities?
+
+A:
+
+In our framework, 'Intraobject' refers to the fragmented aspects of objects or objective existences, both physical and conceptual. One example method that makes this tangible is the act of data collection, hence the name 'Dataworld'. By dividing reality into data points, 'Dataworld' gives us a sense of what those fragments of objective existences could be.
+
+Section III Metaverse
+
+R:
+
+That sets us up perfectly for the next part of our exploration—the metaverse. Annie, could you give us an introduction to this vertex? How does it build upon the concepts we've just discussed in 'Dataworld,' and what new dimensions does it bring to our understanding of the project's overarching themes?
+
+A:
+
+The user interface of the Metaverse vertex is modeled after GitHub, reflecting the theme of open-source code repositories. This design choice symbolizes the storage and archiving of data. In the narrative of the Metaverse vertex, we introduce the fictional device memory traversing machine. It serves as a bridge between human and computer memory. The aspect of computer memory is particularly tied to 'Dataworld' and 'Intraobject,' where the fragmentation and storage of data points are central themes. This narrative device allows us to explore the intersections of memory, identity, and digital existence, highlighting how these elements interact within the framework of the Metaverse.
+
+J:
+
+It's fascinating to consider the terminology of 'memory' as it applies to both humans and machines within the framework of this project. Annie, I've noticed from the keyword locations you've set up that you seem to position human and machine memory quite distinctly. This spatial separation builds upon the common assumption that human and machine existences are inherently different. What are your thoughts on this? Does this distinction reflect a deeper philosophical stance in the project?
+
+A:
+
+It's indeed fascinating to explore the concept of 'memory' as it applies to both humans and machines, especially within the philosophical context of this project. The spatial separation of human and machine memory in the keyword locations isn't meant to underscore their inherent differences but rather to highlight the nature of their existences—whether they are physical or imaginary. Of course, human memory has a physical aspect to it, but in this context, we're not focusing on that. Instead, we're discussing memory as an internal and experiential phenomenon. The term 'imaginary' here does not imply that something is unreal. Rather, one of the main themes of the project is to reintroduce skepticism about the concept of reality itself. Therefore, 'intrasubjectivity' is exclusive to the self. As for machines, we may never know if they can possess what might be called 'imaginary memory,' just as I may never truly know if you do.
+
+R:
+
+Continuing on this theme, I find the portrayal of 'dreamworld' particularly compelling, especially how it's depicted through the animation and visual techniques within the video. Could you please pull up the selected clip from the video? It would give us a better visual and thematic context for our discussion of these interconnections. Thank you.
+
+[clip playing]
+
+J:
+
+The medium of film inherently presents a framed or bordered perspective, much like our own human vision, which limits our perception of the environment. This border not only focuses our attention but also shapes our perception, subtly guiding us through different environments via techniques like the morphing you've seen in the clip. Often, the completeness of a context or even the causality within a narrative are not fully displayed; instead, they are subconsciously filled in by the viewer’s mind. We tend to forget what's outside the frame, accepting the constructed reality as complete. This selective perception is a powerful tool for filmmakers but also a fascinating metaphor for understanding how we perceive and interact with our own 'real' environments.
+
+A:
+
+Building on Jiayi's observations, my initial interest in the concept of 'dreamworld' stems from a very personal fascination with lucid dreaming. In these dreams, I’ve noticed that anything outside the primary intrasubject’s senses is prone to change without notice. For instance, in my most recent lucid dream experiment, I have a tattoo on my arm. Whenever I look directly at it, the pattern remains consistent. However, if I look away and then look back, the pattern changes. Without making a conscious effort to observe these changes, such as in this intentional experiment, I likely wouldn’t have noticed or minded the alteration. This fluidity in perception within dreams parallels the way film frames shape and limit our view, yet our minds strive to maintain a continuity of experience, filling in gaps to create a coherent narrative. To bring this closer to everyday experiences, consider how we often overlook small changes in our environments. For example, when an object appears in an unexpected place, we rarely question its presence deeply. Instead, our mind quickly fabricates a convincing causality—perhaps I moved it there and forgot, or maybe someone else did. This acceptance without much scrutiny is similar to how our consciousness continuously constructs and reconstructs our perceived reality, often without our conscious awareness.
+
+Section IV Topoverse
+
+R:
+
+Since we've touched upon causality, which, along with time, forms a crucial mystery and clue within the metaverse narrative, it seems fitting to transition our discussion toward the topoverse. This aspect of the project delves into topology and spacetime, concepts that relate closely to the object and logiworld. Annie, could you please introduce us to the topoverse vertex and explain how it integrates these concepts into the broader narrative?
+
+A:
+
+The user interface of the topoverse mimics that of YouTube, a well-known content-sharing platform. This design choice resonates with some of the main nodes related to the topoverse, specifically the intersubject and fictiworld. These aspects of the project focus on social apparatuses and are characterized by the structures and relationships between subjects. The prefix 'ficti-' does not imply that these elements are fictional and therefore unreal; rather, it highlights their nature as constructs, hence imaginary, which supports their placement between the pataverse and the topoverse—bridging the imaginary and structural. The setting of this vertex is a world where portal technology is common, and it employs three distinct forms of video content to frame and explore the breadth of this world.
+
+R:
+
+Annie, your introduction of portal technology within the topoverse is intriguing. Could you elaborate on how these portals function within your narrative? Specifically, how do they compare to existing depictions of portals in popular culture, such as the ones seen in the video game "Portal," or traditional concepts of teleportation devices and warp drives in science fiction? What are the unique aspects or principles that define the portals in your project?
+
+A:
+
+In our narrative, portals function essentially as wormholes. They bend space, which is fundamentally different from teleportation technologies that involve the transportation of particles. Moreover, our portrayal of portals diverges from those seen in the video game 'Portal' or in shows like 'Rick and Morty.' Those portals are often depicted as instantaneous gateways that can open anywhere, arbitrarily. In contrast, the portals in our project require the use of a specific type of particle that must be pre-entangled and physically installed in desired locations. This requirement introduces a layer of limitation, which makes them not only a means of travel but also a deeply integrated element of the narrative's exploration of space, time, and topology.
+
+R:
+
+In the first video, there is a simplified explanation of how the portals function, which could provide us with valuable insights. Given our time constraints, I propose we watch a short clip from each of the three videos. Could you please pull them up? Thank you.
+
+[clip playing]
+[clip playing]
+[clip playing]
+
+J:
+
+It’s quite striking that while all three clips are presented in video format, the mediums themselves are quite distinct, each serving as a window into larger cultural dynamics prevalent in modern digital media. The first clip, although it may not be immediately obvious, takes the form of a commercial, designed to engage and persuade. The second clip, taps into an institutional or bureaucratic aspect of this technology, reflecting structured, official communication. Meanwhile, the third clip encapsulates the influencer and consumer culture that is pervasive on platforms like YouTube.
+
+This segmentation of media types reminds me profoundly of Guy Debord’s concept of the spectacle, where media serves not just to inform or entertain, but to mediate our relationships with the social world. Debord argued that in the society of the spectacle, the representation becomes more significant than the actual, a theme that resonates with our earlier discussion on simulation. These clips, each in their own way, not only demonstrate technological capabilities but also simulate and propagate the societal norms and expectations tied to these technologies, shaping public perception and interaction in a manner that often blurs the lines between reality and representation.
+
+R:
+
+I agree, Jiayi, and to take that idea further, I see this mingling of diverse media and thematic aspects as central to how this project engages in worldbuilding and storytelling. Unlike traditional narratives that might start with a clear enumeration of world settings or follow a linear story with a protagonist, this project opts for a more immersive approach. It scatters short, potent ideas across different formats, inviting the audience to piece together the narrative and the world it inhabits. This method, related to our previous discussion about the frame and perception, suggests that the perception of these worlds as complete might also be a product of the subconscious filling in gaps. Since we've been discussing the intersubject and fictiworld, this seems like a perfect moment to transition to the concept of the pataverse. Annie, could you introduce us to the pataverse, including an explanation of where the term originated, as it may be the most unfamiliar to our audience?
+
+Section V Pataverse
+
+A:
+
+The pataverse vertex in our project is essentially a recreation of an operating system, which functions not only as a digital personal workspace but also plays on the pun of "desktop," portraying it as a physical personal workspace. The term 'pataverse' itself is derived from 'pataphysics, a concept introduced by Alfred Jarry. Pataphysics is often described as the science of imaginary solutions, or the laws governing exceptions, exploring the realms that transcend traditional sciences. This vertex is placed adjacent to the three nodes: intersubject, subject, and intrasubject, encapsulating elements that are closely related to the self. And in our project, we can simplify the understanding of pataverse to be that about the imaginary.
+
+J:
+
+This vertex is quite distinct from the others in terms of interactivity and design. The first element users encounter is a login screen, which can initially be quite confusing. Many might mistake it for computer’s actual login screen. This level of interaction, coupled with our earlier discussion about the invisibility of the taskbar, adds a layer of uncanniness and confusion that I believe is central to the experience of the pataverse. This element of confusion also reflects people's underlying fears about technology, particularly the internet, given that this project is web-based. Not knowing the true nature of the technology they are interacting with can make people feel vulnerable and exposed. I believe that this feeling of disorientation isn't just a byproduct; it's a deliberate part of the design, meant to challenge our perceptions and expectations of digital spaces. It makes us question what is real and what is part of the narrative, perfectly encapsulating the spirit of pataphysics—the exploration of the imaginary and the exceptions to the rules we take for granted.
+
+R:
+
+Annie, given the interactive elements and the immersive environment of the pataverse, do you consider this vertex to be a game? If so, what are the objectives that players or users are meant to achieve within this space?
+
+A:
+
+The idea of what constitutes a game is quite complicated. While I personally view this vertex as a game, we did not set out to define or confine it strictly within the traditional boundaries of what a game should be. It certainly includes elements of play and is designed to simulate the exploration of a space in whatever way one chooses to engage it with. One of the key interactive aspects of this vertex is the opportunity to communication with various personae within the environment. This interaction isn't just about achieving predefined objectives but about exploring and experiencing the space and its narratives in a deeply personal and immersive way.
+
+R:
+
+From our conversation prior to this panel discussion, I understand that large language models have not only influenced the conceptualization but also feature prominently in the final product, where users can actively engage with this technology. Annie, could you expand on your thoughts regarding the integration of these models? What motivated your decision to embed them as a central interactive element in your project? And how do you justify the using of them as a creative and production tool?
+
+A:
+
+Our decision to embed large language models as a central interactive element in the project stemmed from the themes we're exploring around communication and identity, particularly within the pataverse vertex. Users engage with the project while asking themselves questions like "Who am I?" or "Who is this person I'm talking to?" which opens up a dialogue about the nature of self and artificiality. These interactions are not just scripted responses but are generated in real-time, enhancing the depth of the narrative and the user’s engagement.
+
+Justifying the use of these models as both a creative and production tool goes back to their inherent capabilities. Generally, I am supportive of this technology because, when used correctly, they help individuals quickly gather and process information. In our project, we've chosen to use these models not just for content creation but also as a key element within the narrative itself, enabling us to blur the lines between creator and creation.
+
+Section VI Outro
+
+R:
+
+Thank you, Annie, for the insights into how each vertex of the project contributes to its narrative. Now that we've explored all aspects of the project, I have a question about one of its central claims. The project suggests that it aims to make people rethink what reality constitutes. However, I noticed that nowhere in the project is there a clear definition of what reality is, nor is there a specific explanation of what exactly needs to be reconsidered about our understanding of reality. Could you elaborate on this aspect? How does the project intend to challenge or expand our perceptions of reality without explicitly defining it?
+
+A:
+
+That’s an excellent question, Ru, and it touches on the very essence of what we aimed to achieve with this project. Indeed, we deliberately chose not to define reality within the project because we wanted to avoid prescribing any particular view. Instead, the project is fundamentally exploratory, designed to provoke questions rather than provide answers. By not defining reality explicitly, we encourage users to engage with the project based on their own experiences and perceptions, which vary widely.
+
+Each vertex, from the pataverse to the topoverse, serves as a metaphorical lens through which users can examine and question the layers of their reality. The absence of a strict definition invites participants to reflect on what reality means to them personally and culturally. This approach allows the project to act as a catalyst for dialogue about reality, pushing users to reconsider and perhaps redefine their understanding of it in a way that is unique to each individual. Our goal is to stimulate thought and discussion around the fluidity and construct of reality, fostering a deeper awareness of how technology, narrative, and human interaction interweave to shape our perceptions.
+
+R:
+
+Annie, there's a provocative aspect to this project that I'd like to address. You’re using fictional narratives to explore the nature of reality and existence. If the aim of the project is to reflect or even challenge our understanding of reality, why rely on elements that are clearly fictional? How do you reconcile the use of narratives that are obviously fabricated with the claim that this project provides insights into reality?
+
+A:
+
+That's a valid concern, Ru, and it gets to the heart of what we're trying to achieve with this project. The use of fictional narratives to explore the nature of reality might seem paradoxical at first. However, fiction provides a unique space where we can safely question and experiment with ideas of reality without the constraints of the actual world. By crafting scenarios that are clearly not real, we invite users to step outside their everyday experiences and assumptions, allowing them to view reality from a fresh perspective.
+
+Furthermore, these fictional narratives serve as metaphors or simulations that mirror complex real-world issues in a distilled form. This method is not just about escapism but about leveraging the power of narrative to illuminate truths about our existence and provoke deeper reflection. Just as philosophical thought experiments use fictional scenarios to explore ethical and existential questions, our project uses these narratives to challenge and expand our understanding of what constitutes reality. It's about opening up a dialogue and encouraging critical thinking, not necessarily providing direct answers but fostering a space where questioning our perceptions becomes possible and productive.
+
+R:
+
+Annie, another point I'd like to explore is the choice of theoretical framework and terminology in your project. Given the esoteric nature of some terms and concepts used, such as 'pataverse' or 'topoverse,' how do you argue that this framework is more effective or insightful than existing, more conventional frameworks? Why opt for these less common, more specialized words when well-known terms that are deeply rooted in language and culture might be more accessible to a broader audience?
+
+A:
+

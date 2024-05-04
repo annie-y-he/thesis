@@ -9,9 +9,11 @@ import img2 from './assets/img2.png'
 
 import { metadata } from './metadata'
 import useWindowHeight from '../../hooks/useWindowHeight';
+import useInactivityRedirect from '../../hooks/useInactivityRedirect';
 
 export default function Page() {
-  // useWindowHeight();
+  useWindowHeight();
+  useInactivityRedirect();
   return (
     <main className={s.main}>
       <div className={s.subheader}>

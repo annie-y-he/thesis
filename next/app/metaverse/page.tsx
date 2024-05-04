@@ -12,9 +12,11 @@ import FolderIcon from './assets/folder.svg'
 import AnnieProf from './assets/annieProf.jpg'
 import HedronIcon from '@/images/hedron.png'
 import useWindowHeight from '../hooks/useWindowHeight';
+import useInactivityRedirect from '../hooks/useInactivityRedirect';
 import { metaKeywords } from '../Keywords';
 export default function Meta() {
   useWindowHeight();
+  useInactivityRedirect();
   const [dir1, setDir1] = useState(false);
   const [dir2, setDir2] = useState(false);
   const [dir3, setDir3] = useState(false);
@@ -90,8 +92,8 @@ export default function Meta() {
             <div className={s.select}>Final project for ECE150: Digital Logic Design</div>
             <br />
             <div className={s.keywords}>
-              {metaKeywords.map((item) => (
-                <div>{item.word}</div>
+              {metaKeywords.map((item, index) => (
+                <div key={index}>{item.word}</div>
               ))}
             </div>
             <hr />

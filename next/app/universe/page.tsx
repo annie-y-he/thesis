@@ -7,15 +7,18 @@ import PLOSIcon from './assets/plos.svg'
 import PLOSWIcon from './assets/plos-white.svg'
 import HedronIcon from './assets/hedron.png'
 import useWindowHeight from '../hooks/useWindowHeight';
+import useInactivityRedirect from '../hooks/useInactivityRedirect';
 import { uniKeywords } from '../Keywords';
 import { metadata as m1 } from './a1/metadata'
 import { metadata as m2 } from './a2/metadata'
 import { metadata as m3 } from './a3/metadata'
 import { metadata as m4 } from './a4/metadata'
 import { metadata as m5 } from './a5/metadata'
+const BP = process.env.NEXT_PUBLIC_BASE_PATH;
 
 export default function Uni() {
   useWindowHeight();
+  useInactivityRedirect();
   const Article: React.FC<any> = ({ metadata }) => {
     return (
       <div className={s.article}>
@@ -36,7 +39,7 @@ export default function Uni() {
 
   return (
     <main className={s.main}>
-      <div className={s.header}>
+      <div className={s.header} style={{  backgroundImage: `url('${BP}/images/collection.webp')`}}>
         <div>
           <Image src={PLOSIcon} width={0} height={60} alt="logo"></Image>
           <hr />
@@ -48,7 +51,7 @@ export default function Uni() {
             <p>This curated collection converges the forefront of multidisciplinary research and theoretical discourse surrounding the groundbreaking discovery of mimetic unicellular organisms and their colonial arrangements. It showcases a compendium of perspectives that span from the intricacies of single-cell mimicry to the complex behaviors of colonial formations. Scholars and innovators from fields as diverse as cellular biology, synthetic design, computational modeling, and architectural biomimicry contribute to a body of work that not only dissects the functional dynamics of these organisms but also extrapolates their potential to inspire revolutionary applications in technology, medicine, and sustainable design. The collection seeks to offer insights into how these biological entities, characterized by their remarkable adaptive capabilities, can reshape our understanding of natural processes and inform the next generation of cross-disciplinary innovations.</p>
           </div>
           <hr />
-          <div className={s.keywords}>{uniKeywords.map((item) => <div>{item.word}</div>)}</div>
+          <div className={s.keywords}>{uniKeywords.map((item, index) => <div key={index}>{item.word}</div>)}</div>
         </div>
       </div>
       <div className={s.body}>

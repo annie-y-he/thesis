@@ -21,11 +21,15 @@ import { Glitch } from '@react-three/postprocessing'
 import { GlitchMode } from 'postprocessing'
 import textFieldEdit, { insertTextIntoField } from 'text-field-edit';
 import useWindowHeight from '../hooks/useWindowHeight';
+import useInactivityRedirect from '../hooks/useInactivityRedirect';
 const BP = process.env.NEXT_PUBLIC_BASE_PATH;
 import { pataKeywords } from '../Keywords';
 import bcrypt from 'bcryptjs'
 import * as Tone from 'tone'
 import Window from './Window'
+import { div } from 'three/examples/jsm/nodes/Nodes.js';
+import { useRouter } from 'next/navigation';
+
 
 interface Email {
   content: string;
@@ -87,14 +91,91 @@ const Tab = ({ id, children, active, setActive, visible, setVisible }: {
   </button>)
 }
 
-const Chrome = () => {
+function jaccardSimilarity(str1: string, str2: string) {
+  const set1 = new Set(str1.replace(/[^a-zA-Z0-9\s]/g, '').toLowerCase().split(/\s+/));
+  const set2 = new Set(str2.replace(/[^a-zA-Z0-9\s]/g, '').toLowerCase().split(/\s+/));
+
+  const arr1 = Array.from(set1);
+  const arr2 = Array.from(set2);
+
+  const intersection = arr1.filter(x => set2.has(x));
+  const union = Array.from(new Set([...arr1, ...arr2]));
+
+  return intersection.length / union.length;
+}
+
+function shiftCharCode(char: string, shiftAmount: number) {
+  let charCode = char.charCodeAt(0);
+  if (char >= 'a' && char <= 'z') {
+    charCode = ((charCode - 97 + shiftAmount) % 26) + 97;
+  } else if (char >= 'A' && char <= 'Z') {
+    charCode = ((charCode - 65 + shiftAmount) % 26) + 65;
+  }
+  return String.fromCharCode(charCode);
+}
+
+function processWord(word: string, shiftAmount: number) {
+  return word.split('').map(char => shiftCharCode(char, shiftAmount)).join('');
+}
+
+function transformString(str: string, progress: number) {
+  return str.split(' ').map(word => { return Math.random() < progress ? word : processWord(word, 3) }).join(' ');
+}
+
+const TabContent = ({ id, children, progress }: {
+  id: number, 
+  children: string, 
+  progress: number[],
+}) => {
+  return (<div className={s.chromePage}>
+    <h1>Sampling Voice...</h1>
+    <p>Please repeat the following sentence aloud:</p>
+    <p><small>{children}</small></p>
+    <progress id="file" value={progress[id]} max="5"></progress>
+    {progress[id] == 5 && <p><b>Sample Done!</b></p>}
+  </div>)
+}
+
+const sampleText = [
+  "Internet browsing is the act of traversing through data that reside on the interconnected network, typically through a browser, which renders selected data into human readable, graphical format.",
+  "Asynchronous communication is the exchange of information where responses do not occur immediately, allowing participants to engage at their own pace, typically facilitated by tools such as email, messaging apps, and forums, which support interaction without the need for simultaneous presence.",
+  "Interpersonal relationship is the dynamic and interactive connection between two or more individuals, often characterized by mutual engagement that can be social, emotional, or professional in nature, and is typically shaped by communication patterns and shared experiences.",
+  "A large language model is an advanced artificial intelligence system trained on extensive textual data, designed to generate human-like text based on the input it receives, and is capable of performing a variety of language-based tasks including translation, summarization, and question answering.",
+  "Consciousness refers to the state of being aware of and able to think about oneself, the environment, and one's own experiences, encompassing a spectrum of perceptions, cognitions, and emotions.",
+  "The Turing Test is a measure of a machine's ability to exhibit intelligent behavior equivalent to, or indistinguishable from, that of a human, where a machine is deemed to have passed if it can converse with humans without them realizing it's not human.",
+  "Interactive sensing involves technologies and systems designed to detect and respond to physical inputs or environmental data, providing real-time, dynamic interaction between users and devices.",
+  "Personality encompasses the unique set of emotional patterns, thoughts, and behavioral traits that define an individual's distinctive character and influences their interactions and reactions.",
+  "Online identity is the social identity that an internet user establishes in online communities and websites, often presenting facets of the individual's personality and can include elements like usernames, avatars, and profiles.",
+  "Linguistic comprehension is the ability to understand spoken or written language, involving cognitive processes that interpret the meaning of words and sentences within context, facilitating effective communication."
+]
+
+const Chrome = ({deviceMsg}: {deviceMsg: {msg: string, bit: boolean}}) => {
   const [visible, setVisible] = useState<number[]>([0]);
   const [active, setActive] = useState<number>(0);
+  const [progress, setProgress] = useState(Array(10).fill(0));
+  const [msgDisplay, setMsgDisplay] = useState<string>("start speaking...");
+  
+  useEffect(() => {
+    setMsgDisplay(transformString(deviceMsg.msg, progress.reduce((acc, cur) => acc + cur, 0)/50))
+  }, [deviceMsg.bit])
 
+  useEffect(() => {
+    sampleText.forEach((item, index) => {
+      if (progress[index] == 5) return;
+      if (jaccardSimilarity(deviceMsg.msg, item) > 0.9) {
+        setProgress(p => {
+          const newProgress = [...p];
+          newProgress[index] += 1;
+          return newProgress;
+        });
+      }
+    })
+  }, [deviceMsg.bit])
   const tabNames = [
     <Image src={HomeIcon} width={0} height={0} alt="icon" />,
     "404",
-    ...(pataKeywords.map((item) => item.word))
+    ...(pataKeywords.map((item) => item.word)),
+    "Speech to Text"
   ]
 
   const tabConts = [
@@ -127,16 +208,8 @@ const Chrome = () => {
       <h1>404</h1>
       <h5>Page Not Found</h5>
     </div>,
-    <div>work in progress, check back later</div>,
-    <div>work in progress, check back later</div>,
-    <div>work in progress, check back later</div>,
-    <div>work in progress, check back later</div>,
-    <div>work in progress, check back later</div>,
-    <div>work in progress, check back later</div>,
-    <div>work in progress, check back later</div>,
-    <div>work in progress, check back later</div>,
-    <div>work in progress, check back later</div>,
-    <div>work in progress, check back later</div>,
+    ...(sampleText.map((item, index) => <TabContent id={index} progress={progress}>{item}</TabContent>)),
+    <div className={s.display}>{msgDisplay}</div>,
   ]
 
   return (
@@ -239,7 +312,7 @@ const Outlook = ({username}: {username: string}) => {
     },
   ]);
   const [current, setCurrent] = useState<Email>({
-    content: "click to view emails",
+    content: "click emails in inbox to view",
     sender: "Sender",
     re: null,
     read: false,
@@ -296,7 +369,7 @@ const Outlook = ({username}: {username: string}) => {
             }
           }}
         />
-        <button disabled={current.sender == 'Sender'} onClick={sendButton}>Send</button>
+        <button disabled={current.sender == 'Sender' || !emailContent} onClick={sendButton}>Send</button>
       </div>
       <audio ref={swooshRef} preload="auto">
         <source src={BP + "/audio/swoosh.wav"} type="audio/wav" />
@@ -311,10 +384,8 @@ const Outlook = ({username}: {username: string}) => {
 // hash to audible range. use Tone.js
 const salt = bcrypt.genSaltSync();
 
-function toSound(input: string) {
-  console.log(input);
-  const words = input.replace(/[^a-zA-Z0-9\s]/g, '').toLowerCase().split(' ');
-  console.log(words);
+function toSound(input: string, setDeviceMsg: React.Dispatch<React.SetStateAction<{msg: string, bit: boolean}>>) {
+  const words = input.replace(/[^a-zA-Z0-9\s]/g, '').toLowerCase().split(/\s+/);
   const synth = new Tone.Synth().toDestination();
   let now = Tone.now()
 
@@ -330,6 +401,7 @@ function toSound(input: string) {
     synth.triggerAttackRelease(2 ** (Math.abs(num) % 10000 / 1000 + 3), "1024n", now);
     now += 0.1;
   });
+  setTimeout(() => setDeviceMsg(cur => ({msg: input, bit: !cur.bit})), words.length * 100);  
 }
 
 async function handlePrint(
@@ -339,11 +411,11 @@ async function handlePrint(
   threadId: string,
   setThreadId:  React.Dispatch<React.SetStateAction<string>>,
   comprehension: number,
+  setDeviceMsg: React.Dispatch<React.SetStateAction<{msg: string, bit: boolean}>>,
 ) {
   const req = textRef.current?.value || "";
   setPaper(req);
   playAudio(printRef);
-  console.log(req);
   const response = await fetch(BP + '/api/gpt', {
     method: 'POST',
     headers: {
@@ -358,8 +430,7 @@ async function handlePrint(
   });
   const body = await response.json();
   setThreadId(body.tid);
-  console.log(body.msg);
-  toSound(body.msg);
+  toSound(body.msg, setDeviceMsg);
 }
 
 const initPaper = `
@@ -373,10 +444,11 @@ Differential Equations:
 2. Find the general solution for the second-order differential equation where the second derivative of y minus four times the first derivative of y plus four times y equals e raised to 2x.
 3. Determine the stability of the zero solution for the system of differential equations given by the matrix [0, 1; -1, 0].`
 
-const VSCode = ({setPaper}: {setPaper: React.Dispatch<React.SetStateAction<string>>}) => {
+const VSCode = ({setPaper, setDeviceMsg}: {setPaper: React.Dispatch<React.SetStateAction<string>>, setDeviceMsg: React.Dispatch<React.SetStateAction<{msg: string, bit: boolean}>>}) => {
   const [threadId, setThreadId] = useState("");
   const [comprehension, setComprehension] = useState(0);
   const textRef = useRef<HTMLTextAreaElement>(null);
+  const [printable, setPrintable] = useState(false);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Tab' && textRef.current) {
@@ -389,7 +461,10 @@ const VSCode = ({setPaper}: {setPaper: React.Dispatch<React.SetStateAction<strin
 
   return (
     <div className={s.vscode} >
-      <button onClick={() => handlePrint(textRef, printRef, setPaper, threadId, setThreadId, comprehension)}>
+      <button disabled={!printable} onClick={() => {
+        handlePrint(textRef, printRef, setPaper, threadId, setThreadId, comprehension, setDeviceMsg);
+        setPrintable(false);
+      }}>
         <Image src={PrintIcon} width={0} height={0} alt="icon" />
       </button>
       <textarea 
@@ -397,6 +472,7 @@ const VSCode = ({setPaper}: {setPaper: React.Dispatch<React.SetStateAction<strin
         ref={textRef}
         onKeyDown={handleKeyDown}
         defaultValue={initPaper}
+        onChange={() => setPrintable(true)}
       ></textarea>
       <audio ref={printRef} preload="auto">
         <source src={BP + "/audio/print.wav"} type="audio/wav" />
@@ -407,13 +483,16 @@ const VSCode = ({setPaper}: {setPaper: React.Dispatch<React.SetStateAction<strin
 
 export default function Pata() {
   useWindowHeight();
+  useInactivityRedirect();
   const [wins, setWins] = useState<string[]>([]);
   const [isCoarsePointer, setIsCoarsePointer] = useState(false);
   const [userName, setUserName] = useState("");
-
+  const [deviceMsg, setDeviceMsg] = useState({msg: "hello it's me", bit: false});
+  const router = useRouter();
   useEffect(() => {
     setIsCoarsePointer(window.matchMedia('(pointer: coarse)').matches);
   }, []);
+
 
   const toTop = (windowName: string) => {
     setWins((currentWins) => {
@@ -505,31 +584,34 @@ export default function Pata() {
         <Gltf src={BP + "/models/mat.glb"} scale={sceneScale} />
         <Gltf src={BP + "/models/table.glb"} scale={sceneScale} />
         <Gltf src={BP + "/models/printer.glb"} scale={sceneScale} />
-        <Splat src={BP + "/models/scene.splat"} scale={sceneScale} />
+        <Splat src={BP + "/models/scene.splat"} scale={sceneScale} position={[0,0,-0.2]}/>
+        <Gltf src={BP + "/models/hedron.glb"} 
+          scale={0.05} 
+          position={[1.4,0.03,-1.1]} 
+          rotation={[0,1.1,0]}
+          onPointerEnter={() => document.body.style.cursor = "pointer"} 
+          onPointerOut={() => document.body.style.cursor = "auto"}
+          onClick={() => router.push('/')}
+        />
 
-        {/* <DragControls 
+        <DragControls 
           axisLock='y'
-          dragLimits={[[-2.65,1.75], undefined, [-0.2,2.1]]}
-          autoTransform={grab}
+          dragLimits={[[-3.63,0.74], undefined, [-0.15,2.1]]}
         >
-          <Splat 
-            src={BP + "/models/device.splat"}
-            alphaTest={0.1} 
-            scale={sceneScale} 
-            position={[0,0.05,0]} 
-          />
+          <Gltf src={BP + "/models/device.glb"} scale={sceneScale} position={[1.06,0.05,0.1]}/>
           <Plane 
             args={[0.65, 1.05]} 
             rotation={[-Math.PI/2,0,0]} 
-            position={[0,0.005,0.05]} 
-            onPointerEnter={handleGrabOver} 
-            onPointerOut={handleGrabOut}
+            position={[1,0.05,0.05]} 
+            onPointerEnter={() => document.body.style.cursor = "grab"} 
+            onPointerOut={() => document.body.style.cursor = "auto"}
           >
             <meshStandardMaterial color="black" />
           </Plane>
-        </DragControls> */}
+        </DragControls>
         <DragControls 
           axisLock='y'
+          dragLimits={[[-2,3], undefined, [-2,2]]}
         >
           <Text 
             color="black" 
@@ -583,7 +665,7 @@ export default function Pata() {
           winname="chrome"
           close={toggle}
         >
-          <Chrome />
+          <Chrome deviceMsg={deviceMsg}/>
         </Window>
         <Window 
           style={{ display: wins.includes("vscode") ? "flex" : "none", zIndex: wins.indexOf("vscode")}} 
@@ -593,7 +675,7 @@ export default function Pata() {
           winname="vscode"
           close={toggle}
           >
-          <VSCode setPaper={setPaper} />
+          <VSCode setPaper={setPaper} setDeviceMsg={setDeviceMsg} />
         </Window>
         <Window 
           style={{ display: wins.includes("outlook") ? "flex" : "none", zIndex: wins.indexOf("outlook")}} 
@@ -611,11 +693,6 @@ export default function Pata() {
           <div><Image src={ChromeIcon} width={0} height={0} alt="icon" onClick={() => toggle("chrome")} /></div>
           <div><Image src={VSCodeIcon} width={0} height={0} alt="icon" onClick={() => toggle("vscode")} /></div>
           <div><Image src={OutlookIcon} width={0} height={0} alt="icon" onClick={() => toggle("outlook")} /></div>
-          <div>
-            <Link href='/'>
-              <Image src={HedronIcon} width={0} height={0} alt="icon" />
-            </Link>
-          </div>
         </div>
       </div>}
     </main>
