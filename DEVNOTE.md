@@ -33,8 +33,8 @@ meta:
 - [x] add back link
 - [x] disable keyword user select
 - [x] gpt unable to figure out logic
-- rerender
-- text errors in video
+- [x] rerender
+- [x] text errors in video
 - debug section
 
 uni:
@@ -87,7 +87,7 @@ pata:
 - [x] click inbox to view emails
 - [x] device mesh
 - [ ] captcha
-- story line
+- [x] story line
 - [ ] more persona
 - [ ] paper monospace
 - [x] change pata hedron loc
